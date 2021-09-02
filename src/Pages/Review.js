@@ -6,7 +6,8 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { v4 as uuid } from 'uuid';
-
+import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import * as AWS from 'aws-sdk'
 
 const configuration = {
@@ -53,7 +54,7 @@ export default function Review() {
 
     const initialState = {
         author: '', description: '', dislike: '', like: '',
-        id: '', rate: '', phone: '', email: '', vaccine:""
+        id: '', rate: '', phone: '', email: '', vaccine: ""
     }
     const [validated, setValidated] = useState(false);
 
@@ -72,21 +73,48 @@ export default function Review() {
         setValidated(true);
     }
 
+    var click = false;
+    const addLikeOrDislike = async (idx,mode) => {
+        try {
+            if (click === false) {
+                if (mode === 1) reviews[idx].like += 1;
+                else if (mode === 2) reviews[idx].dislike +=1;
+                console.log(reviews[idx]);
+                await putData('vaccine-review', reviews[idx]);
+                click = true;
+            }
+            else {
+                if (mode === 1 && reviews[idx].like >0) reviews[idx].like -= 1;
+                else if (mode === 2 && reviews[idx].dislike > 0) reviews[idx].dislike -=1;
+                console.log(reviews[idx]);
+                await putData('vaccine-review',reviews[idx]);
+                click = false;
+            }
+        } catch (error) {
+            console.log('error on adding Like to review', error);
+        }
+    };
+
+  
     return (
         <div className="Review">
-          
+
             {reviews.map((review, idx) => {
                 return (
                     <div key={`review${idx}`}>
                         <p>{review.author}</p>
-                        <p>{review.description}</p>
-                        <p>{review.dislike}</p>
-                        <p>{review.like}</p>
-                        <p>{review.id}</p>
+                        {/* <p>{review.description}</p> */}
+                        <ThumbUpIcon onClick={() => addLikeOrDislike(idx,1)}>
+                            {review.like}
+                        </ThumbUpIcon>
+                        <ThumbDownAltIcon onClick={() => addLikeOrDislike(idx,2)}>
+                            {review.dislike}
+                        </ThumbDownAltIcon>
+                        {/* <p>{review.id}</p>
                         <p>{review.rate}</p>
                         <p>{review.phone}</p>
                         <p>{review.email}</p>
-                        <p>{review.vaccine}</p>
+                        <p>{review.vaccine}</p> */}
                     </div>
                 )
             })}
@@ -130,7 +158,7 @@ export default function Review() {
                             <Form.Control
                                 type="text"
                                 required
-                                pattern = "^\d{1,2}(\.\d{1,2})?$"
+                                pattern="^\d{1,2}(\.\d{1,2})?$"
                                 placeholder="Enter rate out of 10"
                                 onChange={(e) => initialState['rate'] = e.target.value}
                             />
