@@ -9,6 +9,7 @@ import { v4 as uuid } from 'uuid';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import * as AWS from 'aws-sdk'
+import IconButton from '@material-ui/core/IconButton';
 
 const configuration = {
     region: 'us-east-1',
@@ -104,12 +105,14 @@ export default function Review() {
                     <div key={`review${idx}`}>
                         <p>{review.author}</p>
                         {/* <p>{review.description}</p> */}
-                        <ThumbUpIcon onClick={() => addLikeOrDislike(idx,1)}>
-                            {review.like}
-                        </ThumbUpIcon>
-                        <ThumbDownAltIcon onClick={() => addLikeOrDislike(idx,2)}>
-                            {review.dislike}
-                        </ThumbDownAltIcon>
+                        <IconButton onClick={() => addLikeOrDislike(idx,1)}>  
+                            <ThumbUpIcon/>
+                        </IconButton>
+                        {review.like}
+                        <IconButton onClick={() => addLikeOrDislike(idx,2)}>
+                            <ThumbDownAltIcon/>
+                        </IconButton>
+                        {review.dislike}
                         {/* <p>{review.id}</p>
                         <p>{review.rate}</p>
                         <p>{review.phone}</p>
