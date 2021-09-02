@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AccountContext } from './Accounts';
 
-export default () => {
+export default function Status () {
   const [status, setStatus] = useState(false);
 
   const { getSession, logout } = useContext(AccountContext);
