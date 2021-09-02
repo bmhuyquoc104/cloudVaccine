@@ -9,11 +9,11 @@ import Review from "./Pages/Review";
 import Registration from "./Pages/Registration";
 import Vaccine from "./Pages/Vaccine";
 import CountriesSummary from './Pages/CountriesSummary';
-import { Account } from './Pages/Accounts';
-import Signup from './Pages/Signup';
-import Login from './Pages/Login';
-import Status from './Pages/Status';
-import Settings from './Pages/Setting';
+import { Account } from './User/Accounts';
+import Signup from './User/Signup';
+import Login from './User/Login';
+import Status from './User/Status';
+import Settings from './User/Setting';
 function App() {
   return (
     <div className="App">
@@ -32,6 +32,12 @@ function App() {
             <li>
               <Link to="/countriesSummary">CountriesSummary</Link>
             </li>
+            <li>
+              <Link to="/signUp">Sign Up</Link>
+            </li>
+            <li>
+              <Link to="/signIn">Sign In</Link>
+            </li>
           </ul>
 
           <Switch>
@@ -47,13 +53,13 @@ function App() {
             <Route path="/countriesSummary">
               <CountriesSummary />
             </Route>
+            <Route path="/signIn">
+              <Login />
+            </Route>
+            <Route path="/signUp">
+              <Signup />
+            </Route>
           </Switch>
-          <Account>
-            <Status/>
-            <Signup/>
-            <Login/>
-            <Settings/>
-          </Account>
         </div>
       </Router>
     </div>

@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import { AccountContext } from "./Accounts";
 
-export default () => {
+export default function ChangeEmail(){
   const [newEmail, setNewEmail] = useState("");
   const [password, setPassword] = useState("");
 
