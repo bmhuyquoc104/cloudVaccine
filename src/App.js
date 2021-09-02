@@ -9,11 +9,10 @@ import Review from "./Pages/Review";
 import Registration from "./Pages/Registration";
 import Vaccine from "./Pages/Vaccine";
 import CountriesSummary from './Pages/CountriesSummary';
-import { Account } from './User/Accounts';
+
 import Signup from './User/Signup';
 import Login from './User/Login';
-import Status from './User/Status';
-import Settings from './User/Setting';
+
 function App() {
   return (
     <div className="App">
