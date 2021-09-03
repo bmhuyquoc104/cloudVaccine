@@ -3,7 +3,8 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-
+import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
+import IconButton from '@material-ui/core/IconButton';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -16,6 +17,33 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
   },
 }));
+
+const configuration = {
+    region: 'us-east-1',
+    secretAccessKey: 'RijJPrAkst+a132dzazw+u9ssMWZsbttvvcVOE32',
+    accessKeyId: 'AKIA4Y5CM62A3AGGGW2W'
+}
+
+
+AWS.config.update(configuration)
+
+const docClient = new AWS.DynamoDB.DocumentClient()
+const putData = (tableName, data) => {
+    var params = {
+        TableName: tableName,
+        Item: data
+    }
+
+    docClient.put(params, function (err, data) {
+        if (err) {
+            console.log('Error', err)
+        } else {
+            console.log('Success', data)
+        }
+    })
+}
+
+
 
 export default function Vaccine() {
     const [vaccines, setVaccines] = useState([]);
@@ -30,6 +58,22 @@ export default function Vaccine() {
     )
     console.log(vaccines)
 
+   var click = false;
+    const addLike = async (idx) =>{
+        if(click === false ){
+            vaccines[idx].like +=1;
+            await putData('vaccine-covid',vaccines[idx]);
+            console.log(vaccines[idx]);
+            click = true;
+        }
+        else{
+            vaccines[idx].like -=1;
+            await putData('vaccine-covid',vaccines[idx]);
+            console.log(vaccines[idx]);
+            click = false;
+        }
+    }
+  
     const [spacing, setSpacing] = React.useState(2);
     const classes = useStyles();
 
@@ -46,7 +90,9 @@ export default function Vaccine() {
                             <Typography><b>{vaccine.name}</b></Typography>
                             <Typography><b>ID:</b> {vaccine.id}</Typography>
                             <Typography><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
-                            <Typography><b>Like:</b> {vaccine.like}</Typography>
+                            <IconButton onClick={() => addLike(idx)}>  
+                        <FavoriteBorderRoundedIcon/>
+                        </IconButton>
                             <Typography><b>Country:</b> {vaccine.country}</Typography>
                           </CardContent>
                         </Card>
