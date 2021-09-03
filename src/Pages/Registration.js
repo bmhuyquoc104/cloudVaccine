@@ -1,3 +1,6 @@
+// AWS STARTS
+import * as AWS from 'aws-sdk'
+
 import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
@@ -6,16 +9,57 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { v4 as uuid } from 'uuid';
+const { SendEmailCommand } = require("@aws-sdk/client-ses");
+const { sesClient } = require("./lib/sesClient.js");
 
-// AWS STARTS
-import * as AWS from 'aws-sdk'
+
 
 const configuration = {
   region: 'us-east-1',
   secretAccessKey: 'RijJPrAkst+a132dzazw+u9ssMWZsbttvvcVOE32',
-  accessKeyId: 'AKIA4Y5CM62A3AGGGW2W'
+  accessKeyId: 'AKIA4Y5CM62A3AGGGW2W',
+  smtpUsername: 'AKIA4Y5CM62A5U2RIQUR',
+  smtpPassword: 'BFid+bWD5no2D1a7gkUoBibbP4rFaDt5EUbIGtcPELjA'
 }
 AWS.config.update(configuration)
+
+var ses = new AWS.SES();
+const params1 = {
+  Destination: {
+    /* required */
+    CcAddresses: [
+      /* more items */
+    ],
+    ToAddresses: [
+      "nguyendanghuynhchau15720@gmail.com", //RECEIVER_ADDRESS
+      /* more To-email addresses */
+    ],
+  },
+  Message: {
+    /* required */
+    Body: {
+      /* required */
+      Html: {
+        Charset: "UTF-8",
+        Data: "You successfully registered the vaccination",
+      },
+      Text: {
+        Charset: "UTF-8",
+        Data: "You successfully registered the vaccination",
+      },
+    },
+    Subject: {
+      Charset: "UTF-8",
+      Data: "Welcome new vaccinator",
+    },
+  },
+  Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+  ReplyToAddresses: [
+    /* more items */
+  ],
+};
+
+
 
 const docClient = new AWS.DynamoDB.DocumentClient()
 const putData = (tableName, data) => {
@@ -67,7 +111,8 @@ export default function Registration() {
       e.stopPropagation();
     } else {
       initialState['id'] = uuid();
-      putData('vaccine-register', initialState)
+      putData('vaccine-register', initialState);
+      ses.sendEmail(params1);
       console.log(initialState);
     }
     setValidated(true);
@@ -237,7 +282,3 @@ export default function Registration() {
     </div>
   );
 }
-
-
-
-

@@ -1,11 +1,11 @@
-import { SendEmailCommand }  from "@aws-sdk/client-ses";
-import { sesClient } from "./libs/sesClient.js";
-import {
-  VerifyEmailIdentityCommand
-}  from "@aws-sdk/client-ses";
+const { SendEmailCommand } = require("@aws-sdk/client-ses");
+const { sesClient } = require("./lib/sesClient.js");
+
 // Set the parameters
 
-const params = { EmailAddress: "everythingsowhatmaboi@gmail.com" }; //ADDRESS@DOMAIN.EXT; e.g., name@example.com
+const { VerifyEmailIdentityCommand } = require("@aws-sdk/client-ses");
+
+const params = { EmailAddress: "nguyendanghuynhchau15720@gmail.com" }; //ADDRESS@DOMAIN.EXT; e.g., name@example.com
 
 
 const run = async () => {
@@ -27,7 +27,7 @@ const params1 = {
       /* more items */
     ],
     ToAddresses: [
-      "everythingsowhatmaboi@gmail.com", //RECEIVER_ADDRESS
+      "nguyendanghuynhchau15720@gmail.com", //RECEIVER_ADDRESS
       /* more To-email addresses */
     ],
   },
