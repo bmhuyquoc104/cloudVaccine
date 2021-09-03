@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import React from "react"
 import { DataGrid } from '@material-ui/data-grid';
 import { Bar } from 'react-chartjs-2';
-import { Pie } from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
 
 export default function CountriesSummary() {
   const [countriesSummary, setCountriesSummary] = useState([]);
@@ -19,9 +19,9 @@ export default function CountriesSummary() {
   )
 
   const columns = [
-    { field: 'indexNumber', headerName: 'index', width: 300 },
-    { field: 'id', headerName: 'id', width: 300 },
 
+    { field: 'id', headerName: 'tableId', width: 300 },
+    { field: 'ID', headerName: 'id', width: 300 },
     {
       field: 'Country',
       headerName: 'Country',
@@ -67,6 +67,8 @@ export default function CountriesSummary() {
   var malaysiaCollection = [];
   var thailandCollection = [];
   var vietNamToday = [];
+  var cambodiaToday = [];
+  var malaysiaToday = [];
   var rows = [];
   var count = 0;
   for (const country of countriesSummary) {
@@ -82,7 +84,7 @@ export default function CountriesSummary() {
   var sevenDayAgo = new Date();
   currentDate.setDate(currentDate.getDate());
   sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
-  
+
 
   for (const country of countriesSummary) {
     var dayInArray = new Date(country['Date']);
@@ -97,12 +99,19 @@ export default function CountriesSummary() {
       }
       if (country['Country'] === 'Singapore') {
         singaporeCollection.push(country);
+
       }
       if (country['Country'] === 'Cambodia') {
         cambodiaCollection.push(country);
+        if (dayInArray.toLocaleDateString() === currentDate.toDateString()) {
+          cambodiaToday.push(country);
+        }
       }
       if (country['Country'] === 'Malaysia') {
         malaysiaCollection.push(country);
+        if (dayInArray.toLocaleDateString() === currentDate.toDateString()) {
+          malaysiaToday.push(country);
+        }
       }
       if (country['Country'] === 'Thailand') {
         thailandCollection.push(country);
@@ -117,13 +126,24 @@ export default function CountriesSummary() {
     }
     return dataset.sort();
   }
-  
+
   var label = [];
   for (const vn of vietNamCollection) {
     label.push((new Date(vn.Date).toLocaleDateString()));
   }
   label.sort();
-  console.log(label);
+
+  // var dataPie = [];
+  function getPieChartData(countryToday) {
+    var dataSetPieChart = [];
+    for (const data of countryToday) {
+      dataSetPieChart.push(data.Recovered);
+      dataSetPieChart.push(data.Deaths);
+      dataSetPieChart.push(data.Confirmed);
+      dataSetPieChart.push(data.Active);
+    }
+    return dataSetPieChart;
+  }
 
   return (
     < div style={{ height: 500, width: '100%' }}>
@@ -134,7 +154,7 @@ export default function CountriesSummary() {
         checkboxSelection
         disableSelectionOnClick
       />
-      <div className = "barChart">
+      <div className="barChart">
         <Bar
           data={{
             labels: label,
@@ -226,78 +246,6 @@ export default function CountriesSummary() {
             plugins: {
               title: {
                 display: true,
-                text: 'Vietnam Pie Chart',
-                font: {
-                  size: 30,
-                },
-                padding: {
-                  top: 50,
-                  bottom: 20
-                }
-
-              },
-              legend: {
-                display: true,
-                labels: {
-                  color: 'rgb(255, 99, 132)',
-                  font: {
-                    size: 18
-                  }
-                }
-              }
-            },
-
-            scales: {
-              yAxes: [
-                {
-                  color: 'red',
-                  font: {
-                    size: 25
-                  },
-                  ticks: {
-                    tickColor: 'red',
-                    beginAtZero: false,
-
-                  },
-                },
-              ],
-            },
-            legend: {
-              labels: {
-                fontSize: 25,
-              },
-            },
-          }}
-        />
-      </div>
-      <div className="pieChart">
-      <Pie
-          data={{
-            labels: vietNamToday,
-            datasets: [
-              {
-                label: vietNamToday,
-                data: data,
-                backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-
-                ],
-                borderColor: [
-                  'rgba(255, 99, 132, 1)',
-
-                ],
-                borderWidth: 2,
-                maxBarThickness: 30,
-              }
-            ],
-          }}
-          height={600}
-          width={600}
-          options={{
-            maintainAspectRatio: false,
-            plugins: {
-              title: {
-                display: true,
                 text: 'Vietnam total confirmed case in the last 7 days bar chart',
                 font: {
                   size: 30,
@@ -341,6 +289,52 @@ export default function CountriesSummary() {
             },
           }}
         />
+      </div>
+      <div className="doughnutChart">
+        <Doughnut
+          data={{
+            labels: ['Recovered', 'Deaths', 'Confirmed', 'Active'],
+            datasets: [
+              {
+                label: 'Dataset1',
+                data: getPieChartData(vietNamToday),
+                backgroundColor: [
+                  'rgb(142, 195, 195)',
+                  'rgb(255,69,0)',
+                  'rgb(39,70,135)',
+                  'rgb(255,215,0)'
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+              },
+            ],
+          }}
+          height={400}
+          width={400}
+          options={{
+            maintainAspectRatio: false,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Vietnam Total Data for covid today',
+                font: {
+                  size: 20,
+                },
+                padding: {
+                  top:20
+                }
+              },
+              legend: {
+                display: true,
+                labels: {
+                  font: {
+                    size: 18
+                  }
+                }
+              }
+            },
+          }}
+        />   
       </div>
     </div>
   )
