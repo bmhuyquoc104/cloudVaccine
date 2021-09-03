@@ -2,36 +2,28 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import React from "react"
 import { DataGrid } from '@material-ui/data-grid';
+import { Bar } from 'react-chartjs-2';
+
+
+
 
 export default function CountriesSummary() {
   const [countriesSummary, setCountriesSummary] = useState([]);
   useEffect(() => {
     axios
-      .get('https://5ymeqj1dbk.execute-api.us-east-1.amazonaws.com/covid2/summaries')
+      .get('https://mddz75k2w0.execute-api.us-east-1.amazonaws.com/prod/summaries')
       .then((res) => {
         setCountriesSummary(res.data.CovidSummarys);
-    
+
       })
       .catch((err) => console.error(err))
   }, []
   )
 
-//   export const fetchData = (tableName) => {
-//     var params = {
-//         TableName: tableName
-//     }
-
-//     docClient.scan(params, function (err, data) {
-//         if (!err) {
-//             console.log(data)
-//         }
-//     })
-// }
-
   const columns = [
     { field: 'indexNumber', headerName: 'index', width: 300 },
     { field: 'id', headerName: 'id', width: 300 },
-    
+
     {
       field: 'Country',
       headerName: 'Country',
@@ -71,26 +63,228 @@ export default function CountriesSummary() {
     },
   ];
 
-  
-  const rows = [];
+  var vietNamCollection = [];
+  var singaporeCollection = [];
+  var cambodiaCollection = [];
+  var malaysiaCollection = [];
+  var thailandCollection = [];
+  var rows = [];
   var count = 0;
   for (const country of countriesSummary) {
-    
+
     country['indexNumber'] = count;
     count++;
     country['id'] = country['indexNumber'];
     rows.push(country);
   }
-  console.log(rows);
+
+
+  var currentDate = new Date();
+  var sevenDayAgo = new Date();
+  currentDate.setDate(currentDate.getDate());
+  sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
+
+  for (const country of countriesSummary) {
+    var dayInArray = new Date(country['Date']);
+    dayInArray.setDate(dayInArray.getDate());
+
+    if (dayInArray.getTime() >= sevenDayAgo.getTime() && dayInArray.getTime() <= currentDate.getTime()) {
+      if (country['Country'] === 'Viet Nam') {
+        vietNamCollection.push(country);
+      }
+      if (country['Country'] === 'Singapore') {
+        singaporeCollection.push(country);
+      }
+      if (country['Country'] === 'Cambodia') {
+        cambodiaCollection.push(country);
+      }
+      if (country['Country'] === 'Malaysia') {
+        malaysiaCollection.push(country);
+      }
+      if (country['Country'] === 'Thailand') {
+        thailandCollection.push(country);
+      }
+    }
+  }
+
+  var label = [];
+  var data = [];
+  for (const vn of vietNamCollection) {
+    label.push((new Date(vn.Date).toLocaleDateString()));
+    data.push(vn.Confirmed)
+  }
+  label.sort();
+  console.log(label);
+  data.sort();
+  var tldata = [];
+  for (const tl of thailandCollection) {
+    tldata.push(tl.Confirmed)
+  }
+  tldata.sort();
+  var sgdata = [];
+  for (const sg of singaporeCollection) {
+    sgdata.push(sg.Confirmed)
+  }
+  sgdata.sort();
+  var cadata = [];
+  for (const ca of cambodiaCollection) {
+    cadata.push(ca.Confirmed)
+  }
+  cadata.sort();
+  var madata = [];
+  for (const ma of malaysiaCollection) {
+    madata.push(ma.Confirmed)
+  }
+  madata.sort();
+
+
+
+  // console.log(rows);
   return (
-    <div style={{ height: 500, width: '100%' }}>
+    < div style={{ height: 500, width: '100%' }}>
       <DataGrid
-        rows={rows.map( (r) => {return r})}
+        rows={rows.map((r) => { return r })}
         columns={columns}
         rowsPerPageOptions={[5, 10, 20, 50, 100]}
         checkboxSelection
         disableSelectionOnClick
       />
+      <div>
+        <Bar
+          data={{
+            labels: label,
+            datasets: [
+              {
+                label: 'vietnam total cases ',
+                data: data,
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+
+              },
+              {
+                label: 'malaysia total cases ',
+                data: madata,
+                backgroundColor: [
+                  'rgba(255, 159, 64, 0.2)'
+                  ,
+
+                ],
+                borderColor: [
+                  'rgba(255, 159, 64, 1)'
+
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+
+              },
+              {
+                label: 'cambodia total cases ',
+                data: cadata,
+                backgroundColor: [
+                  'rgba(153, 102, 255, 0.2)',
+
+                ],
+                borderColor: [
+                  'rgba(153, 102, 255, 1)',
+
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+
+              },
+              {
+                label: 'singapore total cases ',
+                data: sgdata,
+                backgroundColor: [
+                  'rgba(75, 192, 192, 0.2)',
+
+                ],
+                borderColor: [
+                  'rgba(75, 192, 192, 1)',
+
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+
+              },
+              {
+                label: 'thailand total case',
+                data: tldata,
+                backgroundColor: [
+
+                  'rgba(54, 162, 235, 0.2)',
+
+                ],
+                borderColor: [
+
+                  'rgba(54, 162, 235, 1)',
+
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+
+              }
+            ],
+          }}
+          height={600}
+          width={600}
+          options={{
+            maintainAspectRatio: false,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Vietnam total confirmed case in the last 7 days bar chart',
+                font: {
+                  size: 30,
+                },
+                padding: {
+                  top: 50,
+                  bottom: 20
+                }
+
+              },
+              legend: {
+                display: true,
+                labels: {
+                  color: 'rgb(255, 99, 132)',
+                  font: {
+                    size: 18
+                  }
+                }
+              }
+            },
+
+            scales: {
+              yAxes: [
+                {
+                  color: 'red',
+                  font: {
+                    size: 25
+                  },
+                  ticks: {
+                    tickColor: 'red',
+                    beginAtZero: false,
+
+                  },
+                },
+              ],
+            },
+            legend: {
+              labels: {
+                fontSize: 25,
+              },
+            },
+          }}
+        />
+      </div>
     </div>
   )
 }
