@@ -17,6 +17,18 @@ export default function CountriesSummary() {
       .catch((err) => console.error(err))
   }, []
   )
+  const [summaries, setSummaries] = useState([]);
+  useEffect(() => {
+    axios
+      .get('https://r78osvx7zk.execute-api.us-east-1.amazonaws.com/allsum/countriessummary')
+      .then((res) => {
+        setSummaries(res.data.CountrySummarys);
+
+      })
+      .catch((err) => console.error(err))
+  }, []
+  )
+
 
   const columns = [
 
@@ -85,6 +97,24 @@ export default function CountriesSummary() {
   currentDate.setDate(currentDate.getDate());
   sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
 
+  var vietNamSummaryToday = [];
+  for (const summary of summaries) {
+    if (summary['Country'] === 'Viet Nam') {
+      vietNamSummaryToday.push(summary);
+    }
+  }
+  console.log(vietNamSummaryToday);
+
+  var doughnutData =[];
+  for (const data of vietNamSummaryToday) {
+    doughnutData.push(data.NewRecovered);
+    doughnutData.push(data.TotalDeaths);
+    doughnutData.push(data.TotalConfirmed);
+    doughnutData.push(data.NewConfirmed);
+    doughnutData.push(data.TotalRecovered);
+    doughnutData.push(data.NewDeaths);
+  }
+
 
   for (const country of countriesSummary) {
     var dayInArray = new Date(country['Date']);
@@ -118,6 +148,8 @@ export default function CountriesSummary() {
       }
     }
   }
+
+  console.log(malaysiaToday);
 
   function getCountryConfirmedCases(countryCollection) {
     var dataset = [];
@@ -293,11 +325,11 @@ export default function CountriesSummary() {
       <div className="doughnutChart">
         <Doughnut
           data={{
-            labels: ['Recovered', 'Deaths', 'Confirmed', 'Active'],
+            labels: ['NewRecovered', 'TotalDeaths', 'TotalConfirmed', 'NewDeaths','NewConfirmed','TotalRecovered'],
             datasets: [
               {
                 label: 'Dataset1',
-                data: getPieChartData(vietNamToday),
+                data: doughnutData,
                 backgroundColor: [
                   'rgb(142, 195, 195)',
                   'rgb(255,69,0)',
@@ -321,7 +353,7 @@ export default function CountriesSummary() {
                   size: 20,
                 },
                 padding: {
-                  top:20
+                  top: 20
                 }
               },
               legend: {
@@ -334,7 +366,7 @@ export default function CountriesSummary() {
               }
             },
           }}
-        />   
+        />
       </div>
     </div>
   )
