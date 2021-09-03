@@ -9,6 +9,7 @@ import Review from "./Pages/Review";
 import Registration from "./Pages/Registration";
 import Vaccine from "./Pages/Vaccine";
 import CountriesSummary from './Pages/CountriesSummary';
+import Sidenav from "./Components/Sidenav/Sidenav";
 
 import Signup from './User/Signup';
 import Login from './User/Login';
@@ -16,7 +17,8 @@ import Login from './User/Login';
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Sidenav />
+      {/* <Router>
         <div>
           <ul>
             <li>
@@ -60,7 +62,7 @@ function App() {
             </Route>
           </Switch>
         </div>
-      </Router>
+      </Router> */}
     </div>
   );
 }

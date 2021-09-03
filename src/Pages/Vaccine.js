@@ -89,8 +89,8 @@ export default function Vaccine() {
                         <Card className={classes.paper}>
                           <CardMedia image={'https://' + vaccine.img} style={{ width: "250px", height: "300px", margin: "auto" }} alt="..."/>
                           <CardContent>
-                            <Typography><b>{vaccine.name}</b></Typography>
-                            <Typography><b>ID:</b> {vaccine.id}</Typography>
+                            <Typography color="Secondary"><b>{vaccine.name}</b></Typography>
+                            <Typography ><b>ID:</b> {vaccine.id}</Typography>
                             <Typography><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
                             <Typography><b>Like:</b> {vaccine.like}</Typography>
                             <Typography><b>Country:</b> {vaccine.country}</Typography>
