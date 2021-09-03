@@ -25,8 +25,8 @@ import PublicIcon from '@material-ui/icons/Public';
 
 // Pages
 import Review from "../../Pages/Review";
-import Register from "../../Pages/Register";
-import Country from "../../Pages/Country";
+import Register from "../../Pages/Registration";
+import Country from "../../Pages/CountriesSummary";
 import Vaccine from "../../Pages/Vaccine";
 
 import {
