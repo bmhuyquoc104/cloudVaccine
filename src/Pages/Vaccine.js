@@ -5,12 +5,14 @@ import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/cor
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
 import IconButton from '@material-ui/core/IconButton';
+import * as AWS from 'aws-sdk'
+
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
   paper: {
-    height: 440,
+    height: 500,
     width: 300,
   },
   control: {
@@ -90,10 +92,11 @@ export default function Vaccine() {
                             <Typography><b>{vaccine.name}</b></Typography>
                             <Typography><b>ID:</b> {vaccine.id}</Typography>
                             <Typography><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
-                            <IconButton onClick={() => addLike(idx)}>  
-                        <FavoriteBorderRoundedIcon/>
-                        </IconButton>
+                            <Typography><b>Like:</b> {vaccine.like}</Typography>
                             <Typography><b>Country:</b> {vaccine.country}</Typography>
+                            <IconButton onClick={() => addLike(idx)}>  
+                              <FavoriteBorderRoundedIcon/>
+                            </IconButton>
                           </CardContent>
                         </Card>
                       </Grid>
