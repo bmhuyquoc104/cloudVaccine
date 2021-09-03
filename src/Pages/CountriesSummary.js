@@ -85,16 +85,6 @@ export default function CountriesSummary() {
   currentDate.setDate(currentDate.getDate());
   sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
   
-  for (const country of countriesSummary){
-    var dayInArray = new Date(country['Date']);
-    dayInArray.setDate(dayInArray.getDate());
-    if(dayInArray.toLocaleDateString() === currentDate.toLocaleDateString()){
-      if(country['Country'] === 'Viet Nam'){
-        vietNamToday.push(country);
-      }
-    }
-  }
-  console.log(vietNamToday);
 
   for (const country of countriesSummary) {
     var dayInArray = new Date(country['Date']);
@@ -103,6 +93,9 @@ export default function CountriesSummary() {
     if (dayInArray.getTime() >= sevenDayAgo.getTime() && dayInArray.getTime() <= currentDate.getTime()) {
       if (country['Country'] === 'Viet Nam') {
         vietNamCollection.push(country);
+        if (dayInArray.toLocaleDateString() === currentDate.toLocaleDateString()) {
+          vietNamToday.push(country);
+        }
       }
       if (country['Country'] === 'Singapore') {
         singaporeCollection.push(country);
@@ -119,39 +112,21 @@ export default function CountriesSummary() {
     }
   }
 
+  function getCountryConfirmedCases(countryCollection) {
+    var dataset = [];
+    for (const data of countryCollection) {
+      dataset.push(data.Confirmed)
+    }
+    return dataset.sort();
+  }
+  
   var label = [];
-  var data = [];
   for (const vn of vietNamCollection) {
     label.push((new Date(vn.Date).toLocaleDateString()));
-    data.push(vn.Confirmed)
   }
   label.sort();
   console.log(label);
-  data.sort();
-  var tldata = [];
-  for (const tl of thailandCollection) {
-    tldata.push(tl.Confirmed)
-  }
-  tldata.sort();
-  var sgdata = [];
-  for (const sg of singaporeCollection) {
-    sgdata.push(sg.Confirmed)
-  }
-  sgdata.sort();
-  var cadata = [];
-  for (const ca of cambodiaCollection) {
-    cadata.push(ca.Confirmed)
-  }
-  cadata.sort();
-  var madata = [];
-  for (const ma of malaysiaCollection) {
-    madata.push(ma.Confirmed)
-  }
-  madata.sort();
 
-
-
-  // console.log(rows);
   return (
     < div style={{ height: 500, width: '100%' }}>
       <DataGrid
@@ -168,7 +143,7 @@ export default function CountriesSummary() {
             datasets: [
               {
                 label: 'vietnam total cases ',
-                data: data,
+                data: getCountryConfirmedCases(vietNamCollection),
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
 
@@ -183,7 +158,7 @@ export default function CountriesSummary() {
               },
               {
                 label: 'malaysia total cases ',
-                data: madata,
+                data: getCountryConfirmedCases(malaysiaCollection),
                 backgroundColor: [
                   'rgba(255, 159, 64, 0.2)'
                   ,
@@ -199,7 +174,7 @@ export default function CountriesSummary() {
               },
               {
                 label: 'cambodia total cases ',
-                data: cadata,
+                data: getCountryConfirmedCases(cambodiaCollection),
                 backgroundColor: [
                   'rgba(153, 102, 255, 0.2)',
 
@@ -214,7 +189,7 @@ export default function CountriesSummary() {
               },
               {
                 label: 'singapore total cases ',
-                data: sgdata,
+                data: getCountryConfirmedCases(singaporeCollection),
                 backgroundColor: [
                   'rgba(75, 192, 192, 0.2)',
 
@@ -229,7 +204,7 @@ export default function CountriesSummary() {
               },
               {
                 label: 'thailand total case',
-                data: tldata,
+                data: getCountryConfirmedCases(thailandCollection),
                 backgroundColor: [
 
                   'rgba(54, 162, 235, 0.2)',
