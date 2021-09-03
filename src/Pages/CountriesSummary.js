@@ -68,6 +68,7 @@ export default function CountriesSummary() {
   var cambodiaCollection = [];
   var malaysiaCollection = [];
   var thailandCollection = [];
+  var vietNamToday = [];
   var rows = [];
   var count = 0;
   for (const country of countriesSummary) {
@@ -83,6 +84,17 @@ export default function CountriesSummary() {
   var sevenDayAgo = new Date();
   currentDate.setDate(currentDate.getDate());
   sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
+  
+  for (const country of countriesSummary){
+    var dayInArray = new Date(country['Date']);
+    dayInArray.setDate(dayInArray.getDate());
+    if(dayInArray.toLocaleDateString() === currentDate.toLocaleDateString()){
+      if(country['Country'] === 'Viet Nam'){
+        vietNamToday.push(country);
+      }
+    }
+  }
+  console.log(vietNamToday);
 
   for (const country of countriesSummary) {
     var dayInArray = new Date(country['Date']);
@@ -149,7 +161,7 @@ export default function CountriesSummary() {
         checkboxSelection
         disableSelectionOnClick
       />
-      <div>
+      <div className = "barChart">
         <Bar
           data={{
             labels: label,
@@ -284,6 +296,9 @@ export default function CountriesSummary() {
             },
           }}
         />
+      </div>
+      <div className="pieChart">
+     
       </div>
     </div>
   )
