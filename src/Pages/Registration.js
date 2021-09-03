@@ -7,7 +7,6 @@ import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { v4 as uuid } from 'uuid';
 
-
 // AWS STARTS
 import * as AWS from 'aws-sdk'
 
@@ -76,7 +75,7 @@ export default function Registration() {
 
   return (
     <div className="Registration">
-      {registrations.map((registration, idx) => {
+      {/* {registrations.map((registration, idx) => {
         return (
           <div key={`registration${idx}`}>
             <p>{registration.dateOfBirth}</p>
@@ -87,15 +86,15 @@ export default function Registration() {
             <p>{registration.Nationality}</p>
           </div>
         )
-      })}
+      })} */}
       <Button variant="primary" onClick={handleShow}>
         Apply For Vaccine
       </Button>
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{color: '#1abc9c', fontWeight: 'bold'}}>
         <Modal.Header closeButton>
-          <Modal.Title>Vaccine Application</Modal.Title>
+          <Modal.Title style={{fontWeight: 'bold'}}>Vaccine Application</Modal.Title>
         </Modal.Header>
-        <Form noValidate validated={validated} onSubmit={handleSubmit} >
+        <Form noValidate validated={validated} onSubmit={handleSubmit} style={{backgroundColor: '#F0F8FF'}}>
           <Modal.Body>
             <Form.Group className="mb-3" controlId="formBasicFullName">
               <Form.Label>Full Name</Form.Label>
