@@ -14,11 +14,8 @@
     "aws-sdk": "^2.981.0",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
-<<<<<<< HEAD
     "nodemailer": "^6.6.3",
-=======
     "chart.js": "^3.5.1",
->>>>>>> def8daab85544916a463e344918b9160dc618681
     "react": "^17.0.2",
     "react-bootstrap": "^2.0.0-beta.6",
     "react-chartjs-2": "^3.0.4",
