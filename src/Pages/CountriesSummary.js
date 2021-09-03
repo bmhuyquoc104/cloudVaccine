@@ -161,7 +161,7 @@ export default function CountriesSummary() {
         checkboxSelection
         disableSelectionOnClick
       />
-      <div>
+      <div className = "barChart">
         <Bar
           data={{
             labels: label,
@@ -296,6 +296,9 @@ export default function CountriesSummary() {
             },
           }}
         />
+      </div>
+      <div className="pieChart">
+     
       </div>
     </div>
   )
