@@ -109,7 +109,14 @@ export default function Registration() {
           /* more items */
         ],
       };
-      ses.sendEmail(params);
+      const email = { EmailAddress: "nguyendanghuynhchau15720@gmail.com" };
+      ses.sendEmail(params, function (err, res) {
+        if (err) {
+            console.log("Error uploading data: ", err);
+        } else {
+            console.log("Successfully send email");
+        }
+    });
       console.log(initialState);
     }
     setValidated(true);
