@@ -1,5 +1,8 @@
+var AWS = require("aws-sdk");
+
 const { SendEmailCommand } = require("@aws-sdk/client-ses");
 const { sesClient } = require("./lib/sesClient.js");
+const { initialState } = require("/Users/huynhchau/Desktop/cloudVaccine/src/Pages/Registration.js");
 
 // Set the parameters
 

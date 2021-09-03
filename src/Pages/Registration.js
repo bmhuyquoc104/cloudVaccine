@@ -24,43 +24,6 @@ const configuration = {
 AWS.config.update(configuration)
 
 var ses = new AWS.SES();
-const params1 = {
-  Destination: {
-    /* required */
-    CcAddresses: [
-      /* more items */
-    ],
-    ToAddresses: [
-      "nguyendanghuynhchau15720@gmail.com", //RECEIVER_ADDRESS
-      /* more To-email addresses */
-    ],
-  },
-  Message: {
-    /* required */
-    Body: {
-      /* required */
-      Html: {
-        Charset: "UTF-8",
-        Data: "You successfully registered the vaccination",
-      },
-      Text: {
-        Charset: "UTF-8",
-        Data: "You successfully registered the vaccination",
-      },
-    },
-    Subject: {
-      Charset: "UTF-8",
-      Data: "Welcome new vaccinator",
-    },
-  },
-  Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
-  ReplyToAddresses: [
-    /* more items */
-  ],
-};
-
-
-
 const docClient = new AWS.DynamoDB.DocumentClient()
 const putData = (tableName, data) => {
   var params = {
@@ -112,7 +75,48 @@ export default function Registration() {
     } else {
       initialState['id'] = uuid();
       putData('vaccine-register', initialState);
-      ses.sendEmail(params1);
+      const params = {
+        Destination: {
+          /* required */
+          CcAddresses: [
+            /* more items */
+          ],
+          ToAddresses: [
+            initialState['email'], //RECEIVER_ADDRESS
+            /* more To-email addresses */
+          ],
+        },
+        Message: {
+          /* required */
+          Body: {
+            /* required */
+            Html: {
+              Charset: "UTF-8",
+              Data: "You successfully registered the vaccination",
+            },
+            Text: {
+              Charset: "UTF-8",
+              Data: "You successfully registered the vaccination",
+            },
+          },
+          Subject: {
+            Charset: "UTF-8",
+            Data: "Welcome new vaccinator",
+          },
+        },
+        Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+        ReplyToAddresses: [
+          /* more items */
+        ],
+      };
+      const email = { EmailAddress: "nguyendanghuynhchau15720@gmail.com" };
+      ses.sendEmail(params, function (err, res) {
+        if (err) {
+            console.log("Error uploading data: ", err);
+        } else {
+            console.log("Successfully send email");
+        }
+    });
       console.log(initialState);
     }
     setValidated(true);
