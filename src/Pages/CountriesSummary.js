@@ -225,7 +225,7 @@ export default function CountriesSummary() {
         disableSelectionOnClick
         className={classes.data}
       />
-      {/* <div className="barChart">
+      <div className="barChart">
         <Bar
           data={{
             labels: label,
@@ -406,7 +406,7 @@ export default function CountriesSummary() {
             },
           }}
         />
-      </div> */}
+      </div>
     </div>
   )
 }

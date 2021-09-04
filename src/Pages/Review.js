@@ -21,13 +21,13 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     paper: {
-      width: 900,
+        width: 900,
     },
     control: {
-      padding: theme.spacing(2),
+        padding: theme.spacing(2),
     },
     button: {
         margin: theme.spacing(1),
@@ -84,7 +84,7 @@ export default function Review() {
 
     var click = false;
     var allButtons = document.getElementsByClassName("MuiButton-label");
-    const addLikeOrDislike = async (idx,mode) => {
+    const addLikeOrDislike = async (idx, mode) => {
         var likeButton = allButtons[idx * 3];
         var dislikeButton = allButtons[idx * 3 + 1];
         try {
@@ -102,7 +102,7 @@ export default function Review() {
                 click = true;
             }
             else {
-                if (mode === 1 && reviews[idx].like >0) {
+                if (mode === 1 && reviews[idx].like > 0) {
                     reviews[idx].like -= 1
                     likeButton.innerHTML = '<span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg></span>' + reviews[idx].like;
                 }
@@ -111,7 +111,7 @@ export default function Review() {
                     dislikeButton.innerHTML = '<span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 4h-2c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h2V4zM2.17 11.12c-.11.25-.17.52-.17.8V13c0 1.1.9 2 2 2h5.5l-.92 4.65c-.05.22-.02.46.08.66.23.45.52.86.88 1.22L10 22l6.41-6.41c.38-.38.59-.89.59-1.42V6.34C17 5.05 15.95 4 14.66 4h-8.1c-.71 0-1.36.37-1.72.97l-2.67 6.15z"></path></svg></span>' + reviews[idx].dislike;
                 }
                 console.log(reviews[idx]);
-                await putData('vaccine-review',reviews[idx]);
+                await putData('vaccine-review', reviews[idx]);
                 click = false;
             }
         } catch (error) {
@@ -121,64 +121,62 @@ export default function Review() {
 
     const [spacing, setSpacing] = React.useState(2);
     const classes = useStyles();
-  
+
     return (
         <div>
-            <Grid container spacing={2} style={{paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px"}} className={classes.root}>
+            <Grid container spacing={2} style={{ paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px" }} className={classes.root}>
                 <Grid item xs={12}>
 
                     <ReviewModal />
                     <br></br>
                     <Grid container justifyContent="center" spacing={spacing}>
                         {reviews.map((review, idx) => {
-                        return (
-                            <Grid key={`review${idx}`} item>
-                            <Card
-                            className={classes.paper}
-                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px",}}
-                            >
-                                <CardActionArea>
-                                <CardContent>
-                                        <Typography color="secondary" variant="h6"><b>{review.author}</b></Typography>
-                                        <Typography variant="body1">{review.description}</Typography>
-                                    </CardContent>
-                                </CardActionArea>
-                                <CardMedia image={review.img} style={{ width: "100px", height: "100px", margin: "30px" }} alt="..." />
-
-                                <CardActions className={classes.bot}>
-                                        <Button
-                                        size="medium"
-                                        startIcon={<ThumbUpIcon/>}
-                                        onClick={() => addLikeOrDislike(idx,1)}
-                                        className={classes.icon}
-                                        >
-                                        {review.like}
-                                    </Button>
-                                    <Button
-                                    size="medium"
-                                    startIcon={<ThumbDownAltIcon/>}
-                                    onClick={() => addLikeOrDislike(idx,2)}
-                                    className={classes.icon}
+                            return (
+                                <Grid key={`review${idx}`} item>
+                                    <Card
+                                        className={classes.paper}
+                                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
                                     >
-                                        {review.dislike}
-                                    </Button>
-                                    <Button
-                                    size="medium"
-                                    startIcon={<ReplyIcon/>}
-                                    className={classes.icon}
-                                    >
-                                        Reply
-                                    </Button>
-                                </CardActions>
-                            </Card>
-                            </Grid>
-                        )
+                                        <CardActionArea>
+                                            <CardContent>
+                                                <Typography color="secondary" variant="h6"><b>{review.author}</b></Typography>
+                                                <Typography variant="body1">{review.description}</Typography>
+                                            </CardContent>
+                                            <CardMedia image={review.img} style={{ width: "100px", height: "100px", margin: "30px" }} alt="..." />
+                                        </CardActionArea>
+                                        <CardActions className={classes.bot}>
+                                            <Button
+                                                size="medium"
+                                                startIcon={<ThumbUpIcon />}
+                                                onClick={() => addLikeOrDislike(idx, 1)}
+                                                className={classes.icon}
+                                            >
+                                                {review.like}
+                                            </Button>
+                                            <Button
+                                                size="medium"
+                                                startIcon={<ThumbDownAltIcon />}
+                                                onClick={() => addLikeOrDislike(idx, 2)}
+                                                className={classes.icon}
+                                            >
+                                                {review.dislike}
+                                            </Button>
+                                            <Button
+                                                size="medium"
+                                                startIcon={<ReplyIcon />}
+                                                className={classes.icon}
+                                            >
+                                                Reply
+                                            </Button>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>
+                            )
                         })}
                     </Grid>
                 </Grid>
             </Grid>
         </div>
-        
     );
 }
 
