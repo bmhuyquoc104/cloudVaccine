@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Grid, Card, CardMedia, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core'
+import { Grid, Card, CardMedia, CardActionArea, CardContent, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import IconButton from '@material-ui/core/IconButton';
@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paper:
   {
-    height: 520,
     width: 300,
   },
   control:
@@ -97,10 +96,12 @@ export default function Vaccine() {
                   {vaccines.map((vaccine, idx) => {
                     return (
                       <Grid key={`vaccine${idx}`} item>
-                        <Card className={classes.paper}>
+                        <Card
+                        className={classes.paper}
+                        style={{border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px",}}>
                           <CardActionArea>
                               <CardContent>
-                                  <CardMedia image={'https://' + vaccine.img} style={{ width: "250px", height: "300px", margin: "auto" }} alt="..."/>
+                                  <CardMedia image={'https://' + vaccine.img} style={{ width: "150px", height: "100px", margin: "auto" }} alt="..."/>
                               </CardContent>
                           </CardActionArea>
                           
