@@ -9,16 +9,42 @@ import Review from "./Pages/Review";
 import Registration from "./Pages/Registration";
 import Vaccine from "./Pages/Vaccine";
 import CountriesSummary from './Pages/CountriesSummary';
-import { Account } from './Pages/Accounts';
-import Signup from './Pages/Signup';
+<<<<<<< Updated upstream
+import { Account } from './User/Accounts';
+import Signup from './User/Signup';
 import Login from './Pages/Login';
-import Status from './Pages/Status';
-import Settings from './Pages/Setting';
+import Status from './User/Status';
+import Settings from './User/Setting';
+=======
+import Sidenav from "./Components/Sidenav/Sidenav";
+
+import Home from "./Pages/Home";
+
+import { makeStyles } from '@material-ui/core/styles';
+import { Container } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    background: 'linear-gradient(45deg, #380036 30%, #21CBF3 90%)',
+    height: '100%',
+    display: 'flex',
+  }
+}));
+
+>>>>>>> Stashed changes
 function App() {
   return (
+<<<<<<< Updated upstream
     <div className="App">
       <Router>
         <div>
+=======
+    <Container className={classes.root}>
+      <Sidenav />
+      <Router>
+        {/* <div>
+>>>>>>> Stashed changes
           <ul>
             <li>
               <Link to="/registration">Registration</Link>
@@ -31,6 +57,15 @@ function App() {
             </li>
             <li>
               <Link to="/countriesSummary">CountriesSummary</Link>
+<<<<<<< Updated upstream
+=======
+            </li> */}
+            <li>
+              <Link to="/Home">Home</Link>
+            </li>
+            {/* <li>
+              <Link to="/Summary">Summary</Link>
+>>>>>>> Stashed changes
             </li>
           </ul>
 
@@ -46,6 +81,7 @@ function App() {
             </Route>
             <Route path="/countriesSummary">
               <CountriesSummary />
+<<<<<<< Updated upstream
             </Route>
           </Switch>
           <Account>
@@ -57,6 +93,19 @@ function App() {
         </div>
       </Router>
     </div>
+=======
+            </Route> */}
+            <Route path="/Home">
+              <Home />
+            </Route>
+            {/* {/* <Route path="/Summary">
+              <Summary />
+            </Route>
+          </Switch>
+        </div> */}
+      </Router>
+    </Container>
+>>>>>>> Stashed changes
   );
 }
 

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { CognitoUserAttribute } from "amazon-cognito-identity-js";
-import { AccountContext } from "./Accounts";
+import { AccountContext } from "../User/Accounts";
 
 export default () => {
   const [newEmail, setNewEmail] = useState("");
@@ -16,7 +16,6 @@ export default () => {
         const attributes = [
           new CognitoUserAttribute({ Name: "email", Value: newEmail })
         ];
-
         user.updateAttributes(attributes, (err, results) => {
           if (err) console.error(err);
           console.log(results);
