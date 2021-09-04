@@ -51,7 +51,7 @@ export default function Summary() {
         <div className="summary">
             <h1 style={{ color: "rgb(86, 100, 210)" }}>huy</h1>
             {/* <a href="https://imgur.com/3kkytsv"><img src="https://i.imgur.com/3kkytsv.png" title="source: imgur.com" /></a> */}
-            <img src="https://i.imgur.com/3kkytsv.png"></img>
+            <img src="https://i.imgur.com/ToDMYPT.png"></img>
         </div>
     )
 }
