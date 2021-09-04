@@ -100,7 +100,7 @@ export default function Vaccine() {
                         <Card className={classes.paper}>
                           <CardActionArea>
                               <CardContent>
-                                  <CardMedia image={'https://' + vaccine.img} style={{ width: "250px", height: "300px", margin: "auto" }} alt="..."/>
+                                  <CardMedia image={'https://i.imgur.com/3kkytsv.png'} style={{ width: "250px", height: "300px", margin: "auto" }} alt="..."/>
                               </CardContent>
                           </CardActionArea>
                           
