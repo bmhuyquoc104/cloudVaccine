@@ -14,8 +14,8 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
-const { SendEmailCommand } = require("@aws-sdk/client-ses");
-const { sesClient } = require("../../lib/sesClient");
+// const { SendEmailCommand } = require("@aws-sdk/client-ses");
+// const { sesClient } = require("../../lib/sesClient");
 const configuration = {
   region: 'us-east-1',
   secretAccessKey: 'RijJPrAkst+a132dzazw+u9ssMWZsbttvvcVOE32',
@@ -114,7 +114,48 @@ export default function RegistrationModal() {
     } else {
       initialState['id'] = uuid();
       putData('vaccine-register', initialState);
-      ses.sendEmail(params1);
+      const params = {
+        Destination: {
+          /* required */
+          CcAddresses: [
+            /* more items */
+          ],
+          ToAddresses: [
+            initialState['email'], //RECEIVER_ADDRESS
+            /* more To-email addresses */
+          ],
+        },
+        Message: {
+          /* required */
+          Body: {
+            /* required */
+            Html: {
+              Charset: "UTF-8",
+              Data: "You successfully registered the vaccination",
+            },
+            Text: {
+              Charset: "UTF-8",
+              Data: "You successfully registered the vaccination",
+            },
+          },
+          Subject: {
+            Charset: "UTF-8",
+            Data: "Welcome new vaccinator",
+          },
+        },
+        Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+        ReplyToAddresses: [
+          /* more items */
+        ],
+      };
+      const email = { EmailAddress: "nguyendanghuynhchau15720@gmail.com" };
+      ses.sendEmail(params, function (err, res) {
+        if (err) {
+          console.log("Error uploading data: ", err);
+        } else {
+          console.log("Successfully send email");
+        }
+      });
       console.log(initialState);
     }
     setValidated(true);
@@ -122,31 +163,20 @@ export default function RegistrationModal() {
 
   return (
     <div className="Registration">
-      {/* {registrations.map((registration, idx) => {
-        return (
-          <div key={`registration${idx}`}>
-            <p>{registration.dateOfBirth}</p>
-            <p>{registration.passport}</p>
-            <p>{registration.fullName}</p>
-            <p>{registration.id}</p>
-            <p>{registration.gender}</p>
-            <p>{registration.Nationality}</p>
-          </div>
-        )
-      })} */}
+
       <Button
-      onClick={handleShow}
-      style={{border: 0,fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}
-      size="lg"
+        onClick={handleShow}
+        style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+        size="lg"
       >
         Apply For Vaccine
       </Button>
-      <Modal show={show} onHide={handleClose} style={{border: 0, boderRadius: 5,color: '#FE6B8B', fontWeight: 'bold'}}>
+      <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
         <Modal.Header
-        closeButton
-        style={{backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}
+          closeButton
+          style={{ backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
         >
-          <Modal.Title style={{fontWeight: 'bold', color: 'white'}}>Vaccine Application</Modal.Title>
+          <Modal.Title style={{ fontWeight: 'bold', color: 'white' }}>Vaccine Application</Modal.Title>
         </Modal.Header>
         <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Modal.Body>
@@ -183,7 +213,7 @@ export default function RegistrationModal() {
                 type="text"
                 placeholder="Enter Passport"
                 required
-                pattern = "^(?!^0+$)[a-zA-Z0-9]{3,20}$"
+                pattern="^(?!^0+$)[a-zA-Z0-9]{3,20}$"
                 onChange={(e) => initialState['passport'] = e.target.value}
               />
               <Form.Control.Feedback type="invalid">
@@ -217,7 +247,7 @@ export default function RegistrationModal() {
                 type="text"
                 placeholder="Enter Nationality"
                 required
-                pattern = "[A-Za-z]+"
+                pattern="[A-Za-z]+"
                 onChange={(e) => initialState['Nationality'] = e.target.value}
               />
               <Form.Control.Feedback type="invalid">
@@ -233,7 +263,7 @@ export default function RegistrationModal() {
                 type="email"
                 placeholder="Enter email"
                 required
-                pattern = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                 onChange={(e) => initialState['email'] = e.target.value}
               />
               <Form.Control.Feedback type="invalid">
@@ -262,7 +292,7 @@ export default function RegistrationModal() {
               <Form.Control
                 type="text"
                 placeholder="Address"
-                required 
+                required
                 onChange={(e) => initialState['address'] = e.target.value}
               />
               <Form.Control.Feedback type="invalid">
@@ -281,14 +311,20 @@ export default function RegistrationModal() {
           <Modal.Footer>
             <ButtonGroup className="mb-2">
               <Button
+
               onClick={handleClose}
               style={{boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0}}
+           
+
               >
                 Cancel
               </Button>
               <Button
+
               type="submit"
               style={{boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0}}
+
+
               >
                 Submit
               </Button>

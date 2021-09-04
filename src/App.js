@@ -1,20 +1,7 @@
 import './App.css';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
-import Review from "./Pages/Review";
-import Registration from "./Pages/Registration";
-import Vaccine from "./Pages/Vaccine";
-import Summary from "./Pages/Summary";
-import CountriesSummary from './Pages/CountriesSummary';
+
+
 import Sidenav from "./Components/Sidenav/Sidenav";
-
-import Signup from './User/Signup';
-import Login from './User/Login';
-
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 

@@ -2,13 +2,11 @@ import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { v4 as uuid } from 'uuid';
 import * as AWS from 'aws-sdk'
 
 import Button from '@material-ui/core/Button';
 
 // Icons
-import IconButton from '@material-ui/core/IconButton';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
 import ReplyIcon from '@material-ui/icons/Reply';
@@ -18,7 +16,7 @@ import ReviewModal from '../Components/Modal/ReviewModal'
 
 
 // For cards
-import { Grid, Card, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core'
+import { Grid, Card, CardActionArea, CardMedia, CardActions, CardContent, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -85,18 +83,33 @@ export default function Review() {
     )
 
     var click = false;
+    var allButtons = document.getElementsByClassName("MuiButton-label");
     const addLikeOrDislike = async (idx,mode) => {
+        var likeButton = allButtons[idx * 3];
+        var dislikeButton = allButtons[idx * 3 + 1];
         try {
             if (click === false) {
-                if (mode === 1) reviews[idx].like += 1;
-                else if (mode === 2) reviews[idx].dislike +=1;
+                if (mode === 1) {
+                    reviews[idx].like += 1
+                    likeButton.innerHTML = '<span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg></span>' + reviews[idx].like;
+                }
+                else if (mode === 2) {
+                    reviews[idx].dislike += 1
+                    dislikeButton.innerHTML = '<span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 4h-2c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h2V4zM2.17 11.12c-.11.25-.17.52-.17.8V13c0 1.1.9 2 2 2h5.5l-.92 4.65c-.05.22-.02.46.08.66.23.45.52.86.88 1.22L10 22l6.41-6.41c.38-.38.59-.89.59-1.42V6.34C17 5.05 15.95 4 14.66 4h-8.1c-.71 0-1.36.37-1.72.97l-2.67 6.15z"></path></svg></span>' + reviews[idx].dislike;
+                }
                 console.log(reviews[idx]);
                 await putData('vaccine-review', reviews[idx]);
                 click = true;
             }
             else {
-                if (mode === 1 && reviews[idx].like >0) reviews[idx].like -= 1;
-                else if (mode === 2 && reviews[idx].dislike > 0) reviews[idx].dislike -=1;
+                if (mode === 1 && reviews[idx].like >0) {
+                    reviews[idx].like -= 1
+                    likeButton.innerHTML = '<span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2z"></path></svg></span>' + reviews[idx].like;
+                }
+                else if (mode === 2 && reviews[idx].dislike > 0) {
+                    reviews[idx].dislike -= 1
+                    dislikeButton.innerHTML = '<span class="MuiButton-startIcon MuiButton-iconSizeMedium"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 4h-2c-.55 0-1 .45-1 1v9c0 .55.45 1 1 1h2V4zM2.17 11.12c-.11.25-.17.52-.17.8V13c0 1.1.9 2 2 2h5.5l-.92 4.65c-.05.22-.02.46.08.66.23.45.52.86.88 1.22L10 22l6.41-6.41c.38-.38.59-.89.59-1.42V6.34C17 5.05 15.95 4 14.66 4h-8.1c-.71 0-1.36.37-1.72.97l-2.67 6.15z"></path></svg></span>' + reviews[idx].dislike;
+                }
                 console.log(reviews[idx]);
                 await putData('vaccine-review',reviews[idx]);
                 click = false;
@@ -113,6 +126,7 @@ export default function Review() {
         <div>
             <Grid container spacing={2} style={{paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px"}} className={classes.root}>
                 <Grid item xs={12}>
+
                     <ReviewModal />
                     <br></br>
                     <Grid container justifyContent="center" spacing={spacing}>
@@ -129,13 +143,15 @@ export default function Review() {
                                         <Typography variant="body1">{review.description}</Typography>
                                     </CardContent>
                                 </CardActionArea>
+                                <CardMedia image={review.img} style={{ width: "100px", height: "100px", margin: "30px" }} alt="..." />
+
                                 <CardActions className={classes.bot}>
-                                    <Button
-                                    size="medium"
-                                    startIcon={<ThumbUpIcon/>}
-                                    onClick={() => addLikeOrDislike(idx,1)}
-                                    className={classes.icon}
-                                    >
+                                        <Button
+                                        size="medium"
+                                        startIcon={<ThumbUpIcon/>}
+                                        onClick={() => addLikeOrDislike(idx,1)}
+                                        className={classes.icon}
+                                        >
                                         {review.like}
                                     </Button>
                                     <Button

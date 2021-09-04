@@ -19,30 +19,69 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CountriesSummary() {
-  const [countriesSummary, setCountriesSummary] = useState([]);
+  const [vietNamSummary, setVietNamSummary] = useState([]);
+  const [LaosSummary, setLaosSummary] = useState([]);
+  const [thaiLandSummary, setThaiLandSummary] = useState([]);
+  const [malaysiaSummary, setMalaysiaSummary] = useState([]);
+  const [singaporeSummary, setSingaporeSummary] = useState([]);
+
   useEffect(() => {
     axios
-      .get('https://mddz75k2w0.execute-api.us-east-1.amazonaws.com/prod/summaries')
+      .get('https://api.covid19api.com/live/country/vietnam/status/confirmed')
+
       .then((res) => {
-        setCountriesSummary(res.data.CovidSummarys);
+        setVietNamSummary(res.data);
 
       })
       .catch((err) => console.error(err))
-  }, []
-  )
 
-  const [summaries, setSummaries] = useState([]);
-  useEffect(() => {
     axios
-      .get('https://r78osvx7zk.execute-api.us-east-1.amazonaws.com/allsum/countriessummary')
+      .get('https://api.covid19api.com/live/country/singapore/status/confirmed')
+
       .then((res) => {
-        setSummaries(res.data.CountrySummarys);
+        setSingaporeSummary(res.data);
 
       })
       .catch((err) => console.error(err))
-  }, []
-  )
 
+    axios
+      .get('https://api.covid19api.com/live/country/thailand/status/confirmed')
+
+      .then((res) => {
+        setThaiLandSummary(res.data);
+
+      })
+      .catch((err) => console.error(err))
+
+    axios
+      .get('https://api.covid19api.com/live/country/laos/status/confirmed')
+
+      .then((res) => {
+        setLaosSummary(res.data);
+
+      })
+      .catch((err) => console.error(err))
+
+    axios
+      .get('https://api.covid19api.com/live/country/malaysia/status/confirmed')
+
+      .then((res) => {
+        setMalaysiaSummary(res.data);
+
+      })
+      .catch((err) => console.error(err))
+
+  }, []);
+
+  var countriesSummary = [...singaporeSummary, ...LaosSummary,...malaysiaSummary, ...vietNamSummary,...thaiLandSummary];
+  
+  console.log(countriesSummary);
+  // console.log(singaporeSummary);
+  // console.log(malaysiaSummary);
+  // console.log(vietNamSummary);
+  // console.log(LaosSummary);
+  // console.log(thaiLandSummary);
+  
 
   const columns = [
 
@@ -110,24 +149,11 @@ export default function CountriesSummary() {
   currentDate.setDate(currentDate.getDate());
   sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
 
-  var vietNamSummaryToday = [];
-  for (const summary of summaries) {
-    if (summary['Country'] === 'Viet Nam') {
-      vietNamSummaryToday.push(summary);
-    }
-  }
-  var doughnutData =[];
-  for (const data of vietNamSummaryToday) {
-    doughnutData.push(data.NewRecovered);
-    doughnutData.push(data.TotalDeaths);
-    doughnutData.push(data.TotalConfirmed);
-    doughnutData.push(data.NewConfirmed);
-    doughnutData.push(data.TotalRecovered);
-    doughnutData.push(data.NewDeaths);
-  }
+
+
 
   var temp = [];
-  for (const country of countriesSummary){
+  for (const country of countriesSummary) {
     temp.push(country.Date);
   }
   temp.sort();
@@ -153,7 +179,7 @@ export default function CountriesSummary() {
       }
       if (country['Country'] === 'Malaysia') {
         malaysiaCollection.push(country);
-       
+
       }
       if (country['Country'] === 'Thailand') {
         thailandCollection.push(country);
@@ -177,7 +203,6 @@ export default function CountriesSummary() {
   }
   label.sort();
 
-  // var dataPie = [];
   function getPieChartData(countryToday) {
     var dataSetPieChart = [];
     for (const data of countryToday) {
@@ -339,7 +364,7 @@ export default function CountriesSummary() {
       <div className="doughnutChart">
         <Doughnut
           data={{
-            labels: ['Recovered','Deaths','Confirmed','Active'],
+            labels: ['Recovered', 'Deaths', 'Confirmed', 'Active'],
             datasets: [
               {
                 label: 'Dataset1',
@@ -362,7 +387,7 @@ export default function CountriesSummary() {
             plugins: {
               title: {
                 display: true,
-                text: 'Vietnam Total Data for covid recent Day',
+                text: `Vietnam Total Data for covid today`,
                 font: {
                   size: 20,
                 },

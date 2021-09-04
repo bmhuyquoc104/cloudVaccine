@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
+
 // import Amplify, { API, graphqlOperation } from 'aws-amplify';
 // import awsconfig from '../../aws-exports';
 // import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
@@ -28,6 +29,7 @@ import Review from "../../Pages/Review";
 import Register from "../../Pages/Registration";
 import Country from "../../Pages/CountriesSummary";
 import Vaccine from "../../Pages/Vaccine";
+import Summary from "../../Pages/Summary";
 
 import {
     BrowserRouter as Router,
@@ -109,6 +111,14 @@ function Sidenav() {
                                 <ListItemText primary={"Countries summary"}/>
                             </ListItem>
                         </Link>
+                        <Link to="/summary" className={classes.link}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PublicIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"Summary"}/>
+                            </ListItem>
+                        </Link>
                     </List>
                     {/* <AmplifySignOut /> */}
                 </Drawer>
@@ -132,6 +142,11 @@ function Sidenav() {
                     <Route path="/country">
                         <Container>
                             <Country />
+                        </Container>
+                    </Route>
+                    <Route path="/summary">
+                        <Container>
+                            <Summary />
                         </Container>
                     </Route>
                 </Switch>
