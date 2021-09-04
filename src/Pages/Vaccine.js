@@ -1,23 +1,34 @@
 import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/core'
+import { Grid, Card, CardMedia, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-import FavoriteBorderRoundedIcon from '@material-ui/icons/FavoriteBorderRounded';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import IconButton from '@material-ui/core/IconButton';
 import * as AWS from 'aws-sdk'
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  root:
+  {
     flexGrow: 1,
   },
-  paper: {
-    height: 500,
+  paper:
+  {
+    height: 520,
     width: 300,
   },
-  control: {
+  control:
+  {
     padding: theme.spacing(2),
   },
+  bot:
+  {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+  },
+  text:
+  {
+    color: 'white'
+  }
 }));
 
 const configuration = {
@@ -87,15 +98,20 @@ export default function Vaccine() {
                     return (
                       <Grid key={`vaccine${idx}`} item>
                         <Card className={classes.paper}>
-                          <CardMedia image={'https://' + vaccine.img} style={{ width: "250px", height: "300px", margin: "auto" }} alt="..."/>
-                          <CardContent>
-                            <Typography color="Secondary"><b>{vaccine.name}</b></Typography>
-                            <Typography ><b>ID:</b> {vaccine.id}</Typography>
-                            <Typography><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
-                            <Typography><b>Like:</b> {vaccine.like}</Typography>
-                            <Typography><b>Country:</b> {vaccine.country}</Typography>
+                          <CardActionArea>
+                              <CardContent>
+                                  <CardMedia image={'https://' + vaccine.img} style={{ width: "250px", height: "300px", margin: "auto" }} alt="..."/>
+                              </CardContent>
+                          </CardActionArea>
+                          
+                          <CardContent className={classes.bot}>
+                            <Typography className={classes.text}><b>{vaccine.name}</b></Typography>
+                            <Typography className={classes.text}><b>ID:</b> {vaccine.id}</Typography>
+                            <Typography className={classes.text}><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
+                            <Typography className={classes.text}><b>Like:</b> {vaccine.like}</Typography>
+                            <Typography className={classes.text}><b>Country:</b> {vaccine.country}</Typography>
                             <IconButton onClick={() => addLike(idx)}>  
-                              <FavoriteBorderRoundedIcon/>
+                              <FavoriteIcon className={classes.text}/>
                             </IconButton>
                           </CardContent>
                         </Card>

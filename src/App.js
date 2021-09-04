@@ -14,9 +14,22 @@ import Sidenav from "./Components/Sidenav/Sidenav";
 import Signup from './User/Signup';
 import Login from './User/Login';
 
+import { makeStyles } from '@material-ui/core/styles';
+import { Container } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+    background: 'linear-gradient(45deg, #380036 30%, #21CBF3 90%)',
+    height: '100%',
+    display: 'flex',
+  }
+}));
+
 function App() {
+  const classes = useStyles();
   return (
-    <div className="App">
+    <Container className={classes.root}>
       <Sidenav />
       {/* <Router>
         <div>
@@ -63,7 +76,7 @@ function App() {
           </Switch>
         </div>
       </Router> */}
-    </div>
+    </Container>
   );
 }
 
