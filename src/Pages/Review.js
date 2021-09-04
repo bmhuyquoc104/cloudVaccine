@@ -58,7 +58,6 @@ const putData = (tableName, data) => {
     })
 }
 
-
 export default function Review() {
 
     const [reviews, setReview] = useState([]);
@@ -72,11 +71,6 @@ export default function Review() {
             .catch((err) => console.error(err))
     }, []
     )
-
-    // const initialState = {
-    //     author: '', description: '', dislike: '', like: '',
-    //     id: '', rate: '', phone: '', email: '', vaccine: ""
-    // }
 
     var click = false;
     const addLikeOrDislike = async (idx,mode) => {
@@ -118,8 +112,8 @@ export default function Review() {
                         <Card className={classes.paper} >
                             <CardActionArea>
                                 <CardContent>
-                                    <Typography color="Secondary" variant="h6"><b>{review.author}</b></Typography>
-                                    <Typography variant="body1"><p>{review.description}</p></Typography>
+                                    <Typography color="secondary" variant="h6"><b>{review.author}</b></Typography>
+                                    <Typography variant="body1">{review.description}</Typography>
                                 </CardContent>
                             </CardActionArea>
                             <CardActions>
@@ -154,27 +148,6 @@ export default function Review() {
                 </Grid>
                 </Grid>
             </Grid>
-
-            {/* {reviews.map((review, idx) => {
-                return (
-                    
-                    <div key={`review${idx}`}>
-                        <p>{review.author}</p>
-                        
-                        <p>{review.description}</p>
-                        <IconButton onClick={() => addLikeOrDislike(idx,1)}>
-                            <ThumbUpIcon/>
-                        </IconButton>
-                        {review.like}
-                        <IconButton onClick={() => addLikeOrDislike(idx,2)}>
-                            <ThumbDownAltIcon/>
-                        </IconButton>
-                        {review.dislike}
-                    </div>
-                )
-            })}
-            <ReviewModal /> */}
-
         </div>
         
     );

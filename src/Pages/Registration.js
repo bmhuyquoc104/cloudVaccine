@@ -124,18 +124,6 @@ export default function Registration() {
 
   return (
     <div className="Registration">
-      {/* {registrations.map((registration, idx) => {
-        return (
-          <div key={`registration${idx}`}>
-            <p>{registration.dateOfBirth}</p>
-            <p>{registration.passport}</p>
-            <p>{registration.fullName}</p>
-            <p>{registration.id}</p>
-            <p>{registration.gender}</p>
-            <p>{registration.Nationality}</p>
-          </div>
-        )
-      })} */}
       <Button variant="primary" onClick={handleShow}>
         Apply For Vaccine
       </Button>
@@ -274,7 +262,7 @@ export default function Registration() {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
+            <Button type= "reset" variant="secondary">
               Close
             </Button>
             <Button variant="primary" type="submit" >
