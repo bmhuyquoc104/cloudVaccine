@@ -1,12 +1,17 @@
 import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { v4 as uuid } from 'uuid';
 import * as AWS from 'aws-sdk';
+
+// Buttons
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+
+// Modals
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
 
 const configuration = {
     region: 'us-east-1',
@@ -82,12 +87,26 @@ export default function ReviewModal() {
 
     return (
         <div className="Review">
-            <Button variant="primary" onClick={handleShow}>
+            <style type="text/css">
+                {`
+                header {
+                background-color: purple;
+                }
+                `}
+            </style>
+            <Button
+            onClick={handleShow}
+            style={{border: 0,fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}
+            size="lg"
+            >
                 Leave A Review
             </Button>
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Review Application</Modal.Title>
+            <Modal show={show} onHide={handleClose} style={{border: 0, boderRadius: 5,color: '#FE6B8B', fontWeight: 'bold'}}>
+                <Modal.Header
+                closeButton
+                style={{backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}
+                >
+                    <Modal.Title style={{fontWeight: 'bold', color: 'white'}}>Review Application</Modal.Title>
                 </Modal.Header>
                 <Form id = "myform" noValidate validated={validated} onSubmit={handleSubmit} >
                     <Modal.Body>
@@ -135,6 +154,7 @@ export default function ReviewModal() {
                             <Form.Label>Vaccine</Form.Label>
                             <Form.Select
                                 required
+                                placeholder="Enter Description"
                                 onChange={(e) => initialState['vaccine'] = e.target.value}
                             >
                                 <option></option>
@@ -192,12 +212,14 @@ export default function ReviewModal() {
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button type="reset" variant="secondary" >
-                            Reset
-                        </Button>
-                        <Button variant="primary" type="submit"  >
-                            Submit
-                        </Button>
+                        <ButtonGroup className="mb-2">
+                            <Button type="reset" style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0}}>
+                                Cancel
+                            </Button>
+                            <Button type="submit" style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0}}>
+                                Submit
+                            </Button>
+                        </ButtonGroup>
                     </Modal.Footer>
                 </Form>
             </Modal>

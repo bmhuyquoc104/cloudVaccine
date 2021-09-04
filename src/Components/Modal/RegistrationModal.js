@@ -1,19 +1,21 @@
 // AWS STARTS
 import * as AWS from 'aws-sdk'
-
 import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { v4 as uuid } from 'uuid';
+
+// Buttons
+import Button from 'react-bootstrap/Button';
+import ButtonGroup from 'react-bootstrap/ButtonGroup';
+
+// Modals
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+
 const { SendEmailCommand } = require("@aws-sdk/client-ses");
 const { sesClient } = require("../../lib/sesClient");
-
-
-
 const configuration = {
   region: 'us-east-1',
   secretAccessKey: 'RijJPrAkst+a132dzazw+u9ssMWZsbttvvcVOE32',
@@ -132,14 +134,21 @@ export default function RegistrationModal() {
           </div>
         )
       })} */}
-      <Button variant="primary" onClick={handleShow}>
+      <Button
+      onClick={handleShow}
+      style={{border: 0,fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}
+      size="lg"
+      >
         Apply For Vaccine
       </Button>
-      <Modal show={show} onHide={handleClose} style={{color: '#1abc9c', fontWeight: 'bold'}}>
-        <Modal.Header closeButton>
-          <Modal.Title style={{fontWeight: 'bold'}}>Vaccine Application</Modal.Title>
+      <Modal show={show} onHide={handleClose} style={{border: 0, boderRadius: 5,color: '#FE6B8B', fontWeight: 'bold'}}>
+        <Modal.Header
+        closeButton
+        style={{backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}
+        >
+          <Modal.Title style={{fontWeight: 'bold', color: 'white'}}>Vaccine Application</Modal.Title>
         </Modal.Header>
-        <Form noValidate validated={validated} onSubmit={handleSubmit} style={{backgroundColor: '#F0F8FF'}}>
+        <Form noValidate validated={validated} onSubmit={handleSubmit}>
           <Modal.Body>
             <Form.Group className="mb-3" controlId="formBasicFullName">
               <Form.Label>Full Name</Form.Label>
@@ -270,12 +279,20 @@ export default function RegistrationModal() {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button variant="primary" type="submit" >
-              Save Changes
-            </Button>
+            <ButtonGroup className="mb-2">
+              <Button
+              onClick={handleClose}
+              style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0}}
+              >
+                Cancel
+              </Button>
+              <Button
+              type="submit"
+              style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0}}
+              >
+                Submit
+              </Button>
+            </ButtonGroup>
           </Modal.Footer>
         </Form>
       </Modal>
