@@ -70,7 +70,6 @@ const putData = (tableName, data) => {
     })
 }
 
-
 export default function Review() {
 
     const [reviews, setReview] = useState([]);
@@ -84,11 +83,6 @@ export default function Review() {
             .catch((err) => console.error(err))
     }, []
     )
-
-    // const initialState = {
-    //     author: '', description: '', dislike: '', like: '',
-    //     id: '', rate: '', phone: '', email: '', vaccine: ""
-    // }
 
     var click = false;
     const addLikeOrDislike = async (idx,mode) => {
@@ -129,8 +123,8 @@ export default function Review() {
                         <Grid key={`review${idx}`} item>
                         <Card className={classes.paper} >
                             <CardActionArea>
-                                <CardContent>
-                                    <Typography color="Secondary" variant="h6"><b>{review.author}</b></Typography>
+                               <CardContent>
+                                    <Typography color="secondary" variant="h6"><b>{review.author}</b></Typography>
                                     <Typography variant="body1">{review.description}</Typography>
                                 </CardContent>
                             </CardActionArea>

@@ -18,6 +18,19 @@ export default function CountriesSummary() {
   }, []
   )
 
+  const [summaries, setSummaries] = useState([]);
+  useEffect(() => {
+    axios
+      .get('https://r78osvx7zk.execute-api.us-east-1.amazonaws.com/allsum/countriessummary')
+      .then((res) => {
+        setSummaries(res.data.CountrySummarys);
+
+      })
+      .catch((err) => console.error(err))
+  }, []
+  )
+
+
   const columns = [
 
     { field: 'id', headerName: 'tableId', width: 300 },
@@ -67,10 +80,9 @@ export default function CountriesSummary() {
   var malaysiaCollection = [];
   var thailandCollection = [];
   var vietNamToday = [];
-  var cambodiaToday = [];
-  var malaysiaToday = [];
+
   var rows = [];
-  var count = 0;
+  var count = 1;
   for (const country of countriesSummary) {
 
     country['indexNumber'] = count;
@@ -85,15 +97,37 @@ export default function CountriesSummary() {
   currentDate.setDate(currentDate.getDate());
   sevenDayAgo.setDate(sevenDayAgo.getDate() - 7);
 
+  var vietNamSummaryToday = [];
+  for (const summary of summaries) {
+    if (summary['Country'] === 'Viet Nam') {
+      vietNamSummaryToday.push(summary);
+    }
+  }
+  var doughnutData =[];
+  for (const data of vietNamSummaryToday) {
+    doughnutData.push(data.NewRecovered);
+    doughnutData.push(data.TotalDeaths);
+    doughnutData.push(data.TotalConfirmed);
+    doughnutData.push(data.NewConfirmed);
+    doughnutData.push(data.TotalRecovered);
+    doughnutData.push(data.NewDeaths);
+  }
+
+  var temp = [];
+  for (const country of countriesSummary){
+    temp.push(country.Date);
+  }
+  temp.sort();
+  var recentDay = temp[temp.length - 1];
+  recentDay = new Date(recentDay);
+  console.log(recentDay);
 
   for (const country of countriesSummary) {
     var dayInArray = new Date(country['Date']);
-    dayInArray.setDate(dayInArray.getDate());
-
-    if (dayInArray.getTime() >= sevenDayAgo.getTime() && dayInArray.getTime() <= currentDate.getTime()) {
+    if (dayInArray.getTime() >= sevenDayAgo.getTime() && dayInArray.getTime() <= recentDay.getTime()) {
       if (country['Country'] === 'Viet Nam') {
         vietNamCollection.push(country);
-        if (dayInArray.toLocaleDateString() === currentDate.toLocaleDateString()) {
+        if (dayInArray.toLocaleDateString() === recentDay.toLocaleDateString()) {
           vietNamToday.push(country);
         }
       }
@@ -103,21 +137,18 @@ export default function CountriesSummary() {
       }
       if (country['Country'] === 'Cambodia') {
         cambodiaCollection.push(country);
-        if (dayInArray.toLocaleDateString() === currentDate.toDateString()) {
-          cambodiaToday.push(country);
-        }
       }
       if (country['Country'] === 'Malaysia') {
         malaysiaCollection.push(country);
-        if (dayInArray.toLocaleDateString() === currentDate.toDateString()) {
-          malaysiaToday.push(country);
-        }
+       
       }
       if (country['Country'] === 'Thailand') {
         thailandCollection.push(country);
       }
     }
   }
+
+  console.log(vietNamToday);
 
   function getCountryConfirmedCases(countryCollection) {
     var dataset = [];
@@ -293,7 +324,7 @@ export default function CountriesSummary() {
       <div className="doughnutChart">
         <Doughnut
           data={{
-            labels: ['Recovered', 'Deaths', 'Confirmed', 'Active'],
+            labels: ['Recovered','Deaths','Confirmed','Active'],
             datasets: [
               {
                 label: 'Dataset1',
@@ -316,12 +347,12 @@ export default function CountriesSummary() {
             plugins: {
               title: {
                 display: true,
-                text: 'Vietnam Total Data for covid today',
+                text: 'Vietnam Total Data for covid recent Day',
                 font: {
                   size: 20,
                 },
                 padding: {
-                  top:20
+                  top: 20
                 }
               },
               legend: {
@@ -334,7 +365,7 @@ export default function CountriesSummary() {
               }
             },
           }}
-        />   
+        />
       </div>
     </div>
   )

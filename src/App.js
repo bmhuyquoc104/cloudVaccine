@@ -8,6 +8,7 @@ import {
 import Review from "./Pages/Review";
 import Registration from "./Pages/Registration";
 import Vaccine from "./Pages/Vaccine";
+import Summary from "./Pages/Summary";
 import CountriesSummary from './Pages/CountriesSummary';
 import Sidenav from "./Components/Sidenav/Sidenav";
 
@@ -52,6 +53,9 @@ function App() {
             <li>
               <Link to="/signIn">Sign In</Link>
             </li>
+            <li>
+              <Link to="/Summary">Summary</Link>
+            </li>
           </ul>
 
           <Switch>
@@ -72,6 +76,9 @@ function App() {
             </Route>
             <Route path="/signUp">
               <Signup />
+            </Route>
+            <Route path="/Summary">
+              <Summary />
             </Route>
           </Switch>
         </div>
