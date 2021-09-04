@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
     background: 'linear-gradient(45deg, #380036 30%, #21CBF3 90%)',
     height: '100%',
     display: 'flex',
+    fontFamily: 'Roboto'
   }
 }));
 

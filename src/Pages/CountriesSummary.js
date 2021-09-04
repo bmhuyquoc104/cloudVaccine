@@ -5,6 +5,19 @@ import { DataGrid } from '@material-ui/data-grid';
 import { Bar } from 'react-chartjs-2';
 import { Doughnut } from 'react-chartjs-2';
 
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+  data:
+  {
+    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    width: '74vw',
+    border: "none",
+    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+    borderRadius: "15px",
+  }
+}));
+
 export default function CountriesSummary() {
   const [vietNamSummary, setVietNamSummary] = useState([]);
   const [LaosSummary, setLaosSummary] = useState([]);
@@ -201,6 +214,7 @@ export default function CountriesSummary() {
     return dataSetPieChart;
   }
 
+  const classes = useStyles();
   return (
     < div style={{ height: 500, width: '100%' }}>
       <DataGrid
@@ -209,8 +223,9 @@ export default function CountriesSummary() {
         rowsPerPageOptions={[5, 10, 20, 50, 100]}
         checkboxSelection
         disableSelectionOnClick
+        className={classes.data}
       />
-      <div className="barChart">
+      {/* <div className="barChart">
         <Bar
           data={{
             labels: label,
@@ -391,7 +406,7 @@ export default function CountriesSummary() {
             },
           }}
         />
-      </div>
+      </div> */}
     </div>
   )
 }

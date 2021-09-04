@@ -123,26 +123,29 @@ export default function Review() {
     const classes = useStyles();
   
     return (
-        <div className="Review">
-            
+        <div>
             <Grid container spacing={2} style={{paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px"}} className={classes.root}>
-            
                 <Grid item xs={12}>
-                <ReviewModal />
-                <br></br>
-                <Grid container justifyContent="center" spacing={spacing}>
-                    {reviews.map((review, idx) => {
-                    return (
-                        <Grid key={`review${idx}`} item>
-                        <Card className={classes.paper} >
-                            <CardActionArea>
-                               <CardContent>
-                                    <Typography color="secondary" variant="h6"><b>{review.author}</b></Typography>
-                                    <Typography variant="body1">{review.description}</Typography>
-                                </CardContent>
+
+                    <ReviewModal />
+                    <br></br>
+                    <Grid container justifyContent="center" spacing={spacing}>
+                        {reviews.map((review, idx) => {
+                        return (
+                            <Grid key={`review${idx}`} item>
+                            <Card
+                            className={classes.paper}
+                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px",}}
+                            >
+                                <CardActionArea>
+                                <CardContent>
+                                        <Typography color="secondary" variant="h6"><b>{review.author}</b></Typography>
+                                        <Typography variant="body1">{review.description}</Typography>
+                                    </CardContent>
+                                </CardActionArea>
                                 <CardMedia image={review.img} style={{ width: "100px", height: "100px", margin: "30px" }} alt="..." />
-                            </CardActionArea>
-                            <CardActions className={classes.bot}>
+
+                                <CardActions className={classes.bot}>
                                         <Button
                                         size="medium"
                                         startIcon={<ThumbUpIcon/>}
@@ -150,29 +153,28 @@ export default function Review() {
                                         className={classes.icon}
                                         >
                                         {review.like}
-                                        </Button>
-                                        <Button
-                                        size="medium"
-                                        startIcon={<ThumbDownAltIcon/>}
-                                        onClick={() => addLikeOrDislike(idx,2)}
-                                        className={classes.icon}
-                                        >
+                                    </Button>
+                                    <Button
+                                    size="medium"
+                                    startIcon={<ThumbDownAltIcon/>}
+                                    onClick={() => addLikeOrDislike(idx,2)}
+                                    className={classes.icon}
+                                    >
                                         {review.dislike}
-                                        </Button>
-                                        <Button
-                                        size="medium"
-                                        startIcon={<ReplyIcon/>}
-                                        className={classes.icon}
-                                        >
+                                    </Button>
+                                    <Button
+                                    size="medium"
+                                    startIcon={<ReplyIcon/>}
+                                    className={classes.icon}
+                                    >
                                         Reply
-                                        </Button>
-                                    </CardActions>
-                            
-                        </Card>
-                        </Grid>
-                    )
-                    })}
-                </Grid>
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                            </Grid>
+                        )
+                        })}
+                    </Grid>
                 </Grid>
             </Grid>
         </div>

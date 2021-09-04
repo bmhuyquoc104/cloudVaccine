@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
   },
   paper:
   {
-    height: 520,
     width: 300,
   },
   control:
@@ -114,17 +113,34 @@ export default function Vaccine() {
                     </CardContent>
                   </CardActionArea>
 
-                  <CardContent className={classes.bot}>
-                    <Typography className={classes.text}><b>{vaccine.name}</b></Typography>
-                    <Typography className={classes.text}><b>ID:</b> {vaccine.id}</Typography>
-                    <Typography className={classes.text}><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
-                    <Typography className={classes.text}><IconButton onClick={() => addLike(idx)}>
+    return (
+            <Grid container spacing={2} style={{paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px"}} className={classes.root}>
+              <Grid item xs={12}>
+                <Grid container justifyContent="center" spacing={spacing}>
+                  {vaccines.map((vaccine, idx) => {
+                    return (
+                      <Grid key={`vaccine${idx}`} item>
+                        <Card
+                        className={classes.paper}
+                        style={{border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px",}}>
+                          <CardActionArea>
+                              <CardContent>
+                                  <CardMedia image={vaccine.img} style={{ width: "150px", height: "100px", margin: "auto" }} alt="..."/>
+                              </CardContent>
+                          </CardActionArea>
+                          
+                          <CardContent className={classes.bot}>
+                            <Typography className={classes.text}><b>{vaccine.name}</b></Typography>
+                            <Typography className={classes.text}><b>ID:</b> {vaccine.id}</Typography>
+                            <Typography className={classes.text}><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
+                            <Typography className={classes.text}><IconButton onClick={() => addLike(idx)}>
                     <FavoriteIcon className={classes.text} />
-                    </IconButton> {vaccine.like}</Typography>
-                    <Typography className={classes.text}><b>Country:</b> {vaccine.country}</Typography>
-                  </CardContent>
-                </Card>
-              </Grid>
+                    </IconButton> {vaccine.like}
+                            <Typography className={classes.text}><b>Country:</b> {vaccine.country}</Typography>
+                          </CardContent>
+                        </Card>
+                      </Grid>
+              
             )
           })}
         </Grid>
