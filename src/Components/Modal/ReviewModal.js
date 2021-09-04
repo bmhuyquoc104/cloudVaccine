@@ -27,6 +27,7 @@ const putData = (tableName, data) => {
             console.log('Error', err)
         } else {
             console.log('Success', data)
+            alert("Your form has been successfully submitted")
         }
     })
 }
@@ -56,11 +57,16 @@ export default function ReviewModal() {
     }
     const [validated, setValidated] = useState(false);
 
+    const resetButton = async ()=>{
+        document.getElementById('myform').reset();
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.currentTarget;
         if (form.checkValidity() === false) {
             e.stopPropagation();
+            e.preventDefault();
         } else {
             initialState['id'] = uuid();
             initialState['like'] = 0;
@@ -68,8 +74,11 @@ export default function ReviewModal() {
             putData('vaccine-review', initialState)
             console.log(initialState);
         }
+       
+        
         setValidated(true);
     }
+
 
     return (
         <div className="Review">
@@ -80,7 +89,7 @@ export default function ReviewModal() {
                 <Modal.Header closeButton>
                     <Modal.Title>Review Application</Modal.Title>
                 </Modal.Header>
-                <Form noValidate validated={validated} onSubmit={handleSubmit} >
+                <Form id = "myform" noValidate validated={validated} onSubmit={handleSubmit} >
                     <Modal.Body>
                         <Form.Group className="mb-3" controlId="formBasicFullName">
                             <Form.Label>Author</Form.Label>
@@ -147,7 +156,7 @@ export default function ReviewModal() {
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
                             <Form.Control
-                                type="email"
+                                type="text"
                                 placeholder="Enter email"
                                 required
                                 pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
@@ -183,11 +192,11 @@ export default function ReviewModal() {
                         </Form.Group>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Close
+                        <Button type="reset" variant="secondary" >
+                            Reset
                         </Button>
-                        <Button variant="primary" type="submit" >
-                            Save Changes
+                        <Button variant="primary" type="submit"  >
+                            Submit
                         </Button>
                     </Modal.Footer>
                 </Form>
