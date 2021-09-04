@@ -62,10 +62,6 @@ export default function ReviewModal() {
     }
     const [validated, setValidated] = useState(false);
 
-    const resetButton = async ()=>{
-        document.getElementById('myform').reset();
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         const form = e.currentTarget;
@@ -214,7 +210,7 @@ export default function ReviewModal() {
                     <Modal.Footer>
                         <ButtonGroup className="mb-2">
                             <Button type="reset" style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0}}>
-                                Cancel
+                                Reset
                             </Button>
                             <Button type="submit" style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0}}>
                                 Submit

@@ -5,13 +5,10 @@ import RegistrationModal from '../Components/Modal/RegistrationModal';
 import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
-import Button from 'react-bootstrap/Button';
-import Modal from 'react-bootstrap/Modal';
-import Form from 'react-bootstrap/Form';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { v4 as uuid } from 'uuid';
-const { SendEmailCommand } = require("@aws-sdk/client-ses");
-const { sesClient } = require("./lib/sesClient.js");
+// const { SendEmailCommand } = require("@aws-sdk/client-ses");
+// const { sesClient } = require("./lib/sesClient.js");
 
 const configuration = {
   region: 'us-east-1',
@@ -23,21 +20,7 @@ const configuration = {
 AWS.config.update(configuration)
 
 var ses = new AWS.SES();
-const docClient = new AWS.DynamoDB.DocumentClient()
-const putData = (tableName, data) => {
-  var params = {
-    TableName: tableName,
-    Item: data
-  }
 
-  docClient.put(params, function (err, data) {
-    if (err) {
-      console.log('Error', err)
-    } else {
-      console.log('Success', data)
-    }
-  })
-}
 // AWS ENDS
 
 export default function Registration() {
@@ -53,74 +36,7 @@ export default function Registration() {
       .catch((err) => console.error(err))
   }, []
   )
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-  const initialState = {
-    fullName: '', Nationality: '', passport: '', dateOfBirth: '',
-    gender: '', phone: '', address: '', email: ''
-  }
-
-  const [validated, setValidated] = useState(false);
-
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.currentTarget;
-    if (form.checkValidity() === false) {
-      e.stopPropagation();
-    } else {
-      initialState['id'] = uuid();
-      putData('vaccine-register', initialState);
-      const params = {
-        Destination: {
-          /* required */
-          CcAddresses: [
-            /* more items */
-          ],
-          ToAddresses: [
-            initialState['email'], //RECEIVER_ADDRESS
-            /* more To-email addresses */
-          ],
-        },
-        Message: {
-          /* required */
-          Body: {
-            /* required */
-            Html: {
-              Charset: "UTF-8",
-              Data: "You successfully registered the vaccination",
-            },
-            Text: {
-              Charset: "UTF-8",
-              Data: "You successfully registered the vaccination",
-            },
-          },
-          Subject: {
-            Charset: "UTF-8",
-            Data: "Welcome new vaccinator",
-          },
-        },
-        Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
-        ReplyToAddresses: [
-          /* more items */
-        ],
-      };
-      const email = { EmailAddress: "nguyendanghuynhchau15720@gmail.com" };
-      ses.sendEmail(params, function (err, res) {
-        if (err) {
-            console.log("Error uploading data: ", err);
-        } else {
-            console.log("Successfully send email");
-        }
-    });
-      console.log(initialState);
-    }
-    setValidated(true);
-  }
-
+  
   return (
     <div className="Registration">
       <RegistrationModal />

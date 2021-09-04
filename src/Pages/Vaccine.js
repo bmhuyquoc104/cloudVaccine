@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
-import { Grid, Card, CardMedia, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core'
+import { Grid, Card, CardMedia, CardActionArea, CardContent, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import IconButton from '@material-ui/core/IconButton';
@@ -110,7 +110,7 @@ export default function Vaccine() {
                 <Card className={classes.paper}>
                   <CardActionArea>
                     <CardContent>
-                      <CardMedia image={'https://i.imgur.com/3kkytsv.png'} style={{ width: "250px", height: "300px", margin: "auto" }} alt="..." />
+                      <CardMedia image={vaccine.img} style={{ width: "250px", height: "300px", margin: "auto" }} alt="..." />
                     </CardContent>
                   </CardActionArea>
 
