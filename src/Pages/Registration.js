@@ -1,5 +1,6 @@
 // AWS STARTS
 import * as AWS from 'aws-sdk'
+import RegistrationModal from '../Components/Modal/RegistrationModal';
 
 import React from 'react';
 import axios from "axios"
@@ -11,8 +12,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { v4 as uuid } from 'uuid';
 const { SendEmailCommand } = require("@aws-sdk/client-ses");
 const { sesClient } = require("./lib/sesClient.js");
-
-
 
 const configuration = {
   region: 'us-east-1',
@@ -124,153 +123,7 @@ export default function Registration() {
 
   return (
     <div className="Registration">
-      <Button variant="primary" onClick={handleShow}>
-        Apply For Vaccine
-      </Button>
-      <Modal show={show} onHide={handleClose} style={{color: '#1abc9c', fontWeight: 'bold'}}>
-        <Modal.Header closeButton>
-          <Modal.Title style={{fontWeight: 'bold'}}>Vaccine Application</Modal.Title>
-        </Modal.Header>
-        <Form noValidate validated={validated} onSubmit={handleSubmit} style={{backgroundColor: '#F0F8FF'}}>
-          <Modal.Body>
-            <Form.Group className="mb-3" controlId="formBasicFullName">
-              <Form.Label>Full Name</Form.Label>
-              <Form.Control
-                type="text"
-                required
-                placeholder="Enter Full Name"
-                onChange={(e) => initialState['fullName'] = e.target.value}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid fullName.
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicDate">
-              <Form.Label>Date Of Birth</Form.Label>
-              <Form.Control
-                type="date"
-                placeholder="Enter Date Of Birth"
-                required
-                onChange={(e) => initialState['dateOfBirth'] = e.target.value}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid date of birth.
-              </Form.Control.Feedback>
-            </Form.Group>
-
-
-            <Form.Group className="mb-3" controlId="formPassport">
-              <Form.Label>Passport</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Passport"
-                required
-                pattern = "^(?!^0+$)[a-zA-Z0-9]{3,20}$"
-                onChange={(e) => initialState['passport'] = e.target.value}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid passport.
-              </Form.Control.Feedback>
-              <Form.Text className="text-muted">
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicGender">
-              <Form.Label>Gender</Form.Label>
-              <Form.Select
-                required
-                onChange={(e) => initialState['gender'] = e.target.value}
-              >
-                <option></option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-                <option value="O">Andrew</option>
-              </Form.Select>
-              <Form.Control.Feedback type="invalid">
-                Please choose a gender.
-              </Form.Control.Feedback>
-              <Form.Text className="text-muted">
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicNationality">
-              <Form.Label>Nationality</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter Nationality"
-                required
-                pattern = "[A-Za-z]+"
-                onChange={(e) => initialState['Nationality'] = e.target.value}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid nationality.
-              </Form.Control.Feedback>
-              <Form.Text className="text-muted">
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                type="email"
-                placeholder="Enter email"
-                required
-                pattern = "^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
-                onChange={(e) => initialState['email'] = e.target.value}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid email.
-              </Form.Control.Feedback>
-              <Form.Text className="text-muted">
-              </Form.Text>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicPhone">
-              <Form.Label>Phone</Form.Label>
-              <Form.Control
-                type="text"
-                pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
-                placeholder="Phone"
-                required
-                onChange={(e) => initialState['phone'] = e.target.value}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a Vietnamese phone number.
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicAddress">
-              <Form.Label>Address</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Address"
-                required 
-                onChange={(e) => initialState['address'] = e.target.value}
-              />
-              <Form.Control.Feedback type="invalid">
-                Please provide a valid address.
-              </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3" controlId="formBasicCheckbox">
-              <Form.Check type="checkbox"
-                label="Agree to send your information to us "
-                required
-                feedback="You must agree before submitting."
-              />
-            </Form.Group>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button type= "reset" variant="secondary">
-              Close
-            </Button>
-            <Button variant="primary" type="submit" >
-              Save Changes
-            </Button>
-          </Modal.Footer>
-        </Form>
-      </Modal>
+      <RegistrationModal />
     </div>
   );
 }

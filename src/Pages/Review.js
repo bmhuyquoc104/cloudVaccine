@@ -16,6 +16,7 @@ import ReplyIcon from '@material-ui/icons/Reply';
 // The modal
 import ReviewModal from '../Components/Modal/ReviewModal'
 
+
 // For cards
 import { Grid, Card, CardActionArea, CardActions, CardContent, Typography } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
@@ -33,6 +34,17 @@ const useStyles = makeStyles((theme) => ({
     button: {
         margin: theme.spacing(1),
     },
+    bot:
+    {
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        border: 0,
+        borderRadius: 3,
+        boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+    },
+    icon:
+    {
+        color: theme.palette.background.default,
+    }
 }));
 
 const configuration = {
@@ -111,32 +123,33 @@ export default function Review() {
                         <Grid key={`review${idx}`} item>
                         <Card className={classes.paper} >
                             <CardActionArea>
-                                <CardContent>
+                               <CardContent>
                                     <Typography color="secondary" variant="h6"><b>{review.author}</b></Typography>
                                     <Typography variant="body1">{review.description}</Typography>
                                 </CardContent>
                             </CardActionArea>
-                            <CardActions>
+                            <CardActions className={classes.bot}>
                                         <Button
                                         size="medium"
-                                        color="primary"
                                         startIcon={<ThumbUpIcon/>}
                                         onClick={() => addLikeOrDislike(idx,1)}
+                                        className={classes.icon}
                                         >
                                         {review.like}
                                         </Button>
                                         <Button
                                         size="medium"
-                                        color="primary"
                                         startIcon={<ThumbDownAltIcon/>}
                                         onClick={() => addLikeOrDislike(idx,2)}
+                                        className={classes.icon}
                                         >
                                         {review.dislike}
                                         </Button>
                                         <Button
                                         size="medium"
-                                        color="primary"
-                                        startIcon={<ReplyIcon/>}>
+                                        startIcon={<ReplyIcon/>}
+                                        className={classes.icon}
+                                        >
                                         Reply
                                         </Button>
                                     </CardActions>
