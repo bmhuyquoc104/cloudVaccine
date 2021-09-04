@@ -1,4 +1,3 @@
-<<<<<<< Updated upstream:src/Pages/Signup.js
 import React, { useState } from 'react';
 import UserPool from '../UserPool';
 
@@ -13,7 +12,7 @@ export default () => {
       if (err) console.error(err);
       console.log(data);
     });
-=======
+
 import React, { useState } from "react";
 import { Auth } from "aws-amplify";
 const SignUp = () => {
@@ -52,7 +51,6 @@ const SignUp = () => {
       .catch((e) => {
         console.log(e);
       });
->>>>>>> Stashed changes:src/User/Signup.js
   };
   return (
     <div className="form">
