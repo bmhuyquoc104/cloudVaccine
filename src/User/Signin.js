@@ -16,6 +16,7 @@ const SignIn = () => {
       .catch((err) => {
         console.log(err);
       });  
+      alert("You have been signed in successfully");
   };
   return (
     <div className="form">

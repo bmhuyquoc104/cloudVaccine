@@ -30,7 +30,8 @@ import Review from "../../Pages/Review";
 import Register from "../../Pages/Register";
 import Country from "../../Pages/Country";
 import Vaccine from "../../Pages/Vaccine";
-
+import Signin from "../../User/Signin";
+import Signin from "../../User/Signup"
 import {
     BrowserRouter as Router,
     Switch,

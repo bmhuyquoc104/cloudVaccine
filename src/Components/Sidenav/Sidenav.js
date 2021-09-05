@@ -39,6 +39,9 @@ import Vaccine from "../../Pages/Vaccine";
 import Dashboard from "../../Pages/Dashboard";
 import Settings from '../../Pages/Settings';
 import Home from "../../Pages/Home";
+import Signin from "../../User/Signin";
+import Signup from "../../User/Signup";
+import SettingAccounts from '../../Pages/SettingAccounts';
 import {
     BrowserRouter as Router,
     Switch,
@@ -143,7 +146,23 @@ function Sidenav() {
                                 <ListItemIcon>
                                     <SettingsIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"Settings"}/>
+                                <ListItemText primary={"SettingAccounts"}/>
+                            </ListItem>
+                        </Link>
+                        <Link to="/login" className={classes.link}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <SettingsIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"login"}/>
+                            </ListItem>
+                        </Link>
+                        <Link to="/signup" className={classes.link}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <SettingsIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"signup"}/>
                             </ListItem>
                         </Link>
                     {/* <AmplifySignOut /> */}
@@ -182,12 +201,22 @@ function Sidenav() {
                     </Route>
                     <Route path="/settings">
                         <Container>
-                            <Settings />
+                            <SettingAccounts />
                         </Container>
                     </Route>
                     <Route path="/home">
                         <Container>
                             <Home />
+                        </Container>
+                    </Route>
+                    <Route path="/login">
+                        <Container>
+                            <Signin />
+                        </Container>
+                    </Route>
+                    <Route path="/signup">
+                        <Container>
+                            <Signup />
                         </Container>
                     </Route>
                 </Switch>
