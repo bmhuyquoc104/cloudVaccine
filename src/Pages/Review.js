@@ -16,7 +16,7 @@ import ReviewModal from '../Components/Modal/ReviewModal'
 
 
 // For cards
-import { Grid, Card, CardActionArea, CardMedia, CardActions, CardContent, Typography } from '@material-ui/core'
+import { Grid, Card, CardActionArea, CardMedia, CardActions, CardContent, Typography, CardHeader, Avatar, List} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +42,11 @@ const useStyles = makeStyles((theme) => ({
     icon:
     {
         color: theme.palette.background.default,
+    },
+    avatar:
+    {
+        width: "70px",
+        height: "70px",
     }
 }));
 
@@ -140,12 +145,24 @@ export default function Review() {
                                         className={classes.paper}
                                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
                                     >
+                                        <CardHeader style={{padding: 5}}
+                                            avatar={
+                                                <Avatar aria-label="review" className={classes.avatar} src={review.img} alt={review.author}/>
+                                            }
+                                            title={
+                                                <Typography color="secondary"><b>{review.author}</b></Typography>
+                                            }
+                                            subheader={
+                                                <List style={{margin: 0, padding: 0}}>
+                                                    <Typography variant="subtitle2">{review.email}</Typography>
+                                                    <Typography variant="subtitle2">{review.phone}</Typography>
+                                                </List>
+                                            }
+                                        />
                                         <CardActionArea>
                                             <CardContent>
-                                                <Typography color="secondary" variant="h6"><b>{review.author}</b></Typography>
                                                 <Typography variant="body1">{review.description}</Typography>
                                             </CardContent>
-                                            <CardMedia image={review.img} style={{ width: "100px", height: "100px", margin: "30px" }} alt="..." />
                                         </CardActionArea>
                                         <CardActions className={classes.bot}>
                                             <Button
