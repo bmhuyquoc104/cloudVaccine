@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-import { Route, Redirect } from 'react-router';
 import Amplify from "aws-amplify";
+
 import SignUp from "../User/Signup";
 import SignIn from "../User/Signin";
-import SettingAccount from "../Pages/SettingAccounts";
 
 const App = () => {
   useEffect(() => {
