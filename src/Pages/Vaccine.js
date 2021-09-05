@@ -12,7 +12,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Button from '@material-ui/core/Button';
 
 import * as AWS from 'aws-sdk'
-import Button from 'react-bootstrap/Button';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -258,18 +257,11 @@ export default function Vaccine() {
                   className={classes.paper}
                   style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}>
 
-//                   {/* <CardActionArea style={{padding:0}}>
-//                     <CardContent> */}
-//                   <CardMedia image={vaccine.img} style={{ width: "300px", height: "200px", margin: "auto" }} alt="..." />
-//                     {/* </CardContent>
-//                   </CardActionArea> */}
-
-                  <CardActionArea>
-                    <CardContent>
-                      <CardMedia image={vaccine.img} style={{ width: "150px", height: "200px", margin: "auto" }} alt="..." />
-                    </CardContent>
-                  </CardActionArea>
-
+                {/* <CardActionArea style={{padding:0}}>
+                    <CardContent> */}
+                 <CardMedia image={vaccine.img} style={{ width: "300px", height: "200px", margin: "auto" }} alt="..." />
+                   {/* </CardContent>
+                </CardActionArea> */} 
 
                   <CardContent className={classes.bot}>
                     <Typography className={classes.text}><b>{vaccine.name}</b></Typography>
