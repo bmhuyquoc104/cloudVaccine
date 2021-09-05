@@ -5,6 +5,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { Doughnut } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { makeStyles } from '@material-ui/core/styles';
+import { Bar } from 'react-chartjs-2';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -344,6 +345,7 @@ export default function Dashboard() {
                 />
             </div>
         </div>
+
     )
 }
 
