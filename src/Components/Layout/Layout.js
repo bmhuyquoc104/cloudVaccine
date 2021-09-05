@@ -8,9 +8,8 @@ const Layout = ({ children }) => {
   return (
     <div className="content">
       <Router>
-        <Navbar />
+        {/* <Navbar /> */}
         <Sidenav />
-        <Footer />
       </Router>
     </div>
   );

@@ -11,12 +11,12 @@ import {
 } from '@material-ui/core';
 
 const user = {
-  avatar: '/static/images/avatars/1.png',
-  city: 'Ho Chi Minh',
-  country: 'Viet Nam',
-  jobTitle: 'Technical Manager',
-  name: 'Thanh Nguyen (Dr)',
-  timezone: 'GTM-7'
+  // avatar: '/static/images/avatars/1.png',
+  // city: 'Ho Chi Minh',
+  // country: 'Viet Nam',
+  // jobTitle: 'Technical Manager',
+  // name: 'Thanh Nguyen (Dr)',
+  // timezone: 'GTM-7'
 };
 
 const AccountProfile = (props) => (

@@ -36,7 +36,7 @@ import Review from "../../Pages/Review";
 import Register from "../../Pages/Registration";
 import Country from "../../Pages/CountriesSummary";
 import Vaccine from "../../Pages/Vaccine";
-import Summary from "../../Pages/Summary";
+import Dashboard from "../../Pages/Dashboard";
 import Settings from '../../Pages/Settings';
 
 import {
@@ -57,9 +57,7 @@ const useStyles = makeStyles ((theme) => ({
 }));
 
 const user = {
-    avatar: '/static/images/avatars/1.png',
-    jobTitle: 'Technical Manager',
-    name: 'Thanh Nguyen'
+    avatar: 'https://i.imgur.com/ToDMYPT.png',
 };
 
 function Sidenav() {
@@ -80,7 +78,7 @@ function Sidenav() {
                             <Avatar component={RouterLink} src={user.avatar} sx={{ cursor: 'pointer', width: 64, height: 64}}to="/app/account"/>
                             <Typography color="textPrimary" variant="h5"> {user.name}</Typography>
                             <Typography color="textSecondary" variant="body2">{user.jobTitle}</Typography>
-                        </Box>
+                    </Box>
                     <Link to="/account" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
@@ -155,9 +153,6 @@ function Sidenav() {
                                 <ListItemText primary={"Settings"}/>
                             </ListItem>
                         </Link>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
-                            <Button color="primary" component="a" href="/" variant="contained"> Support us </Button>
-                        </Box>
                     {/* <AmplifySignOut /> */}
                 </Drawer>
                 
@@ -187,9 +182,9 @@ function Sidenav() {
                             <Country />
                         </Container>
                     </Route>
-                    <Route path="/summary">
+                    <Route path="/dashboard">
                         <Container>
-                            <Summary />
+                            <Dashboard />
                         </Container>
                     </Route>
                     <Route path="/settings">
