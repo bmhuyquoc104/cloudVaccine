@@ -10,7 +10,6 @@ const Layout = ({ children }) => {
       <Router>
         <Navbar />
         <Sidenav />
-        <Footer />
       </Router>
     </div>
   );

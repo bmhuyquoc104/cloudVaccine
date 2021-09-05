@@ -57,9 +57,7 @@ const useStyles = makeStyles ((theme) => ({
 }));
 
 const user = {
-    avatar: '/static/images/avatars/1.png',
-    jobTitle: 'Technical Manager',
-    name: 'Thanh Nguyen'
+    avatar: 'https://i.imgur.com/ToDMYPT.png',
 };
 
 function Sidenav() {
@@ -80,7 +78,7 @@ function Sidenav() {
                             <Avatar component={RouterLink} src={user.avatar} sx={{ cursor: 'pointer', width: 64, height: 64}}to="/app/account"/>
                             <Typography color="textPrimary" variant="h5"> {user.name}</Typography>
                             <Typography color="textSecondary" variant="body2">{user.jobTitle}</Typography>
-                        </Box>
+                    </Box>
                     <Link to="/account" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
