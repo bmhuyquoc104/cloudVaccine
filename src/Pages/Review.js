@@ -9,14 +9,13 @@ import Button from '@material-ui/core/Button';
 // Icons
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
 import ThumbDownAltIcon from '@material-ui/icons/ThumbDownAlt';
-import ReplyIcon from '@material-ui/icons/Reply';
 
 // The modal
 import ReviewModal from '../Components/Modal/ReviewModal'
 
 
 // For cards
-import { Grid, Card, CardActionArea, CardMedia, CardActions, CardContent, Typography, CardHeader, Avatar, List} from '@material-ui/core'
+import { Grid, Card, CardActionArea, CardActions, CardContent, Typography, CardHeader, Avatar, List} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({

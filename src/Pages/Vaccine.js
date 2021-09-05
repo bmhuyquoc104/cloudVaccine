@@ -81,14 +81,7 @@ export default function Vaccine() {
   console.log(vaccines)
 
   var click = false;
-  var allHeartContainers = document.getElementsByClassName("MuiGrid-root MuiGrid-item");
-  var ThuCoBeXinhXan;
-
-  for (const item of allHeartContainers) {
-    ThuCoBeXinhXan = item.getElementsByTagName('div');
-  }
-
-  console.log(ThuCoBeXinhXan)
+  var allHeartContainers = document.getElementsByClassName("MuiButton-label");
 
 
   const [show, setShow] = useState(false);
@@ -124,17 +117,20 @@ export default function Vaccine() {
   const addLike = async (idx) => {
     if (click === false) {
       vaccines[idx].like += 1;
+      allHeartContainers[idx + 1].innerHTML = '<span class="MuiButton-startIcon MuiButton-iconSizeLarge"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></span>' + vaccines[idx].like;
       await putData('vaccine-covid', vaccines[idx]);
       console.log(vaccines[idx]);
       click = true;
     }
     else {
       vaccines[idx].like -= 1;
+      allHeartContainers[idx + 1].innerHTML = '<span class="MuiButton-startIcon MuiButton-iconSizeLarge"><svg class="MuiSvgIcon-root" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></span>' + vaccines[idx].like;
       await putData('vaccine-covid', vaccines[idx]);
       console.log(vaccines[idx]);
       click = false;
     }
   }
+
 
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
