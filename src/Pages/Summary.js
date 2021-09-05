@@ -26,7 +26,7 @@ export default function Summary() {
                     console.log('Success', data)
                 }
             })
-        }, 50)
+        }, 2000)
     }
 
 

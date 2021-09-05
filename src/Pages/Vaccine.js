@@ -269,7 +269,7 @@ export default function Vaccine() {
                     <Typography className={classes.text}><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
                     <Typography className={classes.text}><b>Country:</b> {vaccine.country}</Typography>
                     <Button
-                        size="medium"
+                        size="large"
                         startIcon={<FavoriteIcon/>}
                         className={classes.text}
                         onClick={() => addLike(idx)}
