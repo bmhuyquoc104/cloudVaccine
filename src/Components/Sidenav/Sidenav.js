@@ -153,9 +153,6 @@ function Sidenav() {
                                 <ListItemText primary={"Settings"}/>
                             </ListItem>
                         </Link>
-                        <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
-                            <Button color="primary" component="a" href="/" variant="contained"> Support us </Button>
-                        </Box>
                     {/* <AmplifySignOut /> */}
                 </Drawer>
                 

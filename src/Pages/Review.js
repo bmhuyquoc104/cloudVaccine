@@ -87,11 +87,14 @@ export default function Review() {
     }, []
     )
 
+
+
+
     var click = false;
     var allButtons = document.getElementsByClassName("MuiButton-label");
     const addLikeOrDislike = async (idx, mode) => {
-        var likeButton = allButtons[idx * 3];
-        var dislikeButton = allButtons[idx * 3 + 1];
+        var likeButton = allButtons[idx * 2];
+        var dislikeButton = allButtons[idx * 2 + 1];
         try {
             if (click === false) {
                 if (mode === 1) {
@@ -126,7 +129,7 @@ export default function Review() {
 
     const [spacing, setSpacing] = React.useState(2);
     const classes = useStyles();
-
+    
     return (
         <div>
             <Grid container spacing={2} style={{ paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px" }} className={classes.root}>
@@ -178,13 +181,7 @@ export default function Review() {
                                             >
                                                 {review.dislike}
                                             </Button>
-                                            <Button
-                                                size="medium"
-                                                startIcon={<ReplyIcon />}
-                                                className={classes.icon}
-                                            >
-                                                Reply
-                                            </Button>
+                                         
                                         </CardActions>
                                     </Card>
                                 </Grid>

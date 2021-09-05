@@ -73,10 +73,11 @@ export default function ReviewModal() {
             initialState['like'] = 0;
             initialState['dislike'] = 0;
             putData('vaccine-review', initialState)
+            alert('You have successfully added new review')
             console.log(initialState);
         }
-       
-        
+
+
         setValidated(true);
     }
 
@@ -91,20 +92,20 @@ export default function ReviewModal() {
                 `}
             </style>
             <Button
-            onClick={handleShow}
-            style={{border: 0,fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}
-            size="lg"
+                onClick={handleShow}
+                style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+                size="lg"
             >
                 Leave A Review
             </Button>
-            <Modal show={show} onHide={handleClose} style={{border: 0, boderRadius: 5,color: '#FE6B8B', fontWeight: 'bold'}}>
+            <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
                 <Modal.Header
-                closeButton
-                style={{backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)'}}
+                    closeButton
+                    style={{ backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
                 >
-                    <Modal.Title style={{fontWeight: 'bold', color: 'white'}}>Review Application</Modal.Title>
+                    <Modal.Title style={{ fontWeight: 'bold', color: 'white' }}>Review Application</Modal.Title>
                 </Modal.Header>
-                <Form id = "myform" noValidate validated={validated} onSubmit={handleSubmit} >
+                <Form id="myform" noValidate validated={validated} onSubmit={handleSubmit} >
                     <Modal.Body>
                         <Form.Group className="mb-3" controlId="formBasicFullName">
                             <Form.Label>Author</Form.Label>
@@ -199,6 +200,20 @@ export default function ReviewModal() {
                             </Form.Control.Feedback>
                         </Form.Group>
 
+
+                        <Form.Group className="mb-3" controlId="formBasicImage">
+                            <Form.Label>Image</Form.Label>
+                            <Form.Control
+                                type="text"
+                                placeholder="https://"
+                                required
+                                pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+                                onChange={(e) => initialState['img'] = e.target.value}
+                            />
+                            <Form.Control.Feedback type="invalid">
+                                Please upload vaccine image.
+                            </Form.Control.Feedback>
+                        </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <Form.Check type="checkbox"
                                 label="Agree to send your information to us "
@@ -209,10 +224,10 @@ export default function ReviewModal() {
                     </Modal.Body>
                     <Modal.Footer>
                         <ButtonGroup className="mb-2">
-                            <Button type="reset" style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0}}>
+                            <Button type="reset" style={{ fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}>
                                 Reset
                             </Button>
-                            <Button type="submit" style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0}}>
+                            <Button type="submit" style={{ fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0 }}>
                                 Submit
                             </Button>
                         </ButtonGroup>
