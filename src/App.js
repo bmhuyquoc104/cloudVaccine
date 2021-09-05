@@ -1,7 +1,6 @@
 import './App.css';
 
-
-import Sidenav from "./Components/Sidenav/Sidenav";
+import Layout from './Components/Layout/Layout';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
 
@@ -19,7 +18,7 @@ function App() {
   const classes = useStyles();
   return (
     <Container className={classes.root}>
-      <Sidenav />
+      <Layout />
     </Container>
   );
 }

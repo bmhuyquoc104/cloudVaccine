@@ -6,10 +6,13 @@ import {
     ListItemIcon,
     ListItemText,
     Container,
-    Typography
+    Typography,
+    Box,
+    Avatar,
+    Button
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-
+import { Link as RouterLink, useLocation } from 'react-router-dom';
 
 // import Amplify, { API, graphqlOperation } from 'aws-amplify';
 // import awsconfig from '../../aws-exports';
@@ -17,19 +20,24 @@ import {makeStyles} from "@material-ui/core/styles";
 
 
 // Icons
+import PeopleIcon from '@material-ui/icons/People';
 import HomeIcon from '@material-ui/icons/Home';
 import ComputerIcon from '@material-ui/icons/Computer';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import MessageIcon from '@material-ui/icons/Message';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import PublicIcon from '@material-ui/icons/Public';
+import SettingsIcon from '@material-ui/icons/Settings';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
 // Pages
+import Account from '../../Pages/Account';
 import Review from "../../Pages/Review";
 import Register from "../../Pages/Registration";
 import Country from "../../Pages/CountriesSummary";
 import Vaccine from "../../Pages/Vaccine";
 import Summary from "../../Pages/Summary";
+import Settings from '../../Pages/Settings';
 
 import {
     BrowserRouter as Router,
@@ -48,6 +56,11 @@ const useStyles = makeStyles ((theme) => ({
     }
 }));
 
+const user = {
+    avatar: '/static/images/avatars/1.png',
+    jobTitle: 'Technical Manager',
+    name: 'Thanh Nguyen'
+};
 
 function Sidenav() {
     const classes = useStyles();
@@ -63,6 +76,19 @@ function Sidenav() {
                 >
                     <Typography></Typography>
                     <List>
+                    <Box sx={{ alignItems: 'center', display: 'flex', flexDirection: 'column', p: 2}} >
+                            <Avatar component={RouterLink} src={user.avatar} sx={{ cursor: 'pointer', width: 64, height: 64}}to="/app/account"/>
+                            <Typography color="textPrimary" variant="h5"> {user.name}</Typography>
+                            <Typography color="textSecondary" variant="body2">{user.jobTitle}</Typography>
+                        </Box>
+                    <Link to="/account" className={classes.link}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PeopleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"Account"}/>
+                            </ListItem>
+                        </Link>
                         <Link to="/" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
@@ -87,6 +113,7 @@ function Sidenav() {
                                 <ListItemText primary={"Register"}/>
                             </ListItem>
                         </Link>
+                        
                         <Link to="/review" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
@@ -114,16 +141,32 @@ function Sidenav() {
                         <Link to="/summary" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <PublicIcon />
+                                    <TrendingUpIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={"Summary"}/>
                             </ListItem>
                         </Link>
                     </List>
+                    <Link to="/settings" className={classes.link}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <SettingsIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"Settings"}/>
+                            </ListItem>
+                        </Link>
+                        <Box sx={{ display: 'flex', justifyContent: 'center', pt: 2}}>
+                            <Button color="primary" component="a" href="/" variant="contained"> Support us </Button>
+                        </Box>
                     {/* <AmplifySignOut /> */}
                 </Drawer>
                 
                 <Switch>
+                <Route path="/account">
+                        <Container>
+                            <Account />
+                        </Container>
+                    </Route>
                     <Route path="/register">
                         <Container>
                             <Register />
@@ -147,6 +190,11 @@ function Sidenav() {
                     <Route path="/summary">
                         <Container>
                             <Summary />
+                        </Container>
+                    </Route>
+                    <Route path="/settings">
+                        <Container>
+                            <Settings />
                         </Container>
                     </Route>
                 </Switch>
