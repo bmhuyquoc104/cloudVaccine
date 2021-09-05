@@ -50,6 +50,7 @@ const SignUp = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="email"
             />
+          
           <input
               id="sign-up-password"
               type="password"
@@ -57,10 +58,13 @@ const SignUp = () => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="password"
             />
+              
           <button type="submit" onClick={signUp}>
             Sign Up
           </button>
+          <p style={{color:"red",fontSize:"50px"}}>Password must contain 8 characters, UpperCase,LowerCase, Number and Special characters</p>
         </form>
+        
       )}
       {waitingForCode && (
         <form>
