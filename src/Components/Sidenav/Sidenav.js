@@ -36,7 +36,7 @@ import Review from "../../Pages/Review";
 import Register from "../../Pages/Registration";
 import Country from "../../Pages/CountriesSummary";
 import Vaccine from "../../Pages/Vaccine";
-import Summary from "../../Pages/Summary";
+import Dashboard from "../../Pages/Dashboard";
 import Settings from '../../Pages/Settings';
 
 import {
@@ -182,9 +182,9 @@ function Sidenav() {
                             <Country />
                         </Container>
                     </Route>
-                    <Route path="/summary">
+                    <Route path="/dashboard">
                         <Container>
-                            <Summary />
+                            <Dashboard />
                         </Container>
                     </Route>
                     <Route path="/settings">

@@ -87,9 +87,6 @@ export default function Review() {
     }, []
     )
 
-
-
-
     var click = false;
     var allButtons = document.getElementsByClassName("MuiButton-label");
     const addLikeOrDislike = async (idx, mode) => {

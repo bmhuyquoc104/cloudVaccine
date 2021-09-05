@@ -4,6 +4,7 @@ import React from "react"
 import { DataGrid } from '@material-ui/data-grid';
 import { Bar } from 'react-chartjs-2';
 import { Doughnut } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -20,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CountriesSummary() {
   const [vietNamSummary, setVietNamSummary] = useState([]);
-  const [LaosSummary, setLaosSummary] = useState([]);
+  const [cambodiaSummary, setLaosSummary] = useState([]);
   const [thaiLandSummary, setThaiLandSummary] = useState([]);
   const [malaysiaSummary, setMalaysiaSummary] = useState([]);
   const [singaporeSummary, setSingaporeSummary] = useState([]);
@@ -54,7 +55,7 @@ export default function CountriesSummary() {
       .catch((err) => console.error(err))
 
     axios
-      .get('https://api.covid19api.com/live/country/laos/status/confirmed')
+      .get('https://api.covid19api.com/live/country/cambodia/status/confirmed')
 
       .then((res) => {
         setLaosSummary(res.data);
@@ -73,15 +74,15 @@ export default function CountriesSummary() {
 
   }, []);
 
-  var countriesSummary = [...singaporeSummary, ...LaosSummary,...malaysiaSummary, ...vietNamSummary,...thaiLandSummary];
-  
-  console.log(countriesSummary);
+  var countriesSummary = [...singaporeSummary, ...cambodiaSummary, ...malaysiaSummary, ...vietNamSummary, ...thaiLandSummary];
+
+  // console.log(countriesSummary);
   // console.log(singaporeSummary);
   // console.log(malaysiaSummary);
   // console.log(vietNamSummary);
   // console.log(LaosSummary);
   // console.log(thaiLandSummary);
-  
+
 
   const columns = [
 
@@ -187,15 +188,32 @@ export default function CountriesSummary() {
     }
   }
 
-  console.log(vietNamToday);
-
   function getCountryConfirmedCases(countryCollection) {
     var dataset = [];
     for (const data of countryCollection) {
-      dataset.push(data.Confirmed)
+      dataset.push(data.Confirmed);
     }
     return dataset.sort();
   }
+
+  function getMonth(countryCollection) {
+    var dataset = [];
+    for (const data of countryCollection) {
+      dataset.push((new Date(data.Date).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })))
+    }
+    return dataset.sort();
+  }
+  console.log(getMonth(vietNamSummary));
+
+  function getCountryConfirmedDeath(countryCollection) {
+    var dataset = [];
+    for (const data of countryCollection) {
+      dataset.push(data.Deaths)
+    }
+    return dataset;
+  }
+
+  console.log(getCountryConfirmedDeath(vietNamSummary))
 
   var label = [];
   for (const vn of vietNamCollection) {
@@ -216,22 +234,134 @@ export default function CountriesSummary() {
 
   const classes = useStyles();
   return (
-    < div style={{ height: 500, width: '100%' }}>
-      <DataGrid
-        rows={rows.map((r) => { return r })}
-        columns={columns}
-        rowsPerPageOptions={[5, 10, 20, 50, 100]}
-        checkboxSelection
-        disableSelectionOnClick
-        className={classes.data}
-      />
+    < div>
       <div className="barChart">
-        <Bar
+        <Line
+          data={{
+            labels: getMonth(vietNamSummary),
+            datasets: [
+              {
+                label: 'Vietnam Total Cases ',
+                data: getCountryConfirmedDeath(vietNamSummary),
+                backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+              },
+              {
+                label: 'Malaysia Total Cases ',
+                data: getCountryConfirmedDeath(malaysiaSummary),
+                backgroundColor: [
+                  'rgba(255, 159, 64, 0.2)'
+                  ,
+                ],
+                borderColor: [
+                  'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+              },
+              {
+                label: 'Cambodia Total Cases ',
+                data: getCountryConfirmedDeath(cambodiaSummary),
+                backgroundColor: [
+                  'rgba(153, 102, 255, 0.2)',
+
+                ],
+                borderColor: [
+                  'rgba(153, 102, 255, 1)',
+
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+              },
+              {
+                label: 'Singapore Total Cases ',
+                data: getCountryConfirmedDeath(singaporeSummary),
+                backgroundColor: [
+                  'rgba(75, 192, 192, 0.2)',
+
+                ],
+                borderColor: [
+                  'rgba(75, 192, 192, 1)',
+
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+              },
+              {
+                label: 'Thailand Total Case',
+                data: getCountryConfirmedDeath(thaiLandSummary),
+                backgroundColor: [
+                  'rgba(54, 162, 235, 0.2)',
+                ],
+                borderColor: [
+                  'rgba(54, 162, 235, 1)',
+                ],
+                borderWidth: 2,
+                maxBarThickness: 30,
+              }
+            ],
+          }}
+          height={600}
+          width={600}
+          options={{
+            maintainAspectRatio: false,
+            plugins: {
+              title: {
+                display: true,
+                text: 'Total Death Cases From End Of June To Now Chart',
+                font: {
+                  size: 28,
+                },
+                padding: {
+                  top: 50,
+                  bottom: 20
+                }
+              },
+              legend: {
+                display: true,
+                labels: {
+                  color: 'rgb(255, 99, 132)',
+                  font: {
+                    size: 18
+                  }
+                }
+              }
+            },
+            scales: {
+              yAxes: [
+                {
+                  color: 'red',
+                  font: {
+                    size: 25
+                  },
+                  ticks: {
+                    tickColor: 'red',
+                    beginAtZero: false,
+                  },
+                },
+              ],
+            },
+            legend: {
+              labels: {
+                fontSize: 25,
+              },
+            },
+          }}
+        />
+      </div>
+      <div>
+      <Bar
           data={{
             labels: label,
             datasets: [
               {
-                label: 'vietnam total cases ',
+                label: 'Vietnam Total Cases ',
                 data: getCountryConfirmedCases(vietNamCollection),
                 backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -243,15 +373,13 @@ export default function CountriesSummary() {
                 ],
                 borderWidth: 2,
                 maxBarThickness: 30,
-
               },
               {
-                label: 'malaysia total cases ',
+                label: 'Malaysia Total Cases ',
                 data: getCountryConfirmedCases(malaysiaCollection),
                 backgroundColor: [
                   'rgba(255, 159, 64, 0.2)'
                   ,
-
                 ],
                 borderColor: [
                   'rgba(255, 159, 64, 1)'
@@ -259,10 +387,9 @@ export default function CountriesSummary() {
                 ],
                 borderWidth: 2,
                 maxBarThickness: 30,
-
               },
               {
-                label: 'cambodia total cases ',
+                label: 'Cambodia Total Cases ',
                 data: getCountryConfirmedCases(cambodiaCollection),
                 backgroundColor: [
                   'rgba(153, 102, 255, 0.2)',
@@ -274,10 +401,9 @@ export default function CountriesSummary() {
                 ],
                 borderWidth: 2,
                 maxBarThickness: 30,
-
               },
               {
-                label: 'singapore total cases ',
+                label: 'Singapore Total Cases ',
                 data: getCountryConfirmedCases(singaporeCollection),
                 backgroundColor: [
                   'rgba(75, 192, 192, 0.2)',
@@ -289,10 +415,9 @@ export default function CountriesSummary() {
                 ],
                 borderWidth: 2,
                 maxBarThickness: 30,
-
               },
               {
-                label: 'thailand total case',
+                label: 'Thailand Total Case',
                 data: getCountryConfirmedCases(thailandCollection),
                 backgroundColor: [
 
@@ -306,7 +431,6 @@ export default function CountriesSummary() {
                 ],
                 borderWidth: 2,
                 maxBarThickness: 30,
-
               }
             ],
           }}
@@ -317,15 +441,14 @@ export default function CountriesSummary() {
             plugins: {
               title: {
                 display: true,
-                text: 'Vietnam total confirmed case in the last 7 days bar chart',
+                text: 'Total Confirmed Cases For The Last 7 Days',
                 font: {
-                  size: 30,
+                  size: 28,
                 },
                 padding: {
                   top: 50,
                   bottom: 20
                 }
-
               },
               legend: {
                 display: true,
@@ -337,7 +460,6 @@ export default function CountriesSummary() {
                 }
               }
             },
-
             scales: {
               yAxes: [
                 {
@@ -348,7 +470,6 @@ export default function CountriesSummary() {
                   ticks: {
                     tickColor: 'red',
                     beginAtZero: false,
-
                   },
                 },
               ],
@@ -357,52 +478,6 @@ export default function CountriesSummary() {
               labels: {
                 fontSize: 25,
               },
-            },
-          }}
-        />
-      </div>
-      <div className="doughnutChart">
-        <Doughnut
-          data={{
-            labels: ['Recovered', 'Deaths', 'Confirmed', 'Active'],
-            datasets: [
-              {
-                label: 'Dataset1',
-                data: getPieChartData(vietNamToday),
-                backgroundColor: [
-                  'rgb(142, 195, 195)',
-                  'rgb(255,69,0)',
-                  'rgb(39,70,135)',
-                  'rgb(255,215,0)'
-                ],
-                borderWidth: 2,
-                maxBarThickness: 30,
-              },
-            ],
-          }}
-          height={400}
-          width={400}
-          options={{
-            maintainAspectRatio: false,
-            plugins: {
-              title: {
-                display: true,
-                text: `Vietnam Total Data for covid today`,
-                font: {
-                  size: 20,
-                },
-                padding: {
-                  top: 20
-                }
-              },
-              legend: {
-                display: true,
-                labels: {
-                  font: {
-                    size: 18
-                  }
-                }
-              }
             },
           }}
         />
