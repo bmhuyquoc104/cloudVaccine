@@ -6,9 +6,22 @@ import { Bar } from 'react-chartjs-2';
 import { Doughnut } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
 
+import CountriesLine from "../Components/Graphs/Line"
+import CountriesBar from "../Components/Graphs/Bar"
+
+// For cards
+import { Grid, Card, CardActionArea, CardActions, CardContent, Typography, CardHeader} from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  bot:
+  {
+      color: 'white',
+      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+      border: 0,
+      borderRadius: 3,
+      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+  },
   data:
   {
     background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
@@ -235,7 +248,7 @@ export default function CountriesSummary() {
   const classes = useStyles();
   return (
     < div>
-      <div className="barChart">
+      {/* <div className="barChart">
         <Line
           data={{
             labels: getMonth(vietNamSummary),
@@ -481,7 +494,60 @@ export default function CountriesSummary() {
             },
           }}
         />
-      </div>
+      </div> */}
+      <Grid
+      container
+      spacing={2}
+      justifyContent="center"
+      style={{paddingTop: "20px", paddingRight: "12px", width: '74vw',}}
+      >
+        <Grid item xs={12}>
+          {/* Line chart */}
+          <Card
+          className={classes.paper}
+          style=
+            {{
+              width: '75vw',
+              border: "none",
+              boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+              borderRadius: "15px",
+            }}
+          >
+            <CardHeader
+            className={classes.bot}
+            title=
+            {
+              <Typography variant="h5"><b>Total Death Cases From End Of June To Now</b></Typography>
+            }
+            />
+            <CountriesLine />
+            <CardActions className={classes.bot} />
+          </Card>
+
+          {/* Bar chart */}
+          <Card
+          className={classes.paper}
+          style=
+            {{
+              marginTop: "50px",
+              width: '75vw',
+              border: "none",
+              boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+              borderRadius: "15px",
+            }}
+          >
+            <CardHeader
+            className={classes.bot}
+            title=
+            {
+              <Typography variant="h5"><b>Total Confirmed Cases For The Last 7 Days</b></Typography>
+            }
+            />
+            <CountriesBar />
+            <CardActions className={classes.bot} />
+          </Card>
+        </Grid>
+      </Grid>
     </div>
   )
 }

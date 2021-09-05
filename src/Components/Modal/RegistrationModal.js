@@ -164,8 +164,7 @@ export default function RegistrationModal() {
   }
 
   return (
-    <div className="Registration">
-
+    <div>
       <Button
         onClick={handleShow}
         style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
