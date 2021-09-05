@@ -3,28 +3,39 @@ import { useState, useEffect } from "react"
 import React from "react"
 import { DataGrid } from '@material-ui/data-grid';
 import { Doughnut } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
     data:
     {
-      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-      width: '74vw',
-      border: "none",
-      boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-      borderRadius: "15px",
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        width: '74vw',
+        border: "none",
+        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+        borderRadius: "15px",
     }
-  }));
+}));
 export default function Dashboard() {
-
     const [vietNamSummary, setVietNamSummary] = useState([]);
     const [cambodiaSummary, setLaosSummary] = useState([]);
     const [thaiLandSummary, setThaiLandSummary] = useState([]);
     const [malaysiaSummary, setMalaysiaSummary] = useState([]);
     const [singaporeSummary, setSingaporeSummary] = useState([]);
+    const [vietNamVaccine, setVietNamVaccine] = useState([]);
+
 
     useEffect(() => {
+        axios
+            .get('https://oc19o1atb6.execute-api.us-east-1.amazonaws.com/dev/views')
+
+            .then((res) => {
+                setVietNamVaccine(res.data.Reviews);
+
+            })
+            .catch((err) => console.error(err))
+
         axios
             .get('https://api.covid19api.com/live/country/vietnam/status/confirmed')
 
@@ -73,14 +84,25 @@ export default function Dashboard() {
     }, []);
 
     var countriesSummary = [...singaporeSummary, ...cambodiaSummary, ...malaysiaSummary, ...vietNamSummary, ...thaiLandSummary];
+    const sgVaccine = [];
+    for (const vaccine of vietNamVaccine) {
+        if (vaccine['state'] === 'Ho Chi Minh city') {
+            sgVaccine.push(vaccine);
+        }
+    }
+    console.log(sgVaccine);
 
-    // console.log(countriesSummary);
-    // console.log(singaporeSummary);
-    // console.log(malaysiaSummary);
-    // console.log(vietNamSummary);
-    // console.log(LaosSummary);
-    // console.log(thaiLandSummary);
-
+    function getSaiGonVaccineData(sgVaccine) {
+        var dataset = [];
+        for (const data of sgVaccine) {
+            dataset.push(data.fully_vaccinated_rate);
+            dataset.push(data.fully_vaccinated);
+            dataset.push(data.injected);
+            dataset.push(data.population);
+        }
+        return dataset;
+    }
+    console.log(getSaiGonVaccineData(sgVaccine));
 
     const columns = [
 
@@ -126,10 +148,6 @@ export default function Dashboard() {
     ];
 
     var vietNamCollection = [];
-    var singaporeCollection = [];
-    var cambodiaCollection = [];
-    var malaysiaCollection = [];
-    var thailandCollection = [];
     var vietNamToday = [];
 
     var rows = [];
@@ -167,47 +185,8 @@ export default function Dashboard() {
                     vietNamToday.push(country);
                 }
             }
-            if (country['Country'] === 'Singapore') {
-                singaporeCollection.push(country);
-
-            }
-            if (country['Country'] === 'Cambodia') {
-                cambodiaCollection.push(country);
-            }
-            if (country['Country'] === 'Malaysia') {
-                malaysiaCollection.push(country);
-
-            }
-            if (country['Country'] === 'Thailand') {
-                thailandCollection.push(country);
-            }
         }
     }
-
-    function getCountryConfirmedCases(countryCollection) {
-        var dataset = [];
-        for (const data of countryCollection) {
-            dataset.push(data.Confirmed);
-        }
-        return dataset.sort();
-    }
-
-    function getCountryConfirmedDeath(countryCollection) {
-        var dataset = [];
-        for (const data of countryCollection) {
-            dataset.push(data.Deaths)
-        }
-        return dataset;
-    }
-
-    console.log(getCountryConfirmedDeath(vietNamSummary))
-
-    var label = [];
-    for (const vn of vietNamCollection) {
-        label.push((new Date(vn.Date).toLocaleDateString()));
-    }
-    label.sort();
-
     function getPieChartData(countryToday) {
         var dataSetPieChart = [];
         for (const data of countryToday) {
@@ -269,6 +248,94 @@ export default function Dashboard() {
                                 labels: {
                                     font: {
                                         size: 18
+                                    }
+                                }
+                            }
+                        },
+                    }}
+                />
+            </div>
+            <div>
+                <Pie
+                    data={{
+                        labels: ['Population', 'Total People Injected', 'Practical Distribution', 'Theory Distribution', 'Injected 2 doses'],
+                        datasets: [
+                            {
+                                label: 'Dataset1',
+                                data: [7000000, 9100000, 5800000, 13800000, 321400],
+                                backgroundColor: [
+                                    'rgb(220,220,220)',
+                                    'rgb(0,128,0)',
+                                    'rgb(39,70,135)',
+                                    'rgb(255,215,0)',
+                                    'rgb(255,69,0)'
+                                ],
+                                borderWidth: 2,
+                                maxBarThickness: 30,
+                            },
+                        ],
+                    }}
+                    height={400}
+                    width={400}
+                    options={{
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: `Vaccine distribution in Sai Gon`,
+                                font: {
+                                    size: 20,
+                                },
+                            },
+                            legend: {
+                                display: true,
+                                labels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                }
+                            }
+                        },
+                    }}
+                />
+            </div>
+            <div>
+                <Pie
+                    data={{
+                        labels: ['Population', 'Total People Injected', 'Practical Distribution', 'Theory Distribution', 'Injected 2 doses'],
+                        datasets: [
+                            {
+                                label: 'Dataset1',
+                                data: [5700000, 11400000, 4300000, 11400000, 369600],
+                                backgroundColor: [
+                                    'rgb(220,220,220)',
+                                    'rgb(0,128,0)',
+                                    'rgb(39,70,135)',
+                                    'rgb(255,215,0)',
+                                    'rgb(255,69,0)'
+                                ],
+                                borderWidth: 2,
+                                maxBarThickness: 30,
+                            },
+                        ],
+                    }}
+                    height={400}
+                    width={400}
+                    options={{
+                        maintainAspectRatio: false,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: `Vaccine distribution in Ha Noi`,
+                                font: {
+                                    size: 20,
+                                },
+                            },
+                            legend: {
+                                display: true,
+                                labels: {
+                                    font: {
+                                        size: 14
                                     }
                                 }
                             }

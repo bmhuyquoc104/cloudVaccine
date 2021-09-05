@@ -153,7 +153,12 @@ function Sidenav() {
                     </Route>
                     <Route path="/dashboard">
                         <Container>
-                            <Country />
+                            <Dashboard />
+                        </Container>
+                    </Route>
+                    <Route path="/home">
+                        <Container>
+                            <Home />
                         </Container>
                     </Route>
                 </Switch>

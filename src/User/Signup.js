@@ -27,6 +27,7 @@ const SignUp = () => {
         setCode("");
       })
       .catch((err) => console.log(err));
+      
   };
   const resendCode = () => {
     Auth.resendSignUp(email)

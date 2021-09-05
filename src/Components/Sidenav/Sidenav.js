@@ -38,7 +38,7 @@ import Country from "../../Pages/CountriesSummary";
 import Vaccine from "../../Pages/Vaccine";
 import Dashboard from "../../Pages/Dashboard";
 import Settings from '../../Pages/Settings';
-
+import Home from "../../Pages/Home";
 import {
     BrowserRouter as Router,
     Switch,
@@ -87,7 +87,7 @@ function Sidenav() {
                                 <ListItemText primary={"Account"}/>
                             </ListItem>
                         </Link>
-                        <Link to="/" className={classes.link}>
+                        <Link to="/home" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
                                     <HomeIcon />
@@ -103,6 +103,7 @@ function Sidenav() {
                                 <ListItemText primary={"Dashboard"}/>
                             </ListItem>
                         </Link>
+                        
                         <Link to="/register" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
@@ -134,14 +135,6 @@ function Sidenav() {
                                     <PublicIcon />
                                 </ListItemIcon>
                                 <ListItemText primary={"Countries summary"}/>
-                            </ListItem>
-                        </Link>
-                        <Link to="/summary" className={classes.link}>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <TrendingUpIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={"Summary"}/>
                             </ListItem>
                         </Link>
                     </List>
@@ -190,6 +183,11 @@ function Sidenav() {
                     <Route path="/settings">
                         <Container>
                             <Settings />
+                        </Container>
+                    </Route>
+                    <Route path="/home">
+                        <Container>
+                            <Home />
                         </Container>
                     </Route>
                 </Switch>
