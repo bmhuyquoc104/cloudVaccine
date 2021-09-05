@@ -147,6 +147,7 @@ export default function RegistrationModal() {
         ReplyToAddresses: [
           /* more items */
         ],
+        
       };
       const email = { EmailAddress: "nguyendanghuynhchau15720@gmail.com" };
       ses.sendEmail(params, function (err, res) {
@@ -157,6 +158,7 @@ export default function RegistrationModal() {
         }
       });
       console.log(initialState);
+      alert('You have successfully added new registration')
     }
     setValidated(true);
   }

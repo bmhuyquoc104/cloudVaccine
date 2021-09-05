@@ -107,6 +107,7 @@ export default function Vaccine() {
       initialState['id'] = uuid();
       initialState['like'] = 0;
       putData('vaccine-covid', initialState)
+      alert('You have successfully added new vaccine')
       console.log(initialState);
     }
     setValidated(true);
@@ -136,7 +137,7 @@ export default function Vaccine() {
 
   return (
     <Grid container spacing={2} style={{ paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px" }} className={classes.root}>
-      <Grid item xs={12} style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Button
           onClick={handleShow}
           style={{ border: 0, fontWeight: 'bold', marginBottom: '20px', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
@@ -210,18 +211,19 @@ export default function Vaccine() {
                   </Form.Text>
                 </Form.Group>
 
-                {/* <Form.Group className="mb-3" controlId="formBasicPhone">
+                <Form.Group className="mb-3" controlId="formBasicImage">
                   <Form.Label>Image</Form.Label>
                   <Form.Control
-                    type="file"
-                    placeholder="Phone"
+                    type="text"
+                    placeholder="https://"
                     required
+                    pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
                     onChange={(e) => initialState['img'] = e.target.value}
                   />
                   <Form.Control.Feedback type="invalid">
                     Please upload vaccine image.
                   </Form.Control.Feedback>
-                </Form.Group> */}
+                </Form.Group>
 
                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                   <Form.Check type="checkbox"
@@ -251,7 +253,7 @@ export default function Vaccine() {
                   style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}>
                   <CardActionArea>
                     <CardContent>
-                      <CardMedia image={vaccine.img} style={{ width: "150px", height: "100px", margin: "auto" }} alt="..." />
+                      <CardMedia image={vaccine.img} style={{ width: "150px", height: "200px", margin: "auto" }} alt="..." />
                     </CardContent>
                   </CardActionArea>
 
