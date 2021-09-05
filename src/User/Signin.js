@@ -35,7 +35,7 @@ const SignIn = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="password"
         />
-        <button type="submit" onClick={signIn}>
+        <button type="submit" onClick={signIn} >
           Sign In
         </button>
       </form>
