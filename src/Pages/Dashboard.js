@@ -5,6 +5,7 @@ import { DataGrid } from '@material-ui/data-grid';
 import { Doughnut } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 import { makeStyles } from '@material-ui/core/styles';
+import { Bar } from 'react-chartjs-2';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -23,19 +24,10 @@ export default function Dashboard() {
     const [thaiLandSummary, setThaiLandSummary] = useState([]);
     const [malaysiaSummary, setMalaysiaSummary] = useState([]);
     const [singaporeSummary, setSingaporeSummary] = useState([]);
-    const [vietNamVaccine, setVietNamVaccine] = useState([]);
 
 
     useEffect(() => {
-        axios
-            .get('https://oc19o1atb6.execute-api.us-east-1.amazonaws.com/dev/views')
-
-            .then((res) => {
-                setVietNamVaccine(res.data.Reviews);
-
-            })
-            .catch((err) => console.error(err))
-
+    
         axios
             .get('https://api.covid19api.com/live/country/vietnam/status/confirmed')
 
@@ -84,25 +76,7 @@ export default function Dashboard() {
     }, []);
 
     var countriesSummary = [...singaporeSummary, ...cambodiaSummary, ...malaysiaSummary, ...vietNamSummary, ...thaiLandSummary];
-    const sgVaccine = [];
-    for (const vaccine of vietNamVaccine) {
-        if (vaccine['state'] === 'Ho Chi Minh city') {
-            sgVaccine.push(vaccine);
-        }
-    }
-    console.log(sgVaccine);
-
-    function getSaiGonVaccineData(sgVaccine) {
-        var dataset = [];
-        for (const data of sgVaccine) {
-            dataset.push(data.fully_vaccinated_rate);
-            dataset.push(data.fully_vaccinated);
-            dataset.push(data.injected);
-            dataset.push(data.population);
-        }
-        return dataset;
-    }
-    console.log(getSaiGonVaccineData(sgVaccine));
+   
 
     const columns = [
 
@@ -152,7 +126,7 @@ export default function Dashboard() {
 
     var rows = [];
     var count = 1;
-    for (const country of countriesSummary) {
+    for (const country of vietNamSummary) {
 
         country['indexNumber'] = count;
         count++;
@@ -200,7 +174,7 @@ export default function Dashboard() {
 
     const classes = useStyles();
     return (
-        <div div style={{ height: 500, width: '100%' }}>
+        <div div style={{ height: 500, width: '50%',marginRight:300}}>
             <DataGrid
                 rows={rows.map((r) => { return r })}
                 columns={columns}
@@ -344,6 +318,7 @@ export default function Dashboard() {
                 />
             </div>
         </div>
+
     )
 }
 
