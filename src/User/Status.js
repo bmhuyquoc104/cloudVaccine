@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { AccountContext } from './Accounts';
 
-export default function Status () {
+export default () => {
   const [status, setStatus] = useState(false);
 
   const { getSession, logout } = useContext(AccountContext);
@@ -21,7 +21,7 @@ export default function Status () {
           You are logged in.
           <button onClick={logout}>Logout</button>
         </div>
-      ) : 'Please login below.'}
+      ) : 'Please login.'}
     </div>
   );
 };

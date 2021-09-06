@@ -3,7 +3,11 @@ import { AccountContext } from "./Accounts";
 import ChangePassword from "./ChangePassword";
 import ChangeEmail from "./ChangeEmail";
 
+<<<<<<< Updated upstream
 export default function Setting () {
+=======
+export default () => {
+>>>>>>> Stashed changes
   const [loggedIn, setLoggedIn] = useState(false);
 
   const { getSession } = useContext(AccountContext);

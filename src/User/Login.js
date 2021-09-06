@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
-import UserPool from '../UserPool';
+import React, { useState, useContext } from 'react';
+import { AccountContext } from './Accounts';
 
 export default () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const { authenticate } = useContext(AccountContext);
+
   const onSubmit = event => {
     event.preventDefault();
 
-    UserPool.signUp(email, password, [], null, (err, data) => {
-      if (err) console.error(err);
-      console.log(data);
-    });
+    authenticate(email, password)
+      .then(data => {
+        console.log('Logged in!', data);
+      })
+      .catch(err => {
+        console.error('Failed to login!', err);
+      })
   };
 
   return (
@@ -31,7 +36,7 @@ export default () => {
           placeholder="Password"
         />
 
-        <button type='submit'>Signup</button>
+        <button type='submit'>Login</button>
       </form>
     </div>
   );
