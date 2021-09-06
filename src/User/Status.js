@@ -21,7 +21,7 @@ export default () => {
           You are logged in.
           <button onClick={logout}>Logout</button>
         </div>
-      ) : <h1 style={{color:"red"}}>Please login thư's tim</h1>}
+      ) : <h1 style={{color:"red"}}>Please login </h1>}
     </div>
   );
 };

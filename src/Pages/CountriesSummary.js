@@ -87,7 +87,6 @@ export default function CountriesSummary() {
 
   var countriesSummary = [...singaporeSummary, ...cambodiaSummary, ...malaysiaSummary, ...vietNamSummary, ...thaiLandSummary];
 
-  // console.log(countriesSummary);
   // console.log(singaporeSummary);
   // console.log(malaysiaSummary);
   // console.log(vietNamSummary);
@@ -163,7 +162,6 @@ export default function CountriesSummary() {
 
 
 
-
   var temp = [];
   for (const country of countriesSummary) {
     temp.push(country.Date);
@@ -171,8 +169,7 @@ export default function CountriesSummary() {
   temp.sort();
   var recentDay = temp[temp.length - 1];
   recentDay = new Date(recentDay);
-  console.log(recentDay);
-
+  
   for (const country of countriesSummary) {
     var dayInArray = new Date(country['Date']);
     if (dayInArray.getTime() >= sevenDayAgo.getTime() && dayInArray.getTime() <= recentDay.getTime()) {
@@ -214,7 +211,6 @@ export default function CountriesSummary() {
     }
     return dataset.sort();
   }
-  console.log(getMonth(vietNamSummary));
 
   function getCountryConfirmedDeath(countryCollection) {
     var dataset = [];
@@ -224,7 +220,15 @@ export default function CountriesSummary() {
     return dataset;
   }
 
-  console.log(getCountryConfirmedDeath(vietNamSummary))
+  function getonlyCountry(countryCollection) {
+    var dataset = [];
+    for (const data of countryCollection) {
+      dataset.push(data.Country)
+    }
+    return dataset;
+  }
+
+
 
   var label = [];
   for (const vn of vietNamCollection) {
