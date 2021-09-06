@@ -3,7 +3,8 @@ import { AccountContext } from "./Accounts";
 import ChangePassword from "./ChangePassword";
 import ChangeEmail from "./ChangeEmail";
 
-export default function Setting () {
+export default () => {
+
   const [loggedIn, setLoggedIn] = useState(false);
 
   const { getSession } = useContext(AccountContext);

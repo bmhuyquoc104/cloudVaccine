@@ -38,7 +38,6 @@ export default function CountriesSummary() {
   const [thaiLandSummary, setThaiLandSummary] = useState([]);
   const [malaysiaSummary, setMalaysiaSummary] = useState([]);
   const [singaporeSummary, setSingaporeSummary] = useState([]);
-
   useEffect(() => {
     axios
       .get('https://api.covid19api.com/live/country/vietnam/status/confirmed')
@@ -84,7 +83,6 @@ export default function CountriesSummary() {
 
       })
       .catch((err) => console.error(err))
-
   }, []);
 
   var countriesSummary = [...singaporeSummary, ...cambodiaSummary, ...malaysiaSummary, ...vietNamSummary, ...thaiLandSummary];
@@ -248,79 +246,79 @@ export default function CountriesSummary() {
   const classes = useStyles();
   return (
     < div>
-         <div className="barChart">
-                <Bar
-                    data={{
-                        labels: ['Vietnam', 'Thailand', 'Cambodia', 'Malaysia', 'Singapore'],
-                        datasets: [
-                            {
-                                label: 'Doses Given In Million',
-                                data: [20.2, 31.8, 19.2, 55, 36.1],
-                                fill: false,
-                                backgroundColor: [
-                                    'rgb(0,128,0)',
-                              
+      <div className="barChart">
+        <Bar
+          data={{
+            labels: ['Vietnam', 'Thailand', 'Cambodia', 'Malaysia', 'Singapore'],
+            datasets: [
+              {
+                label: 'Doses Given In Million',
+                data: [20.2, 31.8, 19.2, 55, 36.1],
+                fill: false,
+                backgroundColor: [
+                  'rgb(0,128,0)',
 
-                                ],
-                                borderColor: [
-                                    'rgba(255, 99, 132,0.2)',
-                                  
-                                ],
-                                borderWidth: 1
-                            }, {
-                                label: 'Fully Vaccinated In Million',
-                                data: [2.73, 7.78, 8.59, 15.8, 4.44],
-                                fill: false,
-                                backgroundColor: [
-                                    'rgb(39,70,135)'
 
-                                ],
-                                borderColor: [
-                                    'rgba(39,70,135,0.5)',
-                                ],
-                                borderWidth: 1
-                            }, {
-                                label: '% Of Population Fully Vaccinated',
-                                data: [2.8, 11.2, 52.1, 49.4, 77.9],
-                                fill: false,
-                                backgroundColor: [
-                                    'rgb(255,215,0)',
-                                ],
-                                borderColor: [
-                                    'rgba(255,215,0,0)',
-                                ],
-                                borderWidth: 1
-                            }
+                ],
+                borderColor: [
+                  'rgba(255, 99, 132,0.2)',
 
-                        ],
-                    }}
+                ],
+                borderWidth: 1
+              }, {
+                label: 'Fully Vaccinated In Million',
+                data: [2.73, 7.78, 8.59, 15.8, 4.44],
+                fill: false,
+                backgroundColor: [
+                  'rgb(39,70,135)'
 
-                    options={{
-                        indexAxis: 'y',
-                        // Elements options apply to all of the options unless overridden in a dataset
-                        // In this case, we are setting the border of each horizontal bar to be 2px wide
-                        elements: {
-                            bar: {
-                                borderWidth: 2,
-                            }
-                        },
-                        responsive: true,
-                        plugins: {
-                            legend: {
-                                position: 'right',
-                            },
-                            title: {
-                                display: true,
-                                text: 'Vaccinated People In South East Countries',
-                                font:{
-                                    size:30,
-                                    marginTop: 30
-                                }
-                            }
-                        }
-                    }}
-                />
-            </div>
+                ],
+                borderColor: [
+                  'rgba(39,70,135,0.5)',
+                ],
+                borderWidth: 1
+              }, {
+                label: '% Of Population Fully Vaccinated',
+                data: [2.8, 11.2, 52.1, 49.4, 77.9],
+                fill: false,
+                backgroundColor: [
+                  'rgb(255,215,0)',
+                ],
+                borderColor: [
+                  'rgba(255,215,0,0)',
+                ],
+                borderWidth: 1
+              }
+
+            ],
+          }}
+
+          options={{
+            indexAxis: 'y',
+            // Elements options apply to all of the options unless overridden in a dataset
+            // In this case, we are setting the border of each horizontal bar to be 2px wide
+            elements: {
+              bar: {
+                borderWidth: 2,
+              }
+            },
+            responsive: true,
+            plugins: {
+              legend: {
+                position: 'right',
+              },
+              title: {
+                display: true,
+                text: 'Vaccinated People In South East Countries',
+                font: {
+                  size: 30,
+                  marginTop: 30
+                }
+              }
+            }
+          }}
+        />
+      </div>
 
       <Grid
         container
