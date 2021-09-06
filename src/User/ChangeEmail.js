@@ -34,15 +34,25 @@ export default () => {
         <input
           type="newEmail"
           value={newEmail}
+          type="email"
           onChange={event => setNewEmail(event.target.value)}
+<<<<<<< Updated upstream
           placeholder="New Email"
+=======
+          placeholder="new email"
+>>>>>>> Stashed changes
         />
 
         <input
           type="password"
           value={password}
+          type="password"
           onChange={event => setPassword(event.target.value)}
+<<<<<<< Updated upstream
           placeholder="Password"
+=======
+          placeholder="password"
+>>>>>>> Stashed changes
         />
 
         <button type="submit">Change email</button>

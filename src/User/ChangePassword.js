@@ -30,14 +30,22 @@ export default () => {
           type="password"
           value={password}
           onChange={event => setPassword(event.target.value)}
+<<<<<<< Updated upstream
           placeholder="Old Password"
+=======
+          placeholder="new password"
+>>>>>>> Stashed changes
         />
 
         <input
           type="password"
           value={newPassword}
           onChange={event => setNewPassword(event.target.value)}
+<<<<<<< Updated upstream
           placeholder="New Password"
+=======
+          placeholder="confirm password"
+>>>>>>> Stashed changes
         />
        
         <button type="submit">Change password</button>
