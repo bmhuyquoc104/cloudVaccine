@@ -1,44 +1,85 @@
-import React, { useState, useContext } from "react";
-import { AccountContext } from "./Accounts";
+import React, { useState } from "react";
+import { CognitoUser } from "amazon-cognito-identity-js";
+import Pool from "../UserPool";
 
 export default () => {
+  const [stage, setStage] = useState(1); // 1 = email stage, 2 = code stage
+  const [email, setEmail] = useState("");
+  const [code, setCode] = useState("");
   const [password, setPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const { getSession, authenticate } = useContext(AccountContext);
+  const getUser = () => {
+    return new CognitoUser({
+      Username: email.toLowerCase(),
+      Pool
+    });
+  };
 
-  const onSubmit = event => {
+  const sendCode = event => {
     event.preventDefault();
 
-    getSession().then(({ user, email }) => {
-      authenticate(email, password).then(() => {
-        user.changePassword(password, newPassword, (err, result) => {
-          if (err) console.error(err);
-          console.log(result);
-        });
-      });
+    getUser().forgotPassword({
+      onSuccess: data => {
+        console.log("onSuccess:", data);
+      },
+      onFailure: err => {
+        console.error("onFailure:", err);
+      },
+      inputVerificationCode: data => {
+        console.log("Input code:", data);
+        setStage(2);
+      }
+    });
+  };
+
+  const resetPassword = event => {
+    event.preventDefault();
+
+    if (password !== confirmPassword) {
+      console.error("Passwords are not the same");
+      return;
+    }
+
+    getUser().confirmPassword(code, password, {
+      onSuccess: data => {
+        console.log("onSuccess:", data);
+      },
+      onFailure: err => {
+        console.error("onFailure:", err);
+      }
     });
   };
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
-        <input
-          type="password"
-          value={password}
-          onChange={event => setPassword(event.target.value)}
-          placeholder="New Password"
-        />
+      {stage === 1 && (
+        <form onSubmit={sendCode}>
+          <input
+            value={email}
+            onChange={event => setEmail(event.target.value)}
+            placeholder="Email"
+          />
+          <button type="submit">Send verification code</button>
+        </form>
+      )}
 
-        <input
-          type="password"
-          value={newPassword}
-          onChange={event => setNewPassword(event.target.value)}
-          placeholder="Confirm Password"
-        />
-        <p>Password must have 8 characters, lowercase, uppercase, specific character.</p>
-        <button type="submit">Change password</button>
-      </form>
+      {stage === 2 && (
+        <form onSubmit={resetPassword}>
+          <input value={code} onChange={event => setCode(event.target.value)} />
+          <input
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+            placeholder="New Password"
+          />
+          <input
+            value={confirmPassword}
+            onChange={event => setConfirmPassword(event.target.value)}
+            placeholder="Confirm Password"
+          />
+          <button type="submit">Change password</button>
+        </form>
+      )}
     </div>
   );
 };
