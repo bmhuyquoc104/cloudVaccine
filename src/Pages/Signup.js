@@ -7,7 +7,6 @@ export default () => {
     return(
         <Account>
             <Signup />
-            <Status />
         </Account>
     );
 };
