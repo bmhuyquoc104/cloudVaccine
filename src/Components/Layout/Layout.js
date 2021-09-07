@@ -1,14 +1,10 @@
 import Sidenav from "../Sidenav/Sidenav";
-import Navbar from "../Navbar/Navbar";
-import Footer from '../Footer/Footer';
+import { BrowserRouter as Router} from "react-router-dom";
 
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-
-const Layout = ({ children }) => {
+const Layout = () => {
   return (
-    <div className="content">
+    <div className="Layout">
       <Router>
-        {/* <Navbar /> */}
         <Sidenav />
       </Router>
     </div>

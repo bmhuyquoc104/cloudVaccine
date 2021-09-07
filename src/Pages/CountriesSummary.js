@@ -249,7 +249,7 @@ export default function CountriesSummary() {
 
   const classes = useStyles();
   return (
-    < div>
+    < div className = "CoutriesSummary">
       <div className="barChart">
         <Bar
           data={{

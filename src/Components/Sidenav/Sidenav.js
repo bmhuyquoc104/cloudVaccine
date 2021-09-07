@@ -8,15 +8,10 @@ import {
     Container,
     Typography,
     Box,
-    Avatar,
-    Button
+    Avatar
 } from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import { Link as RouterLink, useLocation } from 'react-router-dom';
-
-// import Amplify, { API, graphqlOperation } from 'aws-amplify';
-// import awsconfig from '../../aws-exports';
-// import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
 
 
 // Icons
@@ -48,7 +43,6 @@ import {
     Route
 } from 'react-router-dom';
 
-// Amplify.configure(awsconfig);
 
 const useStyles = makeStyles ((theme) => ({
     drawerPaper: {width: 'inherit'},
@@ -78,8 +72,7 @@ function Sidenav() {
                     <List>
                     <Box sx={{ alignItems: 'center', display: 'flex', flexDirection: 'column', p: 2}} >
                             <Avatar component={RouterLink} src={user.avatar} sx={{ cursor: 'pointer', width: 64, height: 64}}to="/app/account"/>
-                            <Typography color="textPrimary" variant="h5"> {user.name}</Typography>
-                            <Typography color="textSecondary" variant="body2">{user.jobTitle}</Typography>
+
                     </Box>
                     <Link to="/account" className={classes.link}>
                             <ListItem button>
@@ -140,7 +133,7 @@ function Sidenav() {
                             </ListItem>
                         </Link>
                     </List>
-                    <Link to="/settings" className={classes.link}>
+                    <Link to="/setting" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
                                     <SettingsIcon />
@@ -198,7 +191,7 @@ function Sidenav() {
                             <Dashboard />
                         </Container>
                     </Route>
-                    <Route path="/settings">
+                    <Route path="/setting">
                         <Container>
                             <SettingAccounts />
                         </Container>

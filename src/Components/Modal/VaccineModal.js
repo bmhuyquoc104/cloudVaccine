@@ -65,14 +65,12 @@ export default function VaccineModal() {
       .catch((err) => console.error(err))
   }, []
   )
-  console.log(vaccines)
-  console.log(registration)
+ 
 
   var emailArray = [];
   for (const mail of registration){
     emailArray.push(mail.email);
   }
-  console.log(emailArray);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -165,7 +163,7 @@ export default function VaccineModal() {
   }
 
   return (
-    <div>
+    <div className="Vaccine">
       <Button
         onClick={handleShow}
         style={{ border: 0, fontWeight: 'bold', marginBottom: '20px', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}

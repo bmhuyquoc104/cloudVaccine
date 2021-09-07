@@ -116,19 +116,18 @@ export default function RegistrationModal() {
       
       ses.sendEmail(params, function (err, res) {
         if (err) {
-          console.log("Error uploading data: ", err);
+          alert("Error uploading data: ", err);
         } else {
-          console.log("Successfully send email");
+          alert("Successfully send email");
         }
       });
-      console.log(initialState);
       alert('You have successfully added new registration')
     }
     setValidated(true);
   }
 
   return (
-    <div>
+    <div className = "Registration">
       <Button
         onClick={handleShow}
         style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
