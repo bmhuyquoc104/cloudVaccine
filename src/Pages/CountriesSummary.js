@@ -251,7 +251,7 @@ export default function CountriesSummary() {
   return (
     < div className = "CoutriesSummary">
       <div className="barChart">
-        <Bar
+        {/* <Bar
           data={{
             labels: ['Vietnam', 'Thailand', 'Cambodia', 'Malaysia', 'Singapore'],
             datasets: [
@@ -321,14 +321,14 @@ export default function CountriesSummary() {
               }
             }
           }}
-        />
+        /> */}
       </div>
 
       <Grid
         container
         spacing={2}
         justifyContent="center"
-        style={{ paddingTop: "20px", paddingRight: "12px", width: '74vw', }}
+        style={{ paddingTop: "20px", paddingRight: "12px", width: '60vw', }}
       >
         <Grid item xs={12}>
           {/* Line chart */}
@@ -336,7 +336,7 @@ export default function CountriesSummary() {
             className={classes.paper}
             style=
             {{
-              width: '75vw',
+              width: '60vw',
               border: "none",
               boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
               borderRadius: "15px",
@@ -359,7 +359,7 @@ export default function CountriesSummary() {
             style=
             {{
               marginTop: "50px",
-              width: '75vw',
+              width: '60vw',
               border: "none",
               boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
               borderRadius: "15px",

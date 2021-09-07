@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     background: 'linear-gradient(45deg, #380036 30%, #21CBF3 90%)',
+    width:'100vw',
     height: '100%',
     display: 'flex',
     fontFamily: 'Roboto'
