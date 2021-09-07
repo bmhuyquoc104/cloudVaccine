@@ -27,6 +27,9 @@ const configuration = {
 
 
 AWS.config.update(configuration)
+var sns = new AWS.SNS();
+var ses = new AWS.SES();
+
 
 const docClient = new AWS.DynamoDB.DocumentClient()
 const putData = (tableName, data) => {
@@ -43,8 +46,6 @@ const putData = (tableName, data) => {
     }
   })
 }
-
-
 
 export default function VaccineModal() {
   const [vaccines, setVaccines] = useState([]);
@@ -73,8 +74,6 @@ export default function VaccineModal() {
   }
   console.log(emailArray);
 
-
-
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -97,6 +96,69 @@ export default function VaccineModal() {
       initialState['like'] = 0;
       putData('vaccine-covid', initialState)
       alert('You have successfully added new vaccine')
+
+      var params = {
+        Name: initialState['name']
+      }
+
+      sns.createTopic(params, function (err, res) {
+        if (err) {
+          console.log("Error uploading data: ", err);
+        } else {
+          console.log("Successfully create topic");
+        }
+      });
+
+      for (var i = 0; i < emailArray.length; i++){
+
+        const paramsSendEmail = {
+          Destination: {
+            /* required */
+            CcAddresses: [
+              /* more items */
+            ],
+            ToAddresses: [
+              emailArray[i], //RECEIVER_ADDRESS
+              /* more To-email addresses */
+            ],
+          },
+          Message: {
+            /* required */
+            Body: {
+              /* required */
+              Html: {
+                Charset: "UTF-8",
+                Data: "New Vaccine has been updated",
+              },
+              Text: {
+                Charset: "UTF-8",
+                Data: "New Vaccine has been updated",
+              },
+            },
+            Subject: {
+              Charset: "UTF-8",
+              Data: "New vaccine update",
+            },
+          },
+          Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+          ReplyToAddresses: [
+            /* more items */
+          ],
+          
+        };
+
+        ses.sendEmail(paramsSendEmail, function (err, res) {
+          if (err) {
+            console.log("Error uploading data: ", err);
+          } else {
+            console.log("Successfully send email");
+          }
+        });
+
+      }
+
+     
+
       console.log(initialState);
     }
     setValidated(true);
