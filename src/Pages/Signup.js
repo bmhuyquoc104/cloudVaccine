@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import Amplify from "aws-amplify";
-import SignUp from "./Signup";
+import SignUp from "../User/Signup";
+
 const App = () => {
   useEffect(() => {
     Amplify.configure({
@@ -12,13 +13,7 @@ const App = () => {
     });
   });
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Cognito</h1>
-        <h2>Authentication for Create React App using AWS Cognito</h2>
-      </header>
-      <SignUp />
-    </div>
+    <SignUp />
   );
 };
 export default App;
