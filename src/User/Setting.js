@@ -4,9 +4,7 @@ import ChangePassword from "./ChangePassword";
 import ChangeEmail from "./ChangeEmail";
 
 export default () => {
-
   const [loggedIn, setLoggedIn] = useState(false);
-
 
   const { getSession } = useContext(AccountContext);
 
@@ -19,13 +17,12 @@ export default () => {
   return (
     <div>
       {loggedIn && (
-        <div>
+        <>
           <h1>Settings</h1>
+
           <ChangePassword />
-          <ChangeEmail />    
-        <div/>
-      ), 'Please login.'
-        </div>
+          <ChangeEmail />
+        </>
       )}
     </div>
   );

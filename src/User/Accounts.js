@@ -86,4 +86,3 @@ const Account = props => {
 };
 
 export { Account, AccountContext };
-

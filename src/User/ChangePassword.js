@@ -22,15 +22,12 @@ export default () => {
 
   return (
     <div>
-
-       <p>Password must have 8 characters, lowercase, uppercase, and a specific symbol</p>
-
       <form onSubmit={onSubmit}>
         <input
           type="password"
           value={password}
           onChange={event => setPassword(event.target.value)}
-          placeholder="Old Password"
+          placeholder="Password"
         />
 
         <input
@@ -39,7 +36,7 @@ export default () => {
           onChange={event => setNewPassword(event.target.value)}
           placeholder="New Password"
         />
-       
+
         <button type="submit">Change password</button>
       </form>
     </div>
