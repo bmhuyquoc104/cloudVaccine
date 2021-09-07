@@ -23,6 +23,8 @@ export default () => {
           <h1>Settings</h1>
           <ChangePassword />
           <ChangeEmail />
+        </>
+      ), 'Please login.'}
         </div>
       )}
     </div>

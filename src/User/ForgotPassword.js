@@ -58,6 +58,8 @@ export default () => {
           <input
             value={email}
             onChange={event => setEmail(event.target.value)}
+
+
             placeholder="Your current email"
           />
           <button type="submit">Send verification code</button>
@@ -75,12 +77,15 @@ export default () => {
           <input
             value={confirmPassword}
             onChange={event => setConfirmPassword(event.target.value)}
+
             placeholder="Confirm Password"
           />
           <button type="submit">Change password</button>
          
+
         </form>
       )}
     </div>
   );
 };
+
