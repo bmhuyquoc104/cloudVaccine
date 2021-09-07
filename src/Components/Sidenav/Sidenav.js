@@ -133,14 +133,7 @@ function Sidenav() {
                             </ListItem>
                         </Link>
                     </List>
-                    <Link to="/setting" className={classes.link}>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <SettingsIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={"SettingAccounts"}/>
-                            </ListItem>
-                        </Link>
+                   
                         <Link to="/login" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
@@ -163,7 +156,7 @@ function Sidenav() {
                 <Switch>
                 <Route path="/account">
                         <Container>
-                            <Account />
+                            <SettingAccounts />
                         </Container>
                     </Route>
                     <Route path="/register">
@@ -191,11 +184,7 @@ function Sidenav() {
                             <Dashboard />
                         </Container>
                     </Route>
-                    <Route path="/setting">
-                        <Container>
-                            <SettingAccounts />
-                        </Container>
-                    </Route>
+            
                     <Route path="/home">
                         <Container>
                             <Home />
