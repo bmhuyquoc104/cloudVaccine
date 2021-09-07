@@ -58,7 +58,6 @@ export default () => {
           <input
             value={email}
             onChange={event => setEmail(event.target.value)}
-            placeholder="Email"
           />
           <button type="submit">Send verification code</button>
         </form>
@@ -70,12 +69,10 @@ export default () => {
           <input
             value={password}
             onChange={event => setPassword(event.target.value)}
-            placeholder="New Password"
           />
           <input
             value={confirmPassword}
             onChange={event => setConfirmPassword(event.target.value)}
-            placeholder="Confirm Password"
           />
           <button type="submit">Change password</button>
         </form>

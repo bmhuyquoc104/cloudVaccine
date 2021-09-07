@@ -24,7 +24,7 @@ export default () => {
           <ChangePassword />
           <ChangeEmail />
         </>
-      )}
+      ), 'Please login.'}
     </div>
   );
 };

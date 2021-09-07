@@ -1,14 +1,12 @@
 import React from 'react';
 import { Account } from '../User/Accounts';
-import Status from '../User/Status';
-import Settings from '../User/Setting';
 import Setting from '../User/Setting';
+import Status from '../User/Status'
 
 export default () => {
   return (
     <div>
       <Account>
-        <Settings />
         <Status />
         <Setting />
       </Account>
