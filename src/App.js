@@ -3,6 +3,7 @@ import './App.css';
 import Layout from './Components/Layout/Layout';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
+import { ThemeProvider, StyledEngineProvider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
