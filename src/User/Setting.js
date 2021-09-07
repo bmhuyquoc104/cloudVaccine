@@ -7,6 +7,7 @@ export default () => {
 
   const [loggedIn, setLoggedIn] = useState(false);
 
+
   const { getSession } = useContext(AccountContext);
 
   useEffect(() => {
@@ -18,13 +19,14 @@ export default () => {
   return (
     <div>
       {loggedIn && (
-        <>
+        <div>
           <h1>Settings</h1>
-
           <ChangePassword />
           <ChangeEmail />
         </>
       ), 'Please login.'}
+        </div>
+      )}
     </div>
   );
 };

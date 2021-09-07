@@ -187,7 +187,6 @@ export default function CountriesBar() {
     }
     return dataset.sort();
   }
-  console.log(getMonth(vietNamSummary));
 
   function getCountryConfirmedDeath(countryCollection) {
     var dataset = [];
@@ -197,7 +196,6 @@ export default function CountriesBar() {
     return dataset;
   }
 
-  console.log(getCountryConfirmedDeath(vietNamSummary))
 
   var label = [];
   for (const vn of vietNamCollection) {

@@ -10,7 +10,7 @@ import AccountProfileDetails from '../Components/account/AccountProfileDetail';
 
 const Account = () => (
   <div>
-    <h2 style= {{color:"red"}} >Bỏ Trang Này Nha Hưng</h2>
+    <h2 style= {{color:"red"}} >Chuyển trang Setting accout qua trang này nha Hưng</h2>
   </div>
 );
 

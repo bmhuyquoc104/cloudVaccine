@@ -76,8 +76,8 @@ export default function Dashboard() {
     }, []);
 
     var countriesSummary = [...singaporeSummary, ...cambodiaSummary, ...malaysiaSummary, ...vietNamSummary, ...thaiLandSummary];
-   
-
+   console.log(countriesSummary);
+  
     const columns = [
 
         { field: 'id', headerName: 'tableId', width: 300 },

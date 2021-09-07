@@ -37,7 +37,6 @@ import Register from "../../Pages/Registration";
 import Country from "../../Pages/CountriesSummary";
 import Vaccine from "../../Pages/Vaccine";
 import Dashboard from "../../Pages/Dashboard";
-import Settings from '../../Pages/Settings';
 import Home from "../../Pages/Home";
 import Signin from "../../Pages/Login";
 import Signup from "../../Pages/Signup";

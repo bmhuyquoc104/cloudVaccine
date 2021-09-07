@@ -27,6 +27,9 @@ const configuration = {
 
 
 AWS.config.update(configuration)
+var sns = new AWS.SNS();
+var ses = new AWS.SES();
+
 
 const docClient = new AWS.DynamoDB.DocumentClient()
 const putData = (tableName, data) => {
@@ -44,10 +47,9 @@ const putData = (tableName, data) => {
   })
 }
 
-
-
 export default function VaccineModal() {
   const [vaccines, setVaccines] = useState([]);
+  const [registration,setRegistration] = useState([]);
   useEffect(() => {
     axios
       .get('https://75hpp2g9n5.execute-api.us-east-1.amazonaws.com/vac/vaccines')
@@ -55,9 +57,22 @@ export default function VaccineModal() {
         setVaccines(res.data.Vaccines);
       })
       .catch((err) => console.error(err))
+    axios
+      .get('https://bys39xubeg.execute-api.us-east-1.amazonaws.com/reg/registers')
+      .then((res) => {
+        setRegistration(res.data.Registers);
+      })
+      .catch((err) => console.error(err))
   }, []
   )
   console.log(vaccines)
+  console.log(registration)
+
+  var emailArray = [];
+  for (const mail of registration){
+    emailArray.push(mail.email);
+  }
+  console.log(emailArray);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -81,6 +96,69 @@ export default function VaccineModal() {
       initialState['like'] = 0;
       putData('vaccine-covid', initialState)
       alert('You have successfully added new vaccine')
+
+      var params = {
+        Name: initialState['name']
+      }
+
+      sns.createTopic(params, function (err, res) {
+        if (err) {
+          console.log("Error uploading data: ", err);
+        } else {
+          console.log("Successfully create topic");
+        }
+      });
+
+      for (var i = 0; i < emailArray.length; i++){
+
+        const paramsSendEmail = {
+          Destination: {
+            /* required */
+            CcAddresses: [
+              /* more items */
+            ],
+            ToAddresses: [
+              emailArray[i], //RECEIVER_ADDRESS
+              /* more To-email addresses */
+            ],
+          },
+          Message: {
+            /* required */
+            Body: {
+              /* required */
+              Html: {
+                Charset: "UTF-8",
+                Data: "New Vaccine has been updated",
+              },
+              Text: {
+                Charset: "UTF-8",
+                Data: "New Vaccine has been updated",
+              },
+            },
+            Subject: {
+              Charset: "UTF-8",
+              Data: "New vaccine update",
+            },
+          },
+          Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+          ReplyToAddresses: [
+            /* more items */
+          ],
+          
+        };
+
+        ses.sendEmail(paramsSendEmail, function (err, res) {
+          if (err) {
+            console.log("Error uploading data: ", err);
+          } else {
+            console.log("Successfully send email");
+          }
+        });
+
+      }
+
+     
+
       console.log(initialState);
     }
     setValidated(true);
@@ -88,111 +166,111 @@ export default function VaccineModal() {
 
   return (
     <div>
-        <Button
-          onClick={handleShow}
-          style={{ border: 0, fontWeight: 'bold', marginBottom: '20px', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
-          size="lg"
+      <Button
+        onClick={handleShow}
+        style={{ border: 0, fontWeight: 'bold', marginBottom: '20px', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+        size="lg"
+      >
+        Add new vaccine
+      </Button>
+      <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
+        <Modal.Header
+          closeButton
+          style={{ backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
         >
-          Add new vaccine
-        </Button>
-        <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
-            <Modal.Header
-            closeButton
-            style={{ backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
-            >
-            <Modal.Title style={{ fontWeight: 'bold', color: 'white' }}>Vaccine Addition</Modal.Title>
-            </Modal.Header>
-            <Form id="myform" noValidate validated={validated} onSubmit={handleSubmit} >
-            <Modal.Body>
-                <Form.Group className="mb-3" controlId="formBasicFullName">
-                <Form.Label>Country</Form.Label>
-                <Form.Control
-                    type="text"
-                    required
-                    placeholder="Enter Country"
-                    onChange={(e) => initialState['country'] = e.target.value}
-                />
-                <Form.Control.Feedback type="invalid">
-                    Please provide a valid country.
-                </Form.Control.Feedback>
-                </Form.Group>
+          <Modal.Title style={{ fontWeight: 'bold', color: 'white' }}>Vaccine Addition</Modal.Title>
+        </Modal.Header>
+        <Form id="myform" noValidate validated={validated} onSubmit={handleSubmit} >
+          <Modal.Body>
+            <Form.Group className="mb-3" controlId="formBasicFullName">
+              <Form.Label>Country</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                placeholder="Enter Country"
+                onChange={(e) => initialState['country'] = e.target.value}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid country.
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicDate">
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                    as="textarea"
-                    placeholder="Enter Description"
-                    required
-                    onChange={(e) => initialState['description'] = e.target.value}
-                />
-                <Form.Control.Feedback type="invalid">
-                    Please provide a valid description.
-                </Form.Control.Feedback>
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicDate">
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                as="textarea"
+                placeholder="Enter Description"
+                required
+                onChange={(e) => initialState['description'] = e.target.value}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid description.
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicFullName">
-                <Form.Label>Effecientcy</Form.Label>
-                <Form.Control
-                    type="text"
-                    required
-                    pattern="\b(?<!\.)(?!0+(?:\.0+)?%)(?:\d|[1-9]\d|100)(?:(?<!100)\.\d+)?%"
-                    placeholder="Enter percentage out of 100"
-                    onChange={(e) => initialState['effecientcy'] = e.target.value}
-                />
-                <Form.Control.Feedback type="invalid">
-                    Please provide a valid efficiency number (number + %).
-                </Form.Control.Feedback>
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicFullName">
+              <Form.Label>Effecientcy</Form.Label>
+              <Form.Control
+                type="text"
+                required
+                pattern="\b(?<!\.)(?!0+(?:\.0+)?%)(?:\d|[1-9]\d|100)(?:(?<!100)\.\d+)?%"
+                placeholder="Enter percentage out of 100"
+                onChange={(e) => initialState['effecientcy'] = e.target.value}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid efficiency number (number + %).
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Name</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Enter name"
-                    required
-                    onChange={(e) => initialState['name'] = e.target.value}
-                />
-                <Form.Control.Feedback type="invalid">
-                    Please provide a valid name.
-                </Form.Control.Feedback>
-                <Form.Text className="text-muted">
-                </Form.Text>
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                required
+                onChange={(e) => initialState['name'] = e.target.value}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid name.
+              </Form.Control.Feedback>
+              <Form.Text className="text-muted">
+              </Form.Text>
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicImage">
-                <Form.Label>Image</Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="https://"
-                    required
-                    pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
-                    onChange={(e) => initialState['img'] = e.target.value}
-                />
-                <Form.Control.Feedback type="invalid">
-                    Please upload vaccine image.
-                </Form.Control.Feedback>
-                </Form.Group>
+            <Form.Group className="mb-3" controlId="formBasicImage">
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="https://"
+                required
+                pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
+                onChange={(e) => initialState['img'] = e.target.value}
+              />
+              <Form.Control.Feedback type="invalid">
+                Please upload vaccine image.
+              </Form.Control.Feedback>
+            </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                <Form.Check type="checkbox"
-                    label="Agree to send your information to us "
-                    required
-                    feedback="You must agree before submitting."
-                />
-                </Form.Group>
-            </Modal.Body>
-            <Modal.Footer>
-                <ButtonGroup className="mb-2">
-                <Button type="reset" style={{ fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}>
-                    Reset
-                </Button>
-                <Button type="submit" style={{ fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0 }}>
-                    Submit
-                </Button>
-                </ButtonGroup>
-            </Modal.Footer>
-            </Form>
-        </Modal>
+            <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Check type="checkbox"
+                label="Agree to send your information to us "
+                required
+                feedback="You must agree before submitting."
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <ButtonGroup className="mb-2">
+              <Button type="reset" style={{ fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}>
+                Reset
+              </Button>
+              <Button type="submit" style={{ fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0 }}>
+                Submit
+              </Button>
+            </ButtonGroup>
+          </Modal.Footer>
+        </Form>
+      </Modal>
     </div>
   );
 }
