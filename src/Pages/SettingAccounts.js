@@ -16,7 +16,7 @@ export default () => {
       
       <Box
       sx={{
-        backgroundColor: 'background.default',
+        backgroundColor: 'white',
         minHeight: '100%',
         py: 3
       }}
