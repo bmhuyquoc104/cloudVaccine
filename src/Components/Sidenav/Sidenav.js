@@ -35,7 +35,7 @@ import Dashboard from "../../Pages/Dashboard";
 import Home from "../../Pages/Home";
 import Signin from "../../Pages/Login";
 import Signup from "../../Pages/Signup";
-import Bot from "../../Pages/Bot"
+import Bot from "../../Bot"
 import SettingAccounts from '../../Pages/SettingAccounts';
 import {
     BrowserRouter as Router,

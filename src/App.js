@@ -3,6 +3,7 @@ import './App.css';
 import Layout from './Components/Layout/Layout';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '@material-ui/core';
+import KommunicateChat from './Bot';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,6 +21,7 @@ function App() {
   return (
     <Container className={classes.root}>
       <Layout />
+      <KommunicateChat></KommunicateChat>
     </Container>
   );
 }
