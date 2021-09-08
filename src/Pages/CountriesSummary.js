@@ -236,8 +236,6 @@ export default function CountriesSummary() {
     return dataset;
   }
 
-
-
   var label = [];
   for (const vn of vietNamCollection) {
     label.push((new Date(vn.Date).toLocaleDateString()));
