@@ -1,6 +1,6 @@
 import './App.css';
 import Layout from './Components/Layout/Layout';
-
+import KommunicateChat from './Bot';
 
 function App() {
   return (

@@ -151,14 +151,7 @@ function Sidenav() {
                                 <ListItemText primary={"signup"}/>
                             </ListItem>
                         </Link>
-                        <Link to="/bot" className={classes.link}>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <SettingsIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={"bot"}/>
-                            </ListItem>
-                        </Link>
+                      
                     {/* <AmplifySignOut /> */}
                 </Drawer>
                 
@@ -209,11 +202,7 @@ function Sidenav() {
                             <Signup />
                         </Container>
                     </Route>
-                    <Route path="/bot">
-                        <Container>
-                            <Bot />
-                        </Container>
-                    </Route>
+                  
                 </Switch>
             </div>
         </Router>
