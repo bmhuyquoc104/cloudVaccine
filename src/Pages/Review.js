@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     },
     paper: {
-        width: 900,
+        width: "65vw",
     },
     control: {
         padding: theme.spacing(2),
@@ -152,6 +152,12 @@ export default function Review() {
                                                 <List style={{margin: 0, padding: 0}}>
                                                     <Typography variant="subtitle2">{review.email}</Typography>
                                                     <Typography variant="subtitle2">{review.phone}</Typography>
+                                                </List>
+                                            }
+                                            action={
+                                                <List style={{marginRight: 15, color: "#7F53AC"}}>
+                                                    <Typography style={{textTransform: "uppercase"}}><b>{review.vaccine}</b></Typography>
+                                                    <Typography><i>Rate:</i>{review.rate}</Typography>
                                                 </List>
                                             }
                                         />

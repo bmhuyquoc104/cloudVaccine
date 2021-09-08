@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
   paper:
   {
-    width: 300,
+    width: "24vw",
+    height: "59vh"
   },
   control:
   {
@@ -35,7 +36,13 @@ const useStyles = makeStyles((theme) => ({
   },
   text:
   {
-    color: 'white'
+    color: 'white',
+    fontSize: "1rem"
+  },
+  headText:
+  {
+    color: '#7F53AC',
+    fontSize: "1.25rem"
   }
 }));
 
@@ -82,12 +89,6 @@ export default function Vaccine() {
   var click = false;
   var allHeartContainers = document.getElementsByClassName("MuiButton-label");
 
-  const initialState = {
-    country: '', description: '', effecientcy: '', img: '',
-    like: '', name: '', id: ''
-  }
-  const [validated, setValidated] = useState(false);
-
   // <button class="MuiButtonBase-root MuiIconButton-root" tabindex="0" type="button"><span class="MuiIconButton-label"><svg class="MuiSvgIcon-root makeStyles-text-23" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg></span><span class="MuiTouchRipple-root"></span></button>
   const addLike = async (idx) => {
     if (click === false) {
@@ -107,13 +108,12 @@ export default function Vaccine() {
   }
 
 
-  const [spacing, setSpacing] = React.useState(2);
+  const [spacing, setSpacing] = React.useState(6);
   const classes = useStyles();
 
 
   return (
-      <Grid container spacing={2} style={{ paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px" }} className={classes.root}>
-        
+      <Grid container spacing={6} style={{ paddingTop: "20px"}} className={classes.root}>
         <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <VaccineModal />
           <Grid container justifyContent="center" spacing={spacing}>
@@ -126,12 +126,12 @@ export default function Vaccine() {
 
                   {/* <CardActionArea style={{padding:0}}>
                       <CardContent> */}
-                  <CardMedia image={vaccine.img} style={{ width: "300px", height: "200px", margin: "auto" }} alt="..." />
+                  <CardMedia image={vaccine.img} style={{ width: "24vw", height: "30vh", margin: "auto" }} alt="..." />
                     {/* </CardContent>
                   </CardActionArea> */} 
 
                     <CardContent className={classes.bot}>
-                      <Typography className={classes.text}><b>{vaccine.name}</b></Typography>
+                      <Typography className={classes.headText}><b>{vaccine.name}</b></Typography>
                       <Typography className={classes.text}><b>ID:</b> {vaccine.id}</Typography>
                       <Typography className={classes.text}><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
                       <Typography className={classes.text}><b>Country:</b> {vaccine.country}</Typography>

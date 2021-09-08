@@ -1,46 +1,20 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import React from "react"
-
-import DashGrid from "../Components/Graphs/Grid"
-import DashDoughnut from "../Components/Graphs/Doughnut"
-import SaigonPie from "../Components/Graphs/SaigonPie"
-import HanoiPie from "../Components/Graphs/HanoiPie"
-
-// For cards
-import { Grid, Card, CardActions, Typography, CardHeader } from '@material-ui/core'
+import { Pie } from 'react-chartjs-2';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root:
-  {
-    flexGrow: 1,
-  },
-  paper:
-  {
-    width: "73vw",
-  },
-  control:
-  {
-    padding: theme.spacing(2),
-  },
-  bot:
-  {
-    color: 'white',
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    border: 0,
-    borderRadius: 3,
-    boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  },
-  data:
-  {
-    background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-    border: "none",
-    boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
-    borderRadius: "15px",
-  }
+    data:
+    {
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        width: '74vw',
+        border: "none",
+        boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)",
+        borderRadius: "15px",
+    }
 }));
-export default function Dashboard() {
+export default function HanoiPie() {
     const [vietNamSummary, setVietNamSummary] = useState([]);
     const [cambodiaSummary, setLaosSummary] = useState([]);
     const [thaiLandSummary, setThaiLandSummary] = useState([]);
@@ -194,86 +168,54 @@ export default function Dashboard() {
         return dataSetPieChart;
     }
 
-    const [spacing, setSpacing] = React.useState(6);
     const classes = useStyles();
     return (
-        <Grid container spacing={6} style={{ paddingTop: "20px"}} className={classes.root}>
-            <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <Grid
-                    container
-                    spacing={spacing}
-                    justifyContent="center"
-                >
-                    {/* Data grid */}
-                    <Grid item>
-                        <Card
-                            className={classes.paper}
-                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
-                            >
-                            <CardHeader
-                                className={classes.bot}
-                            />
-                            <DashGrid />
-                            <CardActions className={classes.bot} />
-                        </Card>
-                    </Grid>
-        
-                    {/* Doughnut chart */}
-                    <Grid item>
-                    <Card
-                        className={classes.paper}
-                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
-                    >
-                        <CardHeader
-                        className={classes.bot}
-                        title=
-                        {
-                            <Typography variant="h5"><b>Vietnam Total Data for covid today</b></Typography>
-                        }
-                        />
-                        <DashDoughnut />
-                        <CardActions className={classes.bot} />
-                    </Card>
-                    </Grid>
-        
-                    {/* Saigon pie chart */}
-                    <Grid item>
-                        <Card
-                        className={classes.paper}
-                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
-                        >
-                        <CardHeader
-                            className={classes.bot}
-                            title=
+        <div>
+            <div>
+                <Pie
+                    data={{
+                        labels: ['Population', 'Total People Injected', 'Practical Distribution', 'Theory Distribution', 'Injected 2 doses'],
+                        datasets: [
                             {
-                            <Typography variant="h5"><b>Vaccine distribution in Sai Gon</b></Typography>
+                                label: 'Dataset1',
+                                data: [5700000, 11400000, 4300000, 11400000, 369600],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.2)',
+                                    'rgba(255, 159, 64, 0.2)',
+                                    'rgba(153, 102, 255, 0.2)',
+                                    'rgba(75, 192, 192, 0.2)',
+                                    'rgba(54, 162, 235, 0.2)',
+                                ],
+                                borderColor: [
+                                    'rgba(255, 99, 132, 1)',
+                                    'rgba(255, 159, 64, 1)',
+                                    'rgba(153, 102, 255, 1)',
+                                    'rgba(75, 192, 192, 1)',
+                                    'rgba(54, 162, 235, 1)',
+                                ],
+                                borderWidth: 2,
+                                maxBarThickness: 30,
+                            },
+                        ],
+                    }}
+                    height={400}
+                    width={400}
+                    options={{
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                display: true,
+                                labels: {
+                                    font: {
+                                        size: 14
+                                    }
+                                }
                             }
-                        />
-                        <SaigonPie />
-                        <CardActions className={classes.bot} />
-                        </Card>
-                    </Grid>
-
-                    {/* Hanoi pie chart */}
-                    <Grid item>
-                        <Card
-                        className={classes.paper}
-                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
-                        >
-                        <CardHeader
-                            className={classes.bot}
-                            title=
-                            {
-                            <Typography variant="h5"><b>Vaccine distribution in Ha Noi</b></Typography>
-                            }
-                        />
-                        <HanoiPie />
-                        <CardActions className={classes.bot} />
-                        </Card>
-                    </Grid>
-                </Grid>
-            </Grid>
-        </Grid>
+                        },
+                    }}
+                />
+            </div>
+        </div>
 
     )
 }
