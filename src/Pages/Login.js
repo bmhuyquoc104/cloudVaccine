@@ -97,7 +97,7 @@ const UserLogin = () => {
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
                     >
                         <CardHeader
-                            className={classes.bot} title='Sign in with email address' subtitle={subtitle} color="secondary" variant="h4" style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0  }}
+                            className={classes.bot} title='Sign in with email address' subtitle={subtitle} color="secondary" variant="h4" style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0,textAlign:"center"  }}
                         />
                         <CardActionArea>
                             <CardContent>
@@ -105,17 +105,18 @@ const UserLogin = () => {
                                     <Box sx={{ backgroundColor: 'background.default', display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center' }}>
                                         <Container maxWidth="sm">
                                             <Login />
-                                            <Typography variant="body1" style={{ fontFamily: 'cursive'}}>
-                                                Don&apos;t have an account?
+                                            <Typography variant="body1" style={{ fontFamily: 'Times new roman',color:"#FF8C00",letterSpacing:"2px"}}>
+                                                DONT&apos;T HAVE AN ACCOUNT?
+                                                <br/>
                                                 {' '}
-                                                <Link component={RouterLink} style={{ fontFamily: 'cursive'}} to="/signup" variant="h7" underline="hover">
-                                                    Sign up
+                                                <Link component={RouterLink} style={{ fontFamily: 'cursive',color:"#FF8C00"}} to="/signup" variant="h7" >
+                                                    PLEASE SIGN UP HERE !!!!
                                                 </Link>
                                             </Typography>
-                                            <Typography variant="body1">
+                                            {/* <Typography variant="body1">
                                                 Forgot your password?                                      
                                             </Typography>
-                                            <ForgotPassword />
+                                            <ForgotPassword /> */}
                                         </Container>
                                     </Box>
                                 </Account>
