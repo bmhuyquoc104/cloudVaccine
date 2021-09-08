@@ -35,6 +35,7 @@ import Dashboard from "../../Pages/Dashboard";
 import Home from "../../Pages/Home";
 import Signin from "../../Pages/Login";
 import Signup from "../../Pages/Signup";
+import Bot from "../../Pages/"
 import SettingAccounts from '../../Pages/SettingAccounts';
 import {
     BrowserRouter as Router,
@@ -150,6 +151,14 @@ function Sidenav() {
                                 <ListItemText primary={"signup"}/>
                             </ListItem>
                         </Link>
+                        <Link to="/bot" className={classes.link}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <SettingsIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"bot"}/>
+                            </ListItem>
+                        </Link>
                     {/* <AmplifySignOut /> */}
                 </Drawer>
                 
@@ -198,6 +207,11 @@ function Sidenav() {
                     <Route path="/signup">
                         <Container>
                             <Signup />
+                        </Container>
+                    </Route>
+                    <Route path="/bot">
+                        <Container>
+                            <Bot />
                         </Container>
                     </Route>
                 </Switch>
