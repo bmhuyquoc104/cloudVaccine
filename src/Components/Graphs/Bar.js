@@ -205,123 +205,120 @@ export default function CountriesBar() {
 
   return (
     < div>
-        <div className="barChart">
-        
-            <Bar
-                data={{
-                    labels: label,
-                    datasets: [
-                    {
-                        label: 'Vietnam Total Cases ',
-                        data: getCountryConfirmedCases(vietNamCollection),
-                        backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
+          <Bar
+              data={{
+                  labels: label,
+                  datasets: [
+                  {
+                      label: 'Vietnam Total Cases ',
+                      data: getCountryConfirmedCases(vietNamCollection),
+                      backgroundColor: [
+                      'rgba(255, 99, 132, 0.2)',
 
-                        ],
-                        borderColor: [
-                        'rgba(255, 99, 132, 1)',
+                      ],
+                      borderColor: [
+                      'rgba(255, 99, 132, 1)',
 
-                        ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
-                    },
-                    {
-                        label: 'Malaysia Total Cases ',
-                        data: getCountryConfirmedCases(malaysiaCollection),
-                        backgroundColor: [
-                        'rgba(255, 159, 64, 0.2)'
-                        ,
-                        ],
-                        borderColor: [
-                        'rgba(255, 159, 64, 1)'
+                      ],
+                      borderWidth: 2,
+                      maxBarThickness: 30,
+                  },
+                  {
+                      label: 'Malaysia Total Cases ',
+                      data: getCountryConfirmedCases(malaysiaCollection),
+                      backgroundColor: [
+                      'rgba(255, 159, 64, 0.2)'
+                      ,
+                      ],
+                      borderColor: [
+                      'rgba(255, 159, 64, 1)'
 
-                        ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
-                    },
-                    {
-                        label: 'Cambodia Total Cases ',
-                        data: getCountryConfirmedCases(cambodiaCollection),
-                        backgroundColor: [
-                        'rgba(153, 102, 255, 0.2)',
+                      ],
+                      borderWidth: 2,
+                      maxBarThickness: 30,
+                  },
+                  {
+                      label: 'Cambodia Total Cases ',
+                      data: getCountryConfirmedCases(cambodiaCollection),
+                      backgroundColor: [
+                      'rgba(153, 102, 255, 0.2)',
 
-                        ],
-                        borderColor: [
-                        'rgba(153, 102, 255, 1)',
+                      ],
+                      borderColor: [
+                      'rgba(153, 102, 255, 1)',
 
-                        ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
-                    },
-                    {
-                        label: 'Singapore Total Cases ',
-                        data: getCountryConfirmedCases(singaporeCollection),
-                        backgroundColor: [
-                        'rgba(75, 192, 192, 0.2)',
+                      ],
+                      borderWidth: 2,
+                      maxBarThickness: 30,
+                  },
+                  {
+                      label: 'Singapore Total Cases ',
+                      data: getCountryConfirmedCases(singaporeCollection),
+                      backgroundColor: [
+                      'rgba(75, 192, 192, 0.2)',
 
-                        ],
-                        borderColor: [
-                        'rgba(75, 192, 192, 1)',
+                      ],
+                      borderColor: [
+                      'rgba(75, 192, 192, 1)',
 
-                        ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
-                    },
-                    {
-                        label: 'Thailand Total Case',
-                        data: getCountryConfirmedCases(thailandCollection),
-                        backgroundColor: [
+                      ],
+                      borderWidth: 2,
+                      maxBarThickness: 30,
+                  },
+                  {
+                      label: 'Thailand Total Case',
+                      data: getCountryConfirmedCases(thailandCollection),
+                      backgroundColor: [
 
-                        'rgba(54, 162, 235, 0.2)',
+                      'rgba(54, 162, 235, 0.2)',
 
-                        ],
-                        borderColor: [
+                      ],
+                      borderColor: [
 
-                        'rgba(54, 162, 235, 1)',
+                      'rgba(54, 162, 235, 1)',
 
-                        ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
-                    }
-                    ],
-                }}
-                height={600}
-                width={600}
-                options={{
-                    maintainAspectRatio: false,
-                    plugins: {
-                    legend: {
-                        display: true,
-                        labels: {
-                        color: 'rgb(255, 99, 132)',
-                        font: {
-                            size: 18
-                        }
-                        }
-                    }
-                    },
-                    scales: {
-                    yAxes: [
-                        {
-                        color: 'red',
-                        font: {
-                            size: 25
-                        },
-                        ticks: {
-                            tickColor: 'red',
-                            beginAtZero: false,
-                        },
-                        },
-                    ],
-                    },
-                    legend: {
-                    labels: {
-                        fontSize: 25,
-                    },
-                    },
-                }}
-            />
-        </div>
+                      ],
+                      borderWidth: 2,
+                      maxBarThickness: 30,
+                  }
+                  ],
+              }}
+              height={600}
+              width={600}
+              options={{
+                  maintainAspectRatio: false,
+                  plugins: {
+                  legend: {
+                      display: true,
+                      labels: {
+                      color: 'rgb(255, 99, 132)',
+                      font: {
+                          size: 18
+                      }
+                      }
+                  }
+                  },
+                  scales: {
+                  yAxes: [
+                      {
+                      color: 'red',
+                      font: {
+                          size: 25
+                      },
+                      ticks: {
+                          tickColor: 'red',
+                          beginAtZero: false,
+                      },
+                      },
+                  ],
+                  },
+                  legend: {
+                  labels: {
+                      fontSize: 25,
+                  },
+                  },
+              }}
+          />
     </div>
   )
 }
