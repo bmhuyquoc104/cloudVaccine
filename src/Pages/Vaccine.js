@@ -44,6 +44,11 @@ const useStyles = makeStyles((theme) => ({
   {
     color: '#7F53AC',
     fontSize: "1.25rem"
+  },
+  divider:
+  {
+    background: theme.palette.secondary.main,
+    margin: "3vh"
   }
 }));
 

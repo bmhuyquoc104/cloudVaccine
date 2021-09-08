@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   return (
-    <Container className={classes.root}>
+    <div style={{background: 'linear-gradient(45deg, #380036 30%, #21CBF3 90%)', width:'100%', paddingBottom: '7.5vh'}}>
       <Layout />
-    </Container>
+    </div>
   );
 }
 

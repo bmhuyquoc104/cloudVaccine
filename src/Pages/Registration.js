@@ -1,6 +1,7 @@
 // AWS STARTS
 import * as AWS from 'aws-sdk'
 import RegistrationModal from '../Components/Modal/RegistrationModal';
+import Divider from '@material-ui/core/Divider';
 
 import React from 'react';
 import axios from "axios"
@@ -39,6 +40,11 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10px",
     paddingLeft: "20px",
     paddingRight: "20px",
+  },
+  divider:
+  {
+    background: theme.palette.secondary.main,
+    margin: "3vh"
   }
 }));
 
@@ -100,18 +106,30 @@ export default function Registration() {
                 <CardContent>
                     <Typography color="secondary" variant="h4" style={{marginTop: "10px", paddingLeft: "10px"}}><b>Benefits of Getting a COVID-19 Vaccine</b></Typography>
 
+                    <Divider variant="middle" classes={{root: classes.divider}}/>
+
                     <Typography color="secondary" variant="h6" style={{marginTop: "10px", paddingLeft: "10px"}}><b>Benefits of Getting a COVID-19 Vaccine</b></Typography>
-                    <Typography variant="body1" className={classes.info}>COVID-19 vaccines were developed using science that has been around for decades.</Typography>
-                    <Typography variant="body1" className={classes.info}>COVID-19 vaccines have received and continue to undergo the most intensive safety monitoring in U.S. history.
-                     Learn more about how federal partners are ensuring COVID-19 vaccines work.</Typography>
-                    <Typography variant="body1" className={classes.info}>COVID-19 vaccines are not experimental. They went through all the required stages of clinical trials.
-                     Extensive testing and monitoring have shown that these vaccines are safe and effective.</Typography>
+                    <Typography variant="body1" className={classes.info}>
+                      COVID-19 vaccines were developed using science that has been around for decades.
+                      <br /><br />
+                      COVID-19 vaccines have received and continue to undergo the most intensive safety monitoring in U.S. history.
+                      Learn more about how federal partners are ensuring COVID-19 vaccines work.
+                      <br /><br />
+                      COVID-19 vaccines are not experimental. They went through all the required stages of clinical trials.
+                      Extensive testing and monitoring have shown that these vaccines are safe and effective.
+                    </Typography>
+
+                    <Divider variant="middle" classes={{root: classes.divider}}/>
 
                     <Typography color="secondary" variant="h6" style={{marginTop: "10px", paddingLeft: "10px"}}><b>COVID-19 vaccines are effective</b></Typography>
-                    <Typography variant="body1" className={classes.info}>COVID 19-vaccines are effective. They can keep you from getting and spreading the virus that causes COVID-19.</Typography>
-                    <Typography variant="body1" className={classes.info}>COVID-19 vaccines also help keep you from getting seriously ill even if you do get COVID-19.</Typography>
-                    <Typography variant="body1" className={classes.info}>Getting vaccinated yourself may also protect people around you, particularly people at increased risk for severe
-                     illness from COVID-19.</Typography>
+                    <Typography variant="body1" className={classes.info}>
+                      COVID 19-vaccines are effective. They can keep you from getting and spreading the virus that causes COVID-19.
+                      <br /><br />
+                      COVID-19 vaccines also help keep you from getting seriously ill even if you do get COVID-19.
+                      <br /><br />
+                      Getting vaccinated yourself may also protect people around you, particularly people at increased risk for severe
+                      illness from COVID-19.
+                    </Typography>
                 </CardContent>
               </CardActionArea>
               <CardActions className={classes.bot}>
