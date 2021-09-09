@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "@aws-sdk/client-ses": "^3.29.0",
+    "@kommunicate/kommunicate-chatbot-plugin": "^0.0.5",
     "@material-ui/core": "^4.12.3",
     "@material-ui/data-grid": "^4.0.0-alpha.37",
     "@material-ui/icons": "^4.11.2",
@@ -14,6 +15,7 @@
     "aws": "^0.0.3-2",
     "aws-amplify": "^4.2.7",
     "aws-sdk": "^2.983.0",
+    "awssdk": "^1.0.1",
     "axios": "^0.21.1",
     "bootstrap": "^5.1.0",
     "chart.js": "^3.5.1",
@@ -23,6 +25,7 @@
     "react-bootstrap": "^2.0.0-beta.6",
     "react-chartjs-2": "^3.0.4",
     "react-dom": "^17.0.2",
+    "react-feather": "^2.0.9",
     "react-helmet": "^6.1.0",
     "react-icons": "^4.2.0",
     "react-moment": "^1.1.1",

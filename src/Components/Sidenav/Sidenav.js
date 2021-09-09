@@ -8,10 +8,21 @@ import {
     Container,
     Typography,
     Box,
-    Avatar
+    Avatar,
+    Button
 } from "@material-ui/core";
+
+import {
+    Lock as LockIcon,
+    UserPlus as UserPlusIcon,
+  } from 'react-feather';
+
 import {makeStyles} from "@material-ui/core/styles";
 import { Link as RouterLink, useLocation } from 'react-router-dom';
+
+// import Amplify, { API, graphqlOperation } from 'aws-amplify';
+// import awsconfig from '../../aws-exports';
+// import { AmplifySignOut, withAuthenticator } from '@aws-amplify/ui-react';
 
 
 // Icons
@@ -25,6 +36,7 @@ import PublicIcon from '@material-ui/icons/Public';
 import SettingsIcon from '@material-ui/icons/Settings';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 
+
 // Pages
 import Account from '../../Pages/Account';
 import Review from "../../Pages/Review";
@@ -35,8 +47,8 @@ import Dashboard from "../../Pages/Dashboard";
 import Home from "../../Pages/Home";
 import Signin from "../../Pages/Login";
 import Signup from "../../Pages/Signup";
-import Bot from "../../Pages/Bot"
 import SettingAccounts from '../../Pages/SettingAccounts';
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -44,6 +56,7 @@ import {
     Route
 } from 'react-router-dom';
 
+// Amplify.configure(awsconfig);
 
 const useStyles = makeStyles ((theme) => ({
     drawerPaper: {width: 'inherit'},
@@ -73,7 +86,8 @@ function Sidenav() {
                     <List>
                     <Box sx={{ alignItems: 'center', display: 'flex', flexDirection: 'column', p: 2}} >
                             <Avatar component={RouterLink} src={user.avatar} sx={{ cursor: 'pointer', width: 64, height: 64}}to="/app/account"/>
-
+                            <Typography color="textPrimary" variant="h5"> {user.name}</Typography>
+                            <Typography color="textSecondary" variant="body2">{user.jobTitle}</Typography>
                     </Box>
                     <Link to="/account" className={classes.link}>
                             <ListItem button>
@@ -105,7 +119,7 @@ function Sidenav() {
                                 <ListItemIcon>
                                     <ListAltIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"Register"}/>
+                                <ListItemText primary={"Register vaccine"}/>
                             </ListItem>
                         </Link>
                         
@@ -134,32 +148,32 @@ function Sidenav() {
                             </ListItem>
                         </Link>
                     </List>
-                    
-                        <Link to="/login" className={classes.link}>
+                    {/* <Link to="/settings" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
                                     <SettingsIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"login"}/>
+                                <ListItemText primary={"SettingAccounts"}/>
+                            </ListItem>
+                        </Link> */}
+                        <Link to="/login" className={classes.link}>
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <LockIcon />
+                                </ListItemIcon>
+                                <ListItemText primary={"Login"}/>
                             </ListItem>
                         </Link>
                         <Link to="/signup" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <SettingsIcon />
+                                    <UserPlusIcon />
                                 </ListItemIcon>
-                                <ListItemText primary={"signup"}/>
-                            </ListItem>
-                        </Link>
-                        <Link to="/bot" className={classes.link}>
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <SettingsIcon />
-                                </ListItemIcon>
-                                <ListItemText primary={"bot"}/>
+                                <ListItemText primary={"Signup"}/>
                             </ListItem>
                         </Link>
                     {/* <AmplifySignOut /> */}
+      
                 </Drawer>
                 
                 <Switch>
@@ -193,7 +207,11 @@ function Sidenav() {
                             <Dashboard />
                         </Container>
                     </Route>
-            
+                    <Route path="/settings">
+                        <Container>
+                            <SettingAccounts />
+                        </Container>
+                    </Route>
                     <Route path="/home">
                         <Container>
                             <Home />
@@ -207,11 +225,6 @@ function Sidenav() {
                     <Route path="/signup">
                         <Container>
                             <Signup />
-                        </Container>
-                    </Route>
-                    <Route path="/bot">
-                        <Container>
-                            <Bot />
                         </Container>
                     </Route>
                 </Switch>
