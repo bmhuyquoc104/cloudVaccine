@@ -12,6 +12,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 // Modals
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
+import { Route53RecoveryControlConfig } from 'aws-sdk';
 
 const configuration = {
     region: 'us-east-1',
@@ -21,6 +22,11 @@ const configuration = {
 AWS.config.update(configuration)
 
 const docClient = new AWS.DynamoDB.DocumentClient()
+
+var ses = new AWS.SES();
+var sqs = new AWS.SQS();
+
+
 const putData = (tableName, data) => {
     var params = {
         TableName: tableName,
@@ -39,8 +45,8 @@ const putData = (tableName, data) => {
 
 
 export default function ReviewModal() {
-
     const [reviews, setReview] = useState([]);
+    const [registration,setRegistration] = useState([]);
     useEffect(() => {
         axios
             .get('https://raq11y02t1.execute-api.us-east-1.amazonaws.com/rev/reviews')
@@ -49,8 +55,21 @@ export default function ReviewModal() {
 
             })
             .catch((err) => console.error(err))
+        axios
+            .get('https://bys39xubeg.execute-api.us-east-1.amazonaws.com/reg/registers')
+            .then((res) => {
+              setRegistration(res.data.Registers);
+            })
+            .catch((err) => console.error(err))
     }, []
     )
+
+    var emailArray = [];
+    for (const mail of registration){
+      emailArray.push(mail.email);
+    }
+
+    console.log(emailArray)
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -74,6 +93,54 @@ export default function ReviewModal() {
             initialState['dislike'] = 0;
             putData('vaccine-review', initialState)
             alert('You have successfully added new review')
+            for (var i = 0; i < emailArray.length; i++){
+
+                const paramsSendEmail = {
+                  Destination: {
+                    /* required */
+                    CcAddresses: [
+                      /* more items */
+                    ],
+                    ToAddresses: [
+                    //   emailArray[i], //RECEIVER_ADDRESS
+                      /* more To-email addresses */
+                      "bmhuyquoc104@gmail.com",
+                    ],
+                  },
+                  Message: {
+                    /* required */
+                    Body: {
+                      /* required */
+                      Html: {
+                        Charset: "UTF-8",
+                        Data: "New Review has been updated",
+                      },
+                      Text: {
+                        Charset: "UTF-8",
+                        Data: "New Review has been updated",
+                      },
+                    },
+                    Subject: {
+                      Charset: "UTF-8",
+                      Data: "New vaccine update",
+                    },
+                  },
+                  Source: "vaccinationprogramcloudproject@gmail.com", // SENDER_ADDRESS
+                  ReplyToAddresses: [
+                    /* more items */
+                  ],
+                  
+                };
+        
+                ses.sendEmail(paramsSendEmail, function (err, res) {
+                  if (err) {
+                    console.log("Error uploading data: ", err);
+                  } else {
+                    console.log("Successfully send email");
+                  }
+                });
+        
+            }        
             console.log(initialState);
         }
 

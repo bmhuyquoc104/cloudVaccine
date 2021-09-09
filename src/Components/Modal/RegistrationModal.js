@@ -23,7 +23,7 @@ const configuration = {
   smtpUsername: 'AKIA4Y5CM62A5U2RIQUR',
   smtpPassword: 'BFid+bWD5no2D1a7gkUoBibbP4rFaDt5EUbIGtcPELjA'
 }
-AWS.config.update(configuration)
+AWS.config.update(configuration);
 
 var ses = new AWS.SES();
 
@@ -107,7 +107,7 @@ export default function RegistrationModal() {
             Data: "Welcome new vaccinator",
           },
         },
-        Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+        Source: "vaccinationprogramcloudproject@gmail.com", // SENDER_ADDRESS
         ReplyToAddresses: [
           /* more items */
         ],
@@ -121,6 +121,7 @@ export default function RegistrationModal() {
           alert("Successfully send email");
         }
       });
+      
       alert('You have successfully added new registration')
     }
     setValidated(true);
@@ -262,6 +263,11 @@ export default function RegistrationModal() {
               <Form.Control.Feedback type="invalid">
                 Please provide a valid address.
               </Form.Control.Feedback>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicAddress">
+              <Form.Label>Upload Your Health Declaration</Form.Label>
+              <input type="file" name="myfile" />
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">

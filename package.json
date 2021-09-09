@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.30.0",
     "@aws-sdk/client-ses": "^3.29.0",
+    "@aws-sdk/s3-presigned-post": "^3.30.0",
     "@kommunicate/kommunicate-chatbot-plugin": "^0.0.5",
     "@material-ui/core": "^4.12.3",
     "@material-ui/data-grid": "^4.0.0-alpha.37",
