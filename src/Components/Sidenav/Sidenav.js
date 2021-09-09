@@ -33,8 +33,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import MessageIcon from '@material-ui/icons/Message';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import PublicIcon from '@material-ui/icons/Public';
-import SettingsIcon from '@material-ui/icons/Settings';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import TrackChangesIcon from '@material-ui/icons/TrackChanges';
 
 
 // Pages
@@ -59,10 +58,27 @@ import {
 // Amplify.configure(awsconfig);
 
 const useStyles = makeStyles ((theme) => ({
-    drawerPaper: {width: 'inherit'},
+    drawerPaper:
+    {
+        width: 'inherit',
+        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+    },
     link: {
         textDecoration: 'none',
-        color: theme.palette.text.primary
+        color: 'white',
+        '&:hover': {
+            color: '#7F53AC'
+        }
+    },
+    header:
+    {
+        color: '#7F53AC',
+        fontWeight: 'bold',
+        fontSize: '4vh',
+    },
+    icon:
+    {
+        color: 'white', 
     }
 }));
 
@@ -82,17 +98,22 @@ function Sidenav() {
                     open={true}
                     classes={{paper: classes.drawerPaper}}
                 >
-                    <Typography></Typography>
+                    
                     <List>
+                    <Typography className={classes.header} align="center">
+                        <TrackChangesIcon className={classes.header}/>
+                        COVITRACK
+                    </Typography>
                     <Box sx={{ alignItems: 'center', display: 'flex', flexDirection: 'column', p: 2}} >
                             <Avatar component={RouterLink} src={user.avatar} sx={{ cursor: 'pointer', width: 64, height: 64}}to="/app/account"/>
                             <Typography color="textPrimary" variant="h5"> {user.name}</Typography>
                             <Typography color="textSecondary" variant="body2">{user.jobTitle}</Typography>
                     </Box>
+
                     <Link to="/account" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <PeopleIcon />
+                                    <PeopleIcon className={classes.icon}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Account"}/>
                             </ListItem>
@@ -100,7 +121,7 @@ function Sidenav() {
                         <Link to="/home" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <HomeIcon />
+                                    <HomeIcon className={classes.icon} />
                                 </ListItemIcon>
                                 <ListItemText primary={"Home"}/>
                             </ListItem>
@@ -108,7 +129,7 @@ function Sidenav() {
                         <Link to="/dashboard" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <ComputerIcon />
+                                    <ComputerIcon className={classes.icon} />
                                 </ListItemIcon>
                                 <ListItemText primary={"Dashboard"}/>
                             </ListItem>
@@ -117,7 +138,7 @@ function Sidenav() {
                         <Link to="/register" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <ListAltIcon />
+                                    <ListAltIcon className={classes.icon}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Register vaccine"}/>
                             </ListItem>
@@ -126,7 +147,7 @@ function Sidenav() {
                         <Link to="/review" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <MessageIcon />
+                                    <MessageIcon className={classes.icon}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Review"}/>
                             </ListItem>
@@ -134,7 +155,7 @@ function Sidenav() {
                         <Link to="/vaccine" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <LocalHospitalIcon />
+                                    <LocalHospitalIcon className={classes.icon}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Vaccine"}/>
                             </ListItem>
@@ -142,7 +163,7 @@ function Sidenav() {
                         <Link to="/country" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <PublicIcon />
+                                    <PublicIcon className={classes.icon}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Countries summary"}/>
                             </ListItem>
@@ -159,7 +180,7 @@ function Sidenav() {
                         <Link to="/login" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <LockIcon />
+                                    <LockIcon className={classes.icon}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Login"}/>
                             </ListItem>
@@ -167,7 +188,7 @@ function Sidenav() {
                         <Link to="/signup" className={classes.link}>
                             <ListItem button>
                                 <ListItemIcon>
-                                    <UserPlusIcon />
+                                    <UserPlusIcon className={classes.icon}/>
                                 </ListItemIcon>
                                 <ListItemText primary={"Signup"}/>
                             </ListItem>
