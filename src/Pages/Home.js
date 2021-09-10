@@ -3,7 +3,7 @@ import axios from "axios"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Divider from '@material-ui/core/Divider';
-
+import { Link } from 'react-router-dom';
 
 // For cards
 import { Grid, Card, CardActionArea, CardActions, CardContent, Typography, CardHeader} from '@material-ui/core'
@@ -71,13 +71,14 @@ export default function Home() {
               <Divider variant="middle" classes={{root: classes.divider}}/>
             </Grid>
           </Grid>
+          <Link to="/dashboard">
             <Button
               style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)' }}
               size="lg"
-              href="/dashboard"
             >
               Get Started
             </Button>
+          </Link>
         </Grid>
       </Grid>
   );

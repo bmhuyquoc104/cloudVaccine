@@ -21,7 +21,6 @@ export default function Setting() {
       {loggedIn && (
         <>
           <h1>Settings</h1>
-
           <ChangePassword />
           <ChangeEmail />
         </>
