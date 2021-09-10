@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     },
     bot:
     {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        background: 'linear-gradient(45deg, #4e4376 30%, #d76d77 90%)',
         border: 0,
         borderRadius: 3,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -259,7 +259,7 @@ export default function Review() {
                         </style>
                         <Button
                             onClick={handleShow}
-                            style={{ border: 0, marginBottom: '20px', marginLeft: '40%',fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+                            style={{ border: 0, marginBottom: '20px', marginLeft: '40%',fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)' }}
                             size="lg"
                         >
                             Leave A Review
@@ -321,7 +321,7 @@ export default function Review() {
                                             onChange={(e) => initialState['vaccine'] = e.target.value}
                                         >
                                             <option></option>
-                                            <option value="AstraZeneca">AstraZeneca</option>
+                                            <option value="Astra">Astra</option>
                                             <option value="SPUTNIK V">SPUTNIK V</option>
                                             <option value="Sinopharm">Sinopharm</option>
                                             <option value="Pfizer">Pfizer</option>
@@ -409,7 +409,7 @@ export default function Review() {
                                     <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                                         <Card
                                             className={classes.paper}
-                                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
+                                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", marginBottom:"20px", borderRadius: "15px", }}
                                         >
                                             <CardHeader style={{ padding: 5 }}
                                                 avatar={

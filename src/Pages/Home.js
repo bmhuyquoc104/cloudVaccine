@@ -72,7 +72,7 @@ export default function Home() {
             </Grid>
           </Grid>
             <Button
-              style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+              style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)' }}
               size="lg"
               href="/dashboard"
             >

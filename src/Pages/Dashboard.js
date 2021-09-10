@@ -1,11 +1,13 @@
 import axios from "axios"
 import { useState, useEffect } from "react"
 import React from "react"
+import { DataGrid } from '@material-ui/data-grid';
 
 import DashGrid from "../Components/Graphs/Grid"
 import SaigonPie from "../Components/Graphs/SaigonPie"
 import HanoiPie from "../Components/Graphs/HanoiPie"
 import { Doughnut } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 // For cards
 import { Grid, Card, CardActions, Typography, CardHeader } from '@material-ui/core'
@@ -18,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
     },
     paper:
     {
-        width: "73vw",
+        width: "60vw",
+        background:"#fde7f9",
     },
     control:
     {
@@ -27,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     bot:
     {
         color: 'white',
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        background:  'linear-gradient(45deg, #aa4465 30%,#861657 90%)',
         border: 0,
         borderRadius: 3,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
@@ -212,8 +215,21 @@ export default function Dashboard() {
                         >
                             <CardHeader
                                 className={classes.bot}
+                                style={{ textAlign: "center" }}
+                                title=
+                                {
+                                    <Typography variant="h5"><b>Latest Information For Covid Pandemic In 5 South East Countries</b></Typography>
+                                }
                             />
-                            <DashGrid />
+                            <div div style={{ height: 500 }}>
+                                <DataGrid
+                                    rows={rows.map((r) => { return r })}
+                                    columns={columns}
+                                    rowsPerPageOptions={[5, 10, 20, 50, 100]}
+                                    checkboxSelection
+                                    disableSelectionOnClick
+                                />
+                            </div>
                             <CardActions className={classes.bot} />
                         </Card>
                     </Grid>
@@ -225,12 +241,49 @@ export default function Dashboard() {
                         >
                             <CardHeader
                                 className={classes.bot}
+                                style={{ textAlign: "center" }}
                                 title=
                                 {
                                     <Typography variant="h5"><b>Vaccine distribution in Sai Gon</b></Typography>
                                 }
                             />
-                            <SaigonPie />
+                            <div>
+                                <Pie
+                                    data={{
+                                        labels: ['Population', 'Total People Injected', 'Practical Distribution', 'Theory Distribution', 'Injected 2 doses'],
+                                        datasets: [
+                                            {
+                                                label: 'Dataset1',
+                                                data: [7000000, 9100000, 5800000, 13800000, 321400],
+                                                backgroundColor: [
+                                                    'rgb(46,139,87)',
+                                                    'rgb(39,70,135)',
+                                                    'rgb(128,0,128)',
+                                                    'rgb(255,215,0)',
+                                                    'rgb(255,69,0)'
+                                                ],
+                                                borderWidth: 2,
+                                                maxBarThickness: 30,
+                                            },
+                                        ],
+                                    }}
+                                    height={400}
+                                    width={400}
+                                    options={{
+                                        maintainAspectRatio: false,
+                                        plugins: {
+                                            legend: {
+                                                display: true,
+                                                labels: {
+                                                    font: {
+                                                        size: 14
+                                                    }
+                                                }
+                                            }
+                                        },
+                                    }}
+                                />
+                            </div>
                             <CardActions className={classes.bot} />
                         </Card>
                     </Grid>
@@ -243,12 +296,49 @@ export default function Dashboard() {
                         >
                             <CardHeader
                                 className={classes.bot}
+                                style={{ textAlign: "center" }}
                                 title=
                                 {
                                     <Typography variant="h5"><b>Vaccine distribution in Ha Noi</b></Typography>
                                 }
                             />
-                            <HanoiPie />
+                            <div>
+                                <Pie
+                                    data={{
+                                        labels: ['Population', 'Total People Injected', 'Practical Distribution', 'Theory Distribution', 'Injected 2 doses'],
+                                        datasets: [
+                                            {
+                                                label: 'Dataset1',
+                                                data: [5700000, 11400000, 4300000, 11400000, 369600],
+                                                backgroundColor: [
+                                                    'rgb(46,139,87)',
+                                                    'rgb(39,70,135)',
+                                                    'rgb(128,0,128)',
+                                                    'rgb(255,215,0)',
+                                                    'rgb(255,69,0)'
+                                                ],
+                                                borderWidth: 2,
+                                                maxBarThickness: 30,
+                                            },
+                                        ],
+                                    }}
+                                    height={400}
+                                    width={400}
+                                    options={{
+                                        maintainAspectRatio: false,
+                                        plugins: {
+                                            legend: {
+                                                display: true,
+                                                labels: {
+                                                    font: {
+                                                        size: 14
+                                                    }
+                                                }
+                                            }
+                                        },
+                                    }}
+                                />
+                            </div>
                             <CardActions className={classes.bot} />
                         </Card>
                     </Grid>
@@ -259,9 +349,10 @@ export default function Dashboard() {
                         >
                             <CardHeader
                                 className={classes.bot}
+                                style={{ textAlign: "center" }}
                                 title=
                                 {
-                                    <Typography variant="h5"><b>Vietnam Total Data for covid today</b></Typography>
+                                    <Typography variant="h5"><b>Vietnam Total Data For Covid Pandemic Today</b></Typography>
                                 }
                             />
                             <div>

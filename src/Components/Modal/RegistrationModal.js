@@ -130,7 +130,7 @@ export default function RegistrationModal() {
     <div className = "Registration">
       <Button
         onClick={handleShow}
-        style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+        style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)' }}
         size="lg"
       >
         Apply For Vaccine
@@ -138,7 +138,7 @@ export default function RegistrationModal() {
       <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
         <Modal.Header
           closeButton
-          style={{ backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+          style={{ backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)' }}
         >
           <Modal.Title style={{ fontWeight: 'bold', color: 'white' }}>Vaccine Application</Modal.Title>
         </Modal.Header>
