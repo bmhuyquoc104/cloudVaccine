@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export default () => {
+export default function ForgotPassword() {
   const [stage, setStage] = useState(1); // 1 = email stage, 2 = code stage
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -119,7 +119,7 @@ export default () => {
           <Box sx={{ py: 2 }}>
             <Button
               //className={classes.bot}
-              color="secondary" variant="h4" style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}
+              color="secondary" style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}
               // style={{ fontFamily: 'cursive', fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}
               size="medium"
               endIcon={<SendIcon />}
@@ -193,7 +193,7 @@ export default () => {
           <Box sx={{ py: 4 }}>
           <Button
             //className={classes.bot}
-            color="secondary" variant="h4" style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0  }}
+            color="secondary" style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0  }}
             // style={{ fontFamily: 'cursive',fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}
             fullWidth
             size="large"
@@ -208,4 +208,4 @@ export default () => {
       )}
     </div>
   );
-};
+}

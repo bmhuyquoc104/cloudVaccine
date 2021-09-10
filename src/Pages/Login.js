@@ -73,8 +73,7 @@ const UserLogin = () => {
                 className={classes.root}
                 justifyContent="center"
             >
-                <Grid item xs={8} 
-                    style={{maxWidth:"40%"}}>
+                <Grid item xs={6}>
                     <Card
                         className={classes.paper}
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", height: "65vh"}}
@@ -104,13 +103,13 @@ const UserLogin = () => {
                                             <Typography style={{color:"#FE6B8B", fontWeight: '500',letterSpacing:"1px",fontSize:"13px"}}>
                                                 Don't Have An Account Yet?
                                                 <Link style={{color:"#FFA500", fontWeight: 'bold', letterSpacing:"3px",fontSize:"14px",marginLeft: "7px"}} component={RouterLink} to="/signup">
-                                                    SIGN UP HERE!!
+                                                    Sign up here!
                                                 </Link>
                                             </Typography>
                                             <Typography style={{color:"#FE6B8B", fontWeight: '500', letterSpacing:"1px",fontSize:"13px",fontFamily:"Roboto"}}>
                                                 Forgot Your Password?
                                                 <Link style={{color:"	#FFA500", fontWeight: '700',fontSize:"14px",letterSpacing:"3px",marginLeft: "7px"}} component={RouterLink} to="/forgotpassword">
-                                                    RECOVER PASSWORD
+                                                    Recover password
                                                 </Link>
                                             </Typography>
                                         </Container>
@@ -119,7 +118,7 @@ const UserLogin = () => {
                             </CardContent>
                     </Card>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                     <Card
                         className={classes.paper}
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px",  height: "65vh"}}
