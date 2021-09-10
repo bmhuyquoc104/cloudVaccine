@@ -13,9 +13,7 @@ export default function Setting() {
     getSession().then(() => {
       setLoggedIn(true);
     });
-  },
-  );
-// }, []);
+  }, []);
 
 
   return (

@@ -115,44 +115,9 @@ export default function DashDoughnut() {
     }
 
     return (
-        <div>
-            <Doughnut
-                data={{
-                    labels: ['Recovered', 'Deaths', 'Confirmed', 'Active'],
-                    datasets: [
-                        {
-                            label: 'Dataset1',
-                            data: getPieChartData(vietNamToday),
-                            backgroundColor: [
-                                'rgb(142, 195, 195)',
-                                'rgb(255,69,0)',
-                                'rgb(39,70,135)',
-                                'rgb(255,215,0)'
-                            ],
-                            borderWidth: 2,
-                            maxBarThickness: 30,
-                        },
-                    ],
-                }}
-                height={400}
-                width={400}
-                margin={20}
-                options={{
-                    maintainAspectRatio: false,
-                    plugins: {
-                        
-                        legend: {
-                            display: true,
-                            labels: {
-                                font: {
-                                    size: 18
-                                }
-                            }
-                        }
-                    },
-                }}
-            />
-        </div>
+       <div>
+           
+       </div>
     )
 }
 

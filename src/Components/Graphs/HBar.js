@@ -197,73 +197,9 @@ export default function CountriesSummary() {
   }
 
   return (
-    <div>
-        <Bar
-          data={{
-            labels: ['Vietnam', 'Thailand', 'Cambodia', 'Malaysia', 'Singapore'],
-            datasets: [
-              {
-                label: 'Doses Given In Million',
-                data: [20.2, 31.8, 19.2, 55, 36.1],
-                fill: false,
-                backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                ],
-                borderColor: [
-                'rgba(255, 99, 132, 1)',
-                ],
-                borderWidth: 2,
-                maxBarThickness: 30,
-              },
-              {
-                label: 'Fully Vaccinated In Million',
-                data: [2.73, 7.78, 8.59, 15.8, 4.44],
-                fill: false,
-                backgroundColor: [
-                'rgba(54, 162, 235, 0.2)',
-                ],
-                borderColor: [
-                'rgba(54, 162, 235, 1)',
-                ],
-                borderWidth: 2,
-                maxBarThickness: 30,
-              },
-              {
-                label: '% Of Population Fully Vaccinated',
-                data: [2.8, 11.2, 52.1, 49.4, 77.9],
-                fill: false,
-                backgroundColor: [
-                  'rgba(255, 159, 64, 0.2)'
-                  ,
-                  ],
-                  borderColor: [
-                  'rgba(255, 159, 64, 1)'
-                  ],
-                  borderWidth: 2,
-                  maxBarThickness: 30,
-              }
-
-            ],
-          }}
-
-          options={{
-            indexAxis: 'y',
-            // Elements options apply to all of the options unless overridden in a dataset
-            // In this case, we are setting the border of each horizontal bar to be 2px wide
-            elements: {
-              bar: {
-                borderWidth: 2,
-              }
-            },
-            responsive: true,
-            plugins: {
-              legend: {
-                position: 'right',
-              }
-            }
-          }}
-        />
-    </div>
+   <div>
+     
+   </div>
   )
 }
 

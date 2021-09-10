@@ -5,6 +5,9 @@ import React from "react"
 import CountriesLine from "../Components/Graphs/Line"
 import CountriesBar from "../Components/Graphs/Bar"
 import CountriesHBar from "../Components/Graphs/HBar"
+import { Bar } from 'react-chartjs-2';
+import { Line } from 'react-chartjs-2';
+
 
 // For cards
 import { Grid, Card, CardActions, Typography, CardHeader } from '@material-ui/core'
@@ -177,7 +180,7 @@ export default function CountriesSummary() {
   temp.sort();
   var recentDay = temp[temp.length - 1];
   recentDay = new Date(recentDay);
-  
+
   for (const country of countriesSummary) {
     var dayInArray = new Date(country['Date']);
     if (dayInArray.getTime() >= sevenDayAgo.getTime() && dayInArray.getTime() <= recentDay.getTime()) {
@@ -257,7 +260,7 @@ export default function CountriesSummary() {
   const classes = useStyles();
 
   return (
-    <Grid container spacing={6} style={{ paddingTop: "20px"}} className={classes.root}>
+    <Grid container spacing={6} style={{ paddingTop: "20px" }} className={classes.root}>
       <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <Grid
           container
@@ -266,23 +269,89 @@ export default function CountriesSummary() {
         >
           <Grid item>
             <Card
-                className={classes.paper}
-                style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
-              >
-                <CardHeader
-                  className={classes.bot}
-                  title=
-                  {
-                    <Typography variant="h5"><b>Vaccinated People In South East Countries</b></Typography>
-                  }
-                />
-                <CountriesHBar />
-                <CardActions className={classes.bot} />
-              </Card>
-            </Grid>
+              className={classes.paper}
+              style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
+            >
+              <CardHeader
+                className={classes.bot}
+                title=
+                {
+                  <Typography variant="h5"><b>Vaccinated People In South East Countries</b></Typography>
+                }
+              />
+              <div>
+                <Bar
+                  data={{
+                    labels: ['Vietnam', 'Thailand', 'Cambodia', 'Malaysia', 'Singapore'],
+                    datasets: [
+                      {
+                        label: 'Doses Given In Million',
+                        data: [20.2, 31.8, 19.2, 55, 36.1],
+                        fill: false,
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Fully Vaccinated In Million',
+                        data: [2.73, 7.78, 8.59, 15.8, 4.44],
+                        fill: false,
+                        backgroundColor: [
+                          'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderColor: [
+                          'rgba(54, 162, 235, 1)',
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: '% Of Population Fully Vaccinated',
+                        data: [2.8, 11.2, 52.1, 49.4, 77.9],
+                        fill: false,
+                        backgroundColor: [
+                          'rgba(255, 159, 64, 0.2)'
+                          ,
+                        ],
+                        borderColor: [
+                          'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      }
 
-            {/* Line chart */}
-            <Grid item>
+                    ],
+                  }}
+
+                  options={{
+                    indexAxis: 'y',
+                    // Elements options apply to all of the options unless overridden in a dataset
+                    // In this case, we are setting the border of each horizontal bar to be 2px wide
+                    elements: {
+                      bar: {
+                        borderWidth: 2,
+                      }
+                    },
+                    responsive: true,
+                    plugins: {
+                      legend: {
+                        position: 'right',
+                      }
+                    }
+                  }}
+                />
+              </div>
+              <CardActions className={classes.bot} />
+            </Card>
+          </Grid>
+
+          {/* Line chart */}
+          <Grid item>
             <Card
               className={classes.paper}
               style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
@@ -294,28 +363,250 @@ export default function CountriesSummary() {
                   <Typography variant="h5"><b>Total Death Cases From End Of June To Now</b></Typography>
                 }
               />
-              <CountriesLine />
+              < div>
+                <Line
+                  data={{
+                    labels: getMonth(vietNamSummary),
+                    datasets: [
+                      {
+                        label: 'Vietnam Total Cases ',
+                        data: getCountryConfirmedDeath(vietNamSummary),
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+                        ],
+                        borderColor: [
+                          'rgba(255, 99, 132, 1)',
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Malaysia Total Cases ',
+                        data: getCountryConfirmedDeath(malaysiaSummary),
+                        backgroundColor: [
+                          'rgba(255, 159, 64, 0.2)'
+                          ,
+                        ],
+                        borderColor: [
+                          'rgba(255, 159, 64, 1)'
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Cambodia Total Cases ',
+                        data: getCountryConfirmedDeath(cambodiaSummary),
+                        backgroundColor: [
+                          'rgba(153, 102, 255, 0.2)',
+
+                        ],
+                        borderColor: [
+                          'rgba(153, 102, 255, 1)',
+
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Singapore Total Cases ',
+                        data: getCountryConfirmedDeath(singaporeSummary),
+                        backgroundColor: [
+                          'rgba(75, 192, 192, 0.2)',
+
+                        ],
+                        borderColor: [
+                          'rgba(75, 192, 192, 1)',
+
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Thailand Total Case',
+                        data: getCountryConfirmedDeath(thaiLandSummary),
+                        backgroundColor: [
+                          'rgba(54, 162, 235, 0.2)',
+                        ],
+                        borderColor: [
+                          'rgba(54, 162, 235, 1)',
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      }
+                    ],
+                  }}
+                  height={600}
+                  width={600}
+                  options={{
+                    maintainAspectRatio: false,
+                    plugins: {
+                      legend: {
+                        display: true,
+                        labels: {
+                          color: 'rgb(255, 99, 132)',
+                          font: {
+                            size: 18
+                          }
+                        }
+                      }
+                    },
+                    scales: {
+                      yAxes: [
+                        {
+                          color: 'red',
+                          font: {
+                            size: 25
+                          },
+                          ticks: {
+                            tickColor: 'red',
+                            beginAtZero: false,
+                          },
+                        },
+                      ],
+                    },
+                    legend: {
+                      labels: {
+                        fontSize: 25,
+                      },
+                    },
+                  }}
+                />
+              </div>
               <CardActions className={classes.bot} />
             </Card>
-            </Grid>
+          </Grid>
 
-            {/* Bar chart */}
-            <Grid item>
-              <Card
-                className={classes.paper}
-                style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
-              >
-                <CardHeader
-                  className={classes.bot}
-                  title=
-                  {
-                    <Typography variant="h5"><b>Total Confirmed Cases For The Last 7 Days</b></Typography>
-                  }
+          <Grid item>
+            <Card
+              className={classes.paper}
+              style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
+            >
+              <CardHeader
+                className={classes.bot}
+                title=
+                {
+                  <Typography variant="h5"><b>Total Confirmed Cases For The Last 7 Days</b></Typography>
+                }
+              />
+              <div className="Bar">
+                <Bar
+                  data={{
+                    labels: label,
+                    datasets: [
+                      {
+                        label: 'Vietnam Total Cases ',
+                        data: getCountryConfirmedCases(vietNamCollection),
+                        backgroundColor: [
+                          'rgba(255, 99, 132, 0.2)',
+
+                        ],
+                        borderColor: [
+                          'rgba(255, 99, 132, 1)',
+
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Malaysia Total Cases ',
+                        data: getCountryConfirmedCases(malaysiaCollection),
+                        backgroundColor: [
+                          'rgba(255, 159, 64, 0.2)'
+                          ,
+                        ],
+                        borderColor: [
+                          'rgba(255, 159, 64, 1)'
+
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Cambodia Total Cases ',
+                        data: getCountryConfirmedCases(cambodiaCollection),
+                        backgroundColor: [
+                          'rgba(153, 102, 255, 0.2)',
+
+                        ],
+                        borderColor: [
+                          'rgba(153, 102, 255, 1)',
+
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Singapore Total Cases ',
+                        data: getCountryConfirmedCases(singaporeCollection),
+                        backgroundColor: [
+                          'rgba(75, 192, 192, 0.2)',
+
+                        ],
+                        borderColor: [
+                          'rgba(75, 192, 192, 1)',
+
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      },
+                      {
+                        label: 'Thailand Total Case',
+                        data: getCountryConfirmedCases(thailandCollection),
+                        backgroundColor: [
+
+                          'rgba(54, 162, 235, 0.2)',
+
+                        ],
+                        borderColor: [
+
+                          'rgba(54, 162, 235, 1)',
+
+                        ],
+                        borderWidth: 2,
+                        maxBarThickness: 30,
+                      }
+                    ],
+                  }}
+                  height={600}
+                  width={600}
+                  options={{
+                    maintainAspectRatio: false,
+                    plugins: {
+                      legend: {
+                        display: true,
+                        labels: {
+                          color: 'rgb(255, 99, 132)',
+                          font: {
+                            size: 18
+                          }
+                        }
+                      }
+                    },
+                    scales: {
+                      yAxes: [
+                        {
+                          color: 'red',
+                          font: {
+                            size: 25
+                          },
+                          ticks: {
+                            tickColor: 'red',
+                            beginAtZero: false,
+                          },
+                        },
+                      ],
+                    },
+                    legend: {
+                      labels: {
+                        fontSize: 25,
+                      },
+                    },
+                  }}
                 />
-                <CountriesBar />
-                <CardActions className={classes.bot} />
-              </Card>
-            </Grid>
+              </div>
+              <CardActions className={classes.bot} />
+            </Card>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
