@@ -67,7 +67,7 @@ const UserLogin = () => {
             <Grid
                 container
                 spacing={2}
-                style={{ paddingTop: "15%", paddingBottom: "8%",paddingLeft: "50px", paddingRight: "50px" }}
+                style={{ marginTop: "15%", marginBottom: "8%",paddingLeft: "50px", paddingRight: "50px" }}
                 className={classes.root}
                 justifyContent="center"
             >
@@ -99,10 +99,14 @@ const UserLogin = () => {
                                             <Login />
                                             <Typography style={{color:"#FF8C00", fontWeight: 'bold', letterSpacing:"2px"}}>
                                                 Don't have an account?
-                                            </Typography>
-                                            <Typography style={{color:"#7F53AC", letterSpacing:"2px"}}>
                                                 <Link component={RouterLink} to="/signup">
                                                     Sign up here
+                                                </Link>
+                                            </Typography>
+                                            <Typography style={{color:"#FF8C00", fontWeight: 'bold', letterSpacing:"2px"}}>
+                                                Forgot your password?
+                                                <Link component={RouterLink} to="/forgotpassword">
+                                                    Recover password
                                                 </Link>
                                             </Typography>
                                         </Container>

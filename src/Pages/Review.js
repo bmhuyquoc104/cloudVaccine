@@ -3,6 +3,7 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as AWS from 'aws-sdk'
+import Fade from '@material-ui/core/Fade';
 
 import Button from '@material-ui/core/Button';
 
@@ -123,6 +124,7 @@ export default function Review() {
         }
     };
 
+    const checked = React.useState(true);
     const [spacing, setSpacing] = React.useState(2);
     const classes = useStyles();
     
@@ -130,13 +132,14 @@ export default function Review() {
         <div>
             <Grid container spacing={2} style={{ paddingTop: "20px", paddingLeft: "50px", paddingRight: "50px" }} className={classes.root}>
                 <Grid item xs={12}>
-
+                    
                     <ReviewModal />
                     <br></br>
                     <Grid container justifyContent="center" spacing={spacing}>
                         {reviews.map((review, idx) => {
                             return (
                                 <Grid key={`review${idx}`} item>
+                                    <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                                     <Card
                                         className={classes.paper}
                                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
@@ -186,6 +189,7 @@ export default function Review() {
                                          
                                         </CardActions>
                                     </Card>
+                                    </Fade>
                                 </Grid>
                             )
                         })}
