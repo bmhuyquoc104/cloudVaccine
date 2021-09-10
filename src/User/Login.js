@@ -1,6 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { AccountContext } from './Accounts';
 
+// Modals
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+
 import {
   Box,
   Button,
@@ -61,16 +65,18 @@ export default function Login() {
       })
   };
 
+  const show = React.useState(true);
+
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      {/* <form onSubmit={onSubmit}> */}
         {/* <input
           type="email"
           value={email}
           onChange={event => setEmail(event.target.value)}
           placeholder="Email"
         /> */}
-        <TextField
+        {/* <TextField
           fullWidth
           label="Email Address"
           margin="normal"
@@ -80,7 +86,7 @@ export default function Login() {
           placeholder='tiemchungcovid19@gmail.com'
           value={email}
           variant="outlined"
-        />
+        /> */}
         {/* Old password field */}
         {/* <input
           type="password"
@@ -88,7 +94,7 @@ export default function Login() {
           onChange={event => setPassword(event.target.value)}
           placeholder="Password"
         /> */}
-        <TextField
+        {/* <TextField
           fullWidth
           label="Password"
           margin="normal"
@@ -98,7 +104,42 @@ export default function Login() {
           value={password}
           placeholder="•••••••"
           variant="outlined"
-        />
+        /> */}
+        <Form noValidate>
+
+            <Form.Group className="mb-3" controlId="formBasicEmail" style={{color: '#FE6B8B', fontWeight: 'bold' }}>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                name="email"
+                type="email"
+                placeholder="tiemchungcovid19@gmail.com"
+                required
+                onChange={event => setEmail(event.target.value)}
+                value={email}
+                pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+              />
+              <Form.Control.Feedback type="invalid">
+                Please provide a valid email.
+              </Form.Control.Feedback>
+              <Form.Text className="text-muted">
+              </Form.Text>
+            </Form.Group>
+
+            <Form.Group className="mb-3" controlId="formBasicFullName" style={{color: '#FE6B8B', fontWeight: 'bold' }}>
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                name="password"
+                type="password"
+                placeholder="•••••••"
+                required
+                onChange={event => setPassword(event.target.value)}
+                value={password}
+              />
+              <Form.Control.Feedback type="invalid">
+                Wrong password.
+              </Form.Control.Feedback>
+            </Form.Group>
+        </Form>
 
         {/* // Old button
         <button type='submit'> Sign in now</button> */}
@@ -118,7 +159,7 @@ export default function Login() {
           </Button>
         </Box>
         
-      </form>
+      {/* </form> */}
     </div>
   );
 };

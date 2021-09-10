@@ -5,6 +5,7 @@ import ForgotPassword from "../User/ForgotPassword";
 
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import image from '../Images/cases.jpg';
 
 import {
     Box,
@@ -18,7 +19,8 @@ import {
     CardActions,
     CardContent,
     CardHeader,
-    CardActionArea
+    CardActionArea,
+    CardMedia
 } from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -71,10 +73,10 @@ const UserLogin = () => {
                 className={classes.root}
                 justifyContent="center"
             >
-                <Grid item xs={12}>
+                <Grid item xs={8}>
                     <Card
                         className={classes.paper}
-                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
+                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", height: "65vh"}}
                     >
                         <CardHeader
                             className={classes.bot}
@@ -82,6 +84,7 @@ const UserLogin = () => {
                                 <Typography
                                 variant="h4"
                                 style={{fontWeight: 'bold',     letterSpacing:"2px"}}
+                                align="center"
                                 >
                                     Sign in
                                 </Typography>
@@ -97,13 +100,13 @@ const UserLogin = () => {
                                     >
                                         <Container maxWidth="sm">
                                             <Login />
-                                            <Typography style={{color:"#FF8C00", fontWeight: 'bold', letterSpacing:"2px"}}>
+                                            <Typography style={{color:"#FE6B8B", fontWeight: 'bold', letterSpacing:"2px"}}>
                                                 Don't have an account?
                                                 <Link component={RouterLink} to="/signup">
                                                     Sign up here
                                                 </Link>
                                             </Typography>
-                                            <Typography style={{color:"#FF8C00", fontWeight: 'bold', letterSpacing:"2px"}}>
+                                            <Typography style={{color:"#FE6B8B", fontWeight: 'bold', letterSpacing:"2px"}}>
                                                 Forgot your password?
                                                 <Link component={RouterLink} to="/forgotpassword">
                                                     Recover password
@@ -113,6 +116,21 @@ const UserLogin = () => {
                                     </Box>
                                 </Account>
                             </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={4}>
+                    <Card
+                        className={classes.paper}
+                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px",  height: "65vh"}}
+                    >
+                        <CardContent style={{padding: 0}}>
+                            <CardMedia 
+                            className={classes.media}
+                            image={image}
+                            style={{ width: "35vw", height: "65vh"}}
+                            alt="..."
+                            />
+                        </CardContent>
                     </Card>
                     <br></br>
                 </Grid>
