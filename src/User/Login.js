@@ -2,20 +2,13 @@ import React, { useState, useContext } from 'react';
 import { AccountContext } from './Accounts';
 
 // Modals
-import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 
 import {
   Box,
   Button,
-  Container,
-  Grid,
-  Link,
-  TextField,
-  Typography
 } from '@material-ui/core';
 
-import SendIcon from '@material-ui/icons/Send';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -106,7 +99,6 @@ export default function Login() {
           variant="outlined"
         /> */}
         <Form noValidate>
-
             <Form.Group className="mb-3" controlId="formBasicEmail" style={{color: '#FE6B8B', fontWeight: 'bold' }}>
               <Form.Label>Email</Form.Label>
               <Form.Control

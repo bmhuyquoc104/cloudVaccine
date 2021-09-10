@@ -62,7 +62,13 @@ const UserLogin = () => {
     const classes = useStyles();
     return (
         <>
-            <h1>Please Sign In And Start Enjoy Our Service</h1>
+            <Typography
+                variant="h3"
+                style={{fontWeight: 'bold', letterSpacing:"2px", color: "white", marginTop: "10vh", marginBottom: "-15vh"}}
+                align="center"
+            >
+                Sign In And Enjoy Our Services
+            </Typography>
             <Helmet>
                 <title>Login in the Dashboard</title>
             </Helmet>
@@ -80,15 +86,15 @@ const UserLogin = () => {
                     >
                         <CardHeader
                             className={classes.bot}
-                            title={
-                                <Typography
-                                variant="h4"
-                                style={{fontWeight: 'bold',     letterSpacing:"2px"}}
-                                align="center"
-                                >
-                                    Sign in
-                                </Typography>
-                            }
+                            // title={
+                            //     <Typography
+                            //     variant="h4"
+                            //     style={{fontWeight: 'bold',     letterSpacing:"2px"}}
+                            //     align="center"
+                            //     >
+                            //         Sign in
+                            //     </Typography>
+                            // }
                             subtitle={subtitle}
                             color="secondary"
                             style={{fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0}}

@@ -47,6 +47,7 @@ import Home from "../../Pages/Home";
 import Signin from "../../Pages/Login";
 import Signup from "../../Pages/Signup";
 import SettingAccounts from '../../Pages/SettingAccounts';
+import ForgotPassword from "../../User/ForgotPassword"
 
 import {
     BrowserRouter as Router,
@@ -248,6 +249,11 @@ function Sidenav() {
                     <Route path="/signup">
                         <Container>
                             <Signup />
+                        </Container>
+                    </Route>
+                    <Route path="/forgotpassword">
+                        <Container>
+                            <ForgotPassword />
                         </Container>
                     </Route>
                 </Switch>
