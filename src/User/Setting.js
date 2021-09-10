@@ -3,8 +3,9 @@ import { AccountContext } from "./Accounts";
 import ChangePassword from "./ChangePassword";
 import ChangeEmail from "./ChangeEmail";
 
-export default () => {
-  const [loggedIn, setLoggedIn] = useState(true);
+
+export default function Setting() {
+  const [loggedIn, setLoggedIn] = useState(false);
 
   const { getSession } = useContext(AccountContext);
 
@@ -12,7 +13,10 @@ export default () => {
     getSession().then(() => {
       setLoggedIn(true);
     });
-  }, []);
+  },
+  );
+// }, []);
+
 
   return (
     <div>

@@ -7,10 +7,11 @@ import {
 
 import AccountProfile from '../Components/account/AccountProfile';
 import AccountProfileDetails from '../Components/account/AccountProfileDetail';
+import SettingAccount from '../Pages/SettingAccounts';
 
 const Account = () => (
   <div>
-    <h2 style= {{color:"red"}} >Chuyển trang Setting accout qua trang này nha Hưng</h2>
+    <SettingAccount />
   </div>
 );
 

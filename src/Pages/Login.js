@@ -25,26 +25,6 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import SendIcon from '@material-ui/icons/Send';
 
-// export default () => {
-//     // const navigate = useNavigate();
-
-//     return (
-//         <div>
-//         <Helmet>
-//             <title>Login into dashboard</title>
-//         </Helmet>
-//         <Account>
-//             <Box sx={{backgroundColor: 'background.default', display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center'}}>
-//                 <Container maxWidth="sm">
-//                     <Login />
-//                     <ForgotPassword />
-//                 </Container>
-//             </Box>
-//         </Account>
-//         </div>
-//     );
-// };
-
 const useStyles = makeStyles((theme) => ({
     control: {
         padding: theme.spacing(2),
@@ -87,7 +67,7 @@ const UserLogin = () => {
             <Grid
                 container
                 spacing={2}
-                style={{ paddingTop: "9.75%", paddingBottom: "7%",paddingLeft: "50px", paddingRight: "50px" }}
+                style={{ paddingTop: "15%", paddingBottom: "8%",paddingLeft: "50px", paddingRight: "50px" }}
                 className={classes.root}
                 justifyContent="center"
             >
@@ -125,17 +105,10 @@ const UserLogin = () => {
                                                     Sign up here
                                                 </Link>
                                             </Typography>
-                                            {/* <Typography variant="body1">
-                                                Forgot your password?                                      
-                                            </Typography>
-                                            <ForgotPassword /> */}
                                         </Container>
                                     </Box>
                                 </Account>
                             </CardContent>
-                        {/* <CardActions className={classes.bot}>
-                            <Typography variant="body1" className={classes.bot} variant="h7" style={{ marginTop: "15px", paddingLeft: "15px" }}>   </Typography>
-                        </CardActions> */}
                     </Card>
                     <br></br>
                 </Grid>
