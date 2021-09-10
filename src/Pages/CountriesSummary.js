@@ -275,6 +275,7 @@ export default function CountriesSummary() {
             >
               <CardHeader
                 className={classes.bot}
+                style ={{textAlign: "center"}}
                 title=
                 {
                   <Typography variant="h5"><b>Vaccinated People In South East Countries</b></Typography>
@@ -290,10 +291,7 @@ export default function CountriesSummary() {
                         data: [20.2, 31.8, 19.2, 55, 36.1],
                         fill: false,
                         backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                        ],
-                        borderColor: [
-                          'rgba(255, 99, 132, 1)',
+                          'rgb(39,70,135)',
                         ],
                         borderWidth: 2,
                         maxBarThickness: 30,
@@ -303,10 +301,7 @@ export default function CountriesSummary() {
                         data: [2.73, 7.78, 8.59, 15.8, 4.44],
                         fill: false,
                         backgroundColor: [
-                          'rgba(54, 162, 235, 0.2)',
-                        ],
-                        borderColor: [
-                          'rgba(54, 162, 235, 1)',
+                          'rgb(178,34,34)',
                         ],
                         borderWidth: 2,
                         maxBarThickness: 30,
@@ -316,11 +311,7 @@ export default function CountriesSummary() {
                         data: [2.8, 11.2, 52.1, 49.4, 77.9],
                         fill: false,
                         backgroundColor: [
-                          'rgba(255, 159, 64, 0.2)'
-                          ,
-                        ],
-                        borderColor: [
-                          'rgba(255, 159, 64, 1)'
+                          'rgb(0,100,0)',
                         ],
                         borderWidth: 2,
                         maxBarThickness: 30,
@@ -359,6 +350,7 @@ export default function CountriesSummary() {
             >
               <CardHeader
                 className={classes.bot}
+                style ={{textAlign: "center"}}
                 title=
                 {
                   <Typography variant="h5"><b>Total Death Cases From End Of June To Now</b></Typography>
@@ -372,67 +364,45 @@ export default function CountriesSummary() {
                       {
                         label: 'Vietnam Total Cases ',
                         data: getCountryConfirmedDeath(vietNamSummary),
-                        backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
-                        ],
                         borderColor: [
-                          'rgba(255, 99, 132, 1)',
+                          'rgb(178,34,34)',
                         ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
+                      
                       },
                       {
                         label: 'Malaysia Total Cases ',
                         data: getCountryConfirmedDeath(malaysiaSummary),
-                        backgroundColor: [
-                          'rgba(255, 159, 64, 0.2)'
-                          ,
-                        ],
                         borderColor: [
-                          'rgba(255, 159, 64, 1)'
+                          'rgb(39,70,135)',
                         ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
+                        
                       },
                       {
                         label: 'Cambodia Total Cases ',
                         data: getCountryConfirmedDeath(cambodiaSummary),
-                        backgroundColor: [
-                          'rgba(153, 102, 255, 0.2)',
-
-                        ],
                         borderColor: [
-                          'rgba(153, 102, 255, 1)',
+                          'rgb(128,0,128)',
 
                         ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
+                        
                       },
                       {
                         label: 'Singapore Total Cases ',
                         data: getCountryConfirmedDeath(singaporeSummary),
-                        backgroundColor: [
-                          'rgba(75, 192, 192, 0.2)',
-
-                        ],
                         borderColor: [
-                          'rgba(75, 192, 192, 1)',
-
+                          'rgb(218,165,32)'
                         ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
+                        
+                        fill: false,
+                        tension: 0.1
                       },
                       {
                         label: 'Thailand Total Case',
                         data: getCountryConfirmedDeath(thaiLandSummary),
-                        backgroundColor: [
-                          'rgba(54, 162, 235, 0.2)',
-                        ],
                         borderColor: [
-                          'rgba(54, 162, 235, 1)',
+                          'rgb(0,100,0)',
                         ],
-                        borderWidth: 2,
-                        maxBarThickness: 30,
+                    
                       }
                     ],
                   }}
@@ -484,6 +454,7 @@ export default function CountriesSummary() {
             >
               <CardHeader
                 className={classes.bot}
+                style ={{textAlign: "center"}}
                 title=
                 {
                   <Typography variant="h5"><b>Total Confirmed Cases For The Last 7 Days</b></Typography>
@@ -498,13 +469,10 @@ export default function CountriesSummary() {
                         label: 'Vietnam Total Cases ',
                         data: getCountryConfirmedCases(vietNamCollection),
                         backgroundColor: [
-                          'rgba(255, 99, 132, 0.2)',
+                          'rgb(178,34,34)',
 
                         ],
-                        borderColor: [
-                          'rgba(255, 99, 132, 1)',
-
-                        ],
+                      
                         borderWidth: 2,
                         maxBarThickness: 30,
                       },
@@ -512,13 +480,12 @@ export default function CountriesSummary() {
                         label: 'Malaysia Total Cases ',
                         data: getCountryConfirmedCases(malaysiaCollection),
                         backgroundColor: [
-                          'rgba(255, 159, 64, 0.2)'
+                          'rgb(39,70,135)'
+
+                         
                           ,
                         ],
-                        borderColor: [
-                          'rgba(255, 159, 64, 1)'
-
-                        ],
+                    
                         borderWidth: 2,
                         maxBarThickness: 30,
                       },
@@ -526,13 +493,10 @@ export default function CountriesSummary() {
                         label: 'Cambodia Total Cases ',
                         data: getCountryConfirmedCases(cambodiaCollection),
                         backgroundColor: [
-                          'rgba(153, 102, 255, 0.2)',
+                          'rgb(128,0,128)',
 
                         ],
-                        borderColor: [
-                          'rgba(153, 102, 255, 1)',
-
-                        ],
+                      
                         borderWidth: 2,
                         maxBarThickness: 30,
                       },
@@ -540,13 +504,10 @@ export default function CountriesSummary() {
                         label: 'Singapore Total Cases ',
                         data: getCountryConfirmedCases(singaporeCollection),
                         backgroundColor: [
-                          'rgba(75, 192, 192, 0.2)',
-
+                          'rgb(218,165,32)'
+                          
                         ],
-                        borderColor: [
-                          'rgba(75, 192, 192, 1)',
-
-                        ],
+                      
                         borderWidth: 2,
                         maxBarThickness: 30,
                       },
@@ -555,14 +516,10 @@ export default function CountriesSummary() {
                         data: getCountryConfirmedCases(thailandCollection),
                         backgroundColor: [
 
-                          'rgba(54, 162, 235, 0.2)',
+                          'rgb(0,100,0)',
 
                         ],
-                        borderColor: [
-
-                          'rgba(54, 162, 235, 1)',
-
-                        ],
+                     
                         borderWidth: 2,
                         maxBarThickness: 30,
                       }
