@@ -60,7 +60,7 @@ const SignUp = () => {
   // };
   return (
     <div className="form">
-      <Typography variant="body1" style={{ fontFamily: 'cursive' }}>
+      <Typography variant="body1" style={{color:"#FF8C00", fontWeight: 'bold', letterSpacing:"2px"}}>
         Please fill in this form to create an account
         {' '}
       </Typography>
