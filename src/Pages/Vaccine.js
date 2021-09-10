@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   paper:
   {
     width: "24vw",
-    height: "59vh"
+    height: "70vh"
   },
   control:
   {
@@ -71,32 +71,32 @@ var ses = new AWS.SES();
 
 const putData = (tableName, data) => {
   var params = {
-      TableName: tableName,
-      Item: data
+    TableName: tableName,
+    Item: data
   }
 
   docClient.put(params, function (err, data) {
-      if (err) {
-          console.log('Error', err)
-      } else {
-          console.log('Success', data)
-          alert("You have successfully added new vaccine.")
-      }
+    if (err) {
+      console.log('Error', err)
+    } else {
+      console.log('Success', data)
+      alert("You have successfully added new vaccine.")
+    }
   })
 }
 
 const putData2 = (tableName, data) => {
   var params = {
-      TableName: tableName,
-      Item: data
+    TableName: tableName,
+    Item: data
   }
 
   docClient.put(params, function (err, data) {
-      if (err) {
-          console.log('Error', err)
-      } else {
-          console.log('Success', data)
-      }
+    if (err) {
+      console.log('Error', err)
+    } else {
+      console.log('Success', data)
+    }
   })
 }
 
@@ -247,88 +247,102 @@ export default function Vaccine() {
     <Grid container spacing={6} style={{ paddingTop: "20px" }} className={classes.root}>
       <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="Vaccine">
-          <Button
-            onClick={handleShow}
-            style={{ border: 0, fontWeight: 'bold', marginBottom: '20px', backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)' }}
-            size="lg"
-          >
-            Add new vaccine
-          </Button>
+
           <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
             <Modal.Header
               closeButton
               style={{ backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
             >
-              <Modal.Title style={{ fontWeight: 'bold', color: 'white' }}>Vaccine Addition</Modal.Title>
+              <Modal.Title style={{ fontWeight: 'bold', color: 'white', justifyContent: 'center' }}>New Consult</Modal.Title>
             </Modal.Header>
             <Form id="myform" noValidate validated={validated} onSubmit={handleSubmit} >
               <Modal.Body>
                 <Form.Group className="mb-3" controlId="formBasicFullName">
-                  <Form.Label>Country</Form.Label>
+                  <Form.Label>Full Name</Form.Label>
                   <Form.Control
                     type="text"
                     required
-                    placeholder="Enter Country"
-                    onChange={(e) => initialState['country'] = e.target.value}
+                    placeholder="Enter Full Name"
+                    onChange={(e) => initialState['fullName'] = e.target.value}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please provide a valid country.
+                    Please provide a valid fullName.
                   </Form.Control.Feedback>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicDate">
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    as="textarea"
-                    placeholder="Enter Description"
-                    required
-                    onChange={(e) => initialState['description'] = e.target.value}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid description.
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group className="mb-3" controlId="formBasicFullName">
-                  <Form.Label>Effecientcy</Form.Label>
-                  <Form.Control
-                    type="text"
-                    required
-                    pattern="\b(?<!\.)(?!0+(?:\.0+)?%)(?:\d|[1-9]\d|100)(?:(?<!100)\.\d+)?%"
-                    placeholder="Enter percentage out of 100"
-                    onChange={(e) => initialState['effecientcy'] = e.target.value}
-                  />
-                  <Form.Control.Feedback type="invalid">
-                    Please provide a valid efficiency number (number + %).
-                  </Form.Control.Feedback>
-                </Form.Group>
+               
 
                 <Form.Group className="mb-3" controlId="formBasicEmail">
-                  <Form.Label>Name</Form.Label>
+                  <Form.Label>Email</Form.Label>
                   <Form.Control
-                    type="text"
-                    placeholder="Enter name"
+                    type="email"
+                    placeholder="Enter email"
                     required
-                    onChange={(e) => initialState['name'] = e.target.value}
+                    pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                    onChange={(e) => initialState['email'] = e.target.value}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please provide a valid name.
+                    Please provide a valid email.
                   </Form.Control.Feedback>
                   <Form.Text className="text-muted">
                   </Form.Text>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicImage">
-                  <Form.Label>Image</Form.Label>
+                <Form.Group className="mb-3" controlId="formBasicPhone">
+                  <Form.Label>Phone</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="https://"
+                    pattern="(84|0[3|5|7|8|9])+([0-9]{8})\b"
+                    placeholder="Phone"
                     required
-                    pattern="[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)"
-                    onChange={(e) => initialState['img'] = e.target.value}
+                    onChange={(e) => initialState['phone'] = e.target.value}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please upload vaccine image.
+                    Please provide a Vietnamese phone number.
+                  </Form.Control.Feedback>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicGender">
+                  <Form.Label>Inquiry</Form.Label>
+                  <Form.Select
+                    required
+                    onChange={(e) => initialState['inquiry'] = e.target.value}
+                  >
+                    <option></option>
+                    <option value="M">Vaccine Price</option>
+                    <option value="F">Vaccine Safety</option>
+                    <option value="O">Which type of vaccine should I choose</option>
+                  </Form.Select>
+                  <Form.Control.Feedback type="invalid">
+                    Please choose a sample Inquiry for consult.
+                  </Form.Control.Feedback>
+                  <Form.Text className="text-muted">
+                  </Form.Text>
+                </Form.Group>
+
+                <Form.Group className="mb-3" controlId="formBasicDate">
+                  <Form.Label>Message</Form.Label>
+                  <Form.Control
+                    as="textarea"
+                    placeholder="Enter Message"
+                    required
+                    onChange={(e) => initialState['message'] = e.target.value}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a valid description.
+                  </Form.Control.Feedback>
+                </Form.Group>
+                
+                <Form.Group className="mb-3" controlId="formBasicDate">
+                  <Form.Label>Date of Consultation</Form.Label>
+                  <Form.Control
+                    type="date"
+                    placeholder="Enter Date Of Consultation"
+                    required
+                    onChange={(e) => initialState['dateOfConsult'] = e.target.value}
+                  />
+                  <Form.Control.Feedback type="invalid">
+                    Please provide a valid date of consultation.
                   </Form.Control.Feedback>
                 </Form.Group>
 
@@ -373,16 +387,34 @@ export default function Vaccine() {
                       <Typography className={classes.headText}><b>{vaccine.name}</b></Typography>
                       <Typography className={classes.text}><b>ID:</b> {vaccine.id}</Typography>
                       <Typography className={classes.text}><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
+                      <Typography className={classes.text}><b>Description:</b> {vaccine.description}</Typography>
                       <Typography className={classes.text}><b>Country:</b> {vaccine.country}</Typography>
                       <Button2
                         size="large"
-                        style={{color:"#ee9ca7",fontWeight: 'bold'}}
+                        style={{ color: "#ee9ca7", fontWeight: 'bold' }}
                         startIcon={<FavoriteIcon />}
                         className={classes.text}
                         onClick={() => addLike(idx)}
                       >
                         {vaccine.like}
                       </Button2>
+                      <div>
+                        <Button
+                          size="large"
+                          style={{ color: "white", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)', border: 0 }}
+                          className={classes.text}
+
+                        >
+                          Apply Vaccine
+                        </Button>
+                        <Button
+                          size="large"
+                          style={{ color: "white", fontWeight: 'bold', marginLeft: "30px", backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)' }}
+                          onClick={handleShow}
+                        >
+                          Book A Consult
+                        </Button>
+                      </div>
                     </CardContent>
                   </Card>
                 </Fade>

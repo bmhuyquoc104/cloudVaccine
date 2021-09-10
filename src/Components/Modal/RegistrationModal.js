@@ -196,7 +196,7 @@ export default function RegistrationModal() {
                 <option></option>
                 <option value="M">Male</option>
                 <option value="F">Female</option>
-                <option value="O">Andrew</option>
+                <option value="O">Other</option>
               </Form.Select>
               <Form.Control.Feedback type="invalid">
                 Please choose a gender.
