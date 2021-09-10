@@ -2,7 +2,6 @@ import React from "react";
 import { Account } from "../User/Accounts";
 import Login from "../User/Login";
 import ForgotPassword from "../User/ForgotPassword";
-
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import image from '../Images/cases.jpg';
@@ -63,6 +62,7 @@ const UserLogin = () => {
     const classes = useStyles();
     return (
         <>
+            <h1>Please Sign In And Start Enjoy Our Service</h1>
             <Helmet>
                 <title>Login in the Dashboard</title>
             </Helmet>
@@ -73,7 +73,8 @@ const UserLogin = () => {
                 className={classes.root}
                 justifyContent="center"
             >
-                <Grid item xs={8}>
+                <Grid item xs={8} 
+                    style={{maxWidth:"40%"}}>
                     <Card
                         className={classes.paper}
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", height: "65vh"}}
@@ -100,16 +101,16 @@ const UserLogin = () => {
                                     >
                                         <Container maxWidth="sm">
                                             <Login />
-                                            <Typography style={{color:"#FE6B8B", fontWeight: 'bold', letterSpacing:"2px"}}>
-                                                Don't have an account?
-                                                <Link component={RouterLink} to="/signup">
-                                                    Sign up here
+                                            <Typography style={{color:"#FE6B8B", fontWeight: '500',letterSpacing:"1px",fontSize:"13px"}}>
+                                                Don't Have An Account Yet?
+                                                <Link style={{color:"#FFA500", fontWeight: 'bold', letterSpacing:"3px",fontSize:"14px",marginLeft: "7px"}} component={RouterLink} to="/signup">
+                                                    SIGN UP HERE!!
                                                 </Link>
                                             </Typography>
-                                            <Typography style={{color:"#FE6B8B", fontWeight: 'bold', letterSpacing:"2px"}}>
-                                                Forgot your password?
-                                                <Link component={RouterLink} to="/forgotpassword">
-                                                    Recover password
+                                            <Typography style={{color:"#FE6B8B", fontWeight: '500', letterSpacing:"1px",fontSize:"13px",fontFamily:"Roboto"}}>
+                                                Forgot Your Password?
+                                                <Link style={{color:"	#FFA500", fontWeight: '700',fontSize:"14px",letterSpacing:"3px",marginLeft: "7px"}} component={RouterLink} to="/forgotpassword">
+                                                    RECOVER PASSWORD
                                                 </Link>
                                             </Typography>
                                         </Container>
@@ -127,7 +128,7 @@ const UserLogin = () => {
                             <CardMedia 
                             className={classes.media}
                             image={image}
-                            style={{ width: "35vw", height: "65vh"}}
+                            style={{ width: "40vw", height: "65vh"}}
                             alt="..."
                             />
                         </CardContent>

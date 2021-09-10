@@ -112,7 +112,7 @@ export default function Login() {
               <Form.Control
                 name="email"
                 type="email"
-                placeholder="tiemchungcovid19@gmail.com"
+                placeholder="username@gmail.com"
                 required
                 onChange={event => setEmail(event.target.value)}
                 value={email}
@@ -130,7 +130,7 @@ export default function Login() {
               <Form.Control
                 name="password"
                 type="password"
-                placeholder="•••••••"
+                placeholder="password"
                 required
                 onChange={event => setPassword(event.target.value)}
                 value={password}
@@ -148,14 +148,14 @@ export default function Login() {
             //className={classes.bot}
             fullWidth
             color="secondary"
-            style={{fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)', border: 0}}
+            style={{maxWidth:"30%", letterSpacing:"4px",fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #a88beb 20%, #f8ceec 70%)', border: 0}}
             // style={{ fontFamily: 'cursive',fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}
             align="center"
-            size="large"
             type="submit"
+            size = "medium"
             variant="contained"
           >
-            Sign in
+            Log In
           </Button>
         </Box>
         

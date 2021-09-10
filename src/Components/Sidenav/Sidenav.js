@@ -61,18 +61,20 @@ const useStyles = makeStyles ((theme) => ({
     drawerPaper:
     {
         width: 'inherit',
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        background: 'linear-gradient(45deg, #c33764 20%, #3a1c71  90%)',
     },
     link: {
         textDecoration: 'none',
         color: 'white',
         '&:hover': {
-            color: '#7F53AC'
+            color: "rgba(0,0,0,1.0)",
+            fontWeight: 'bold',
+            shadowColor:"1px 10px rgba(0,0,0,1.0)"
         }
     },
     header:
     {
-        color: '#7F53AC',
+        color: '#ee9ca7',
         fontWeight: 'bold',
         fontSize: '4vh',
     },

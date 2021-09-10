@@ -3,7 +3,6 @@ import { useState, useEffect } from "react"
 import React from "react"
 
 import DashGrid from "../Components/Graphs/Grid"
-import DashDoughnut from "../Components/Graphs/Doughnut"
 import SaigonPie from "../Components/Graphs/SaigonPie"
 import HanoiPie from "../Components/Graphs/HanoiPie"
 import { Doughnut } from 'react-chartjs-2';
@@ -219,7 +218,40 @@ export default function Dashboard() {
                         </Card>
                     </Grid>
 
-                    {/* Doughnut chart */}
+                    <Grid item>
+                        <Card
+                            className={classes.paper}
+                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
+                        >
+                            <CardHeader
+                                className={classes.bot}
+                                title=
+                                {
+                                    <Typography variant="h5"><b>Vaccine distribution in Sai Gon</b></Typography>
+                                }
+                            />
+                            <SaigonPie />
+                            <CardActions className={classes.bot} />
+                        </Card>
+                    </Grid>
+
+                    {/* Hanoi pie chart */}
+                    <Grid item>
+                        <Card
+                            className={classes.paper}
+                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
+                        >
+                            <CardHeader
+                                className={classes.bot}
+                                title=
+                                {
+                                    <Typography variant="h5"><b>Vaccine distribution in Ha Noi</b></Typography>
+                                }
+                            />
+                            <HanoiPie />
+                            <CardActions className={classes.bot} />
+                        </Card>
+                    </Grid>
                     <Grid item>
                         <Card
                             className={classes.paper}
@@ -270,42 +302,6 @@ export default function Dashboard() {
                                     }}
                                 />
                             </div>
-                            <CardActions className={classes.bot} />
-                        </Card>
-                    </Grid>
-
-                    {/* Saigon pie chart */}
-                    <Grid item>
-                        <Card
-                            className={classes.paper}
-                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
-                        >
-                            <CardHeader
-                                className={classes.bot}
-                                title=
-                                {
-                                    <Typography variant="h5"><b>Vaccine distribution in Sai Gon</b></Typography>
-                                }
-                            />
-                            <SaigonPie />
-                            <CardActions className={classes.bot} />
-                        </Card>
-                    </Grid>
-
-                    {/* Hanoi pie chart */}
-                    <Grid item>
-                        <Card
-                            className={classes.paper}
-                            style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", }}
-                        >
-                            <CardHeader
-                                className={classes.bot}
-                                title=
-                                {
-                                    <Typography variant="h5"><b>Vaccine distribution in Ha Noi</b></Typography>
-                                }
-                            />
-                            <HanoiPie />
                             <CardActions className={classes.bot} />
                         </Card>
                     </Grid>
