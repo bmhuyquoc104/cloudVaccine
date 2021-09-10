@@ -200,7 +200,7 @@ function Sidenav() {
                 <Switch>
                 <Route path="/account">
                         <Container>
-                            <SettingAccounts />
+                            <Account />
                         </Container>
                     </Route>
                     <Route path="/register">
