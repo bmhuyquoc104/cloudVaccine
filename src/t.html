@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AWS S3 File Upload</title>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.1.12.min.js"></script>
+</head>
+<body>
+    <input type="file" id="file-chooser" />
+    <button id="upload-button">Upload to S3</button>
+    <div id="results"></div>
+  
+<script type="text/javascript">
+const ENDPOINT_URL = "https://s3.pilw.io"
+const ACCESS_KEY_ID = "ENTER ACCESS KEY ID HERE"
+const ACCESS_KEY_SECRET = "ENTER ACCESS KEY SECRET"
+const BUCKET_NAME = "ENTER BUCKET NAME HERE"
+ 
+var bucket = new AWS.S3({
+    accessKeyId: 'AKIA4Y5CM62A3AGGGW2W',
+    secretAccessKey: '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',
+    endpoint: new AWS.Endpoint('s3.amazonaws.com'),
+    params: {
+        Bucket: 's3covidsummary'
+    }
+})
+ 
+var fileChooser = document.getElementById('file-chooser')
+var button = document.getElementById('upload-button')
+var results = document.getElementById('results')
+ 
+button.addEventListener('click', function() {
+    var file = fileChooser.files[0]
+    results.innerHTML = ''
+    if (!file) {
+        results.innerHTML = 'Nothing to upload.'
+        return
+    }
+    var params = {
+        Key: file.name,
+        ContentType: file.type,
+        Body: file,
+        ACL: 'public-read'
+    }
+    bucket.putObject(params, function(err, data) {
+        if (err) {
+            results.innerHTML = 'ERROR: ' + err;
+            return
+         }
+         listObjs()
+    })
+}, false)
+ 
+function listObjs() {
+    bucket.listObjects( function(err, data) {
+        if (err) {
+            results.innerHTML = 'ERROR: ' + err;
+            return
+        }
+        var objKeys = "";
+        data.Contents.forEach(function(obj) {
+            objKeys += obj.Key + "<br>"
+        });
+        results.innerHTML = objKeys
+    })
+}
+</script>
+</body>
+</html>

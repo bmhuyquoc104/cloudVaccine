@@ -138,7 +138,7 @@ export default function VaccineModal() {
               Data: "New vaccine update",
             },
           },
-          Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+          Source: "vaccinationprogramcloudproject@gmail.com", // SENDER_ADDRESS
           ReplyToAddresses: [
             /* more items */
           ],

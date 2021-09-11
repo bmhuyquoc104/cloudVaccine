@@ -26,7 +26,19 @@ const configuration = {
 AWS.config.update(configuration)
 
 var ses = new AWS.SES();
+ 
+var bucket = new AWS.S3({
+    accessKeyId: 'AKIA4Y5CM62A3AGGGW2W',
+    secretAccessKey: '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',
+    endpoint: new AWS.Endpoint('s3.amazonaws.com'),
+    params: {
+        Bucket: 's3covidsummary'
+    }
+})
 
+
+var fileChooser = document.getElementById('file-chooser')
+      
 const docClient = new AWS.DynamoDB.DocumentClient()
 const putData = (tableName, data) => {
   var params = {
@@ -78,6 +90,23 @@ export default function RegistrationModal() {
     } else {
       initialState['id'] = uuid();
       putData('vaccine-register', initialState);
+
+      var file = fileChooser.files[0]
+      var p = {
+          Key: file.name,
+          ContentType: file.type,
+          Body: file,
+          ACL: 'public-read'
+      }
+      bucket.putObject(p, function(err, data) {
+        if (err) {
+          alert("Error uploading data to S3: ", err);
+        } else {
+          alert("Successfully upload to S3");
+        }
+           
+      })
+
       const params = {
         Destination: {
           /* required */
@@ -107,7 +136,7 @@ export default function RegistrationModal() {
             Data: "Welcome new vaccinator",
           },
         },
-        Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+        Source: "vaccinationprogramcloudproject@gmail.com", // SENDER_ADDRESS
         ReplyToAddresses: [
           /* more items */
         ],
@@ -263,6 +292,10 @@ export default function RegistrationModal() {
                 Please provide a valid address.
               </Form.Control.Feedback>
             </Form.Group>
+
+            <input type="file" id="file-chooser" accept="image/*,.pdf"/>
+            <button id="upload-button">Upload to S3</button>
+            <div id="results"></div>
 
             <Form.Group className="mb-3" controlId="formBasicCheckbox">
               <Form.Check type="checkbox"
