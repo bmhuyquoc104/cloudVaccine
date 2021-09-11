@@ -5,7 +5,7 @@ import ChangeEmail from "./ChangeEmail";
 
 
 export default function Setting() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
 
   const { getSession } = useContext(AccountContext);
 

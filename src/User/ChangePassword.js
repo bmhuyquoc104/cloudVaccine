@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "./Accounts";
 
-export default () => {
+export default function ChangePassword() {
   const [password, setPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
 

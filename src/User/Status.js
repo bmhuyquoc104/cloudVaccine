@@ -67,10 +67,28 @@ export default function Status() {
   return (
     <div>
       {status ? (
-        <div>
-          You are logged in.
-          <button onClick={logout}>Logout</button>
-        </div>
+        <Grid container spacing={6} style={{ paddingTop: "20px", height: "100vh"}} className={classes.root} alignContent="center">
+        <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <Grid container justifyContent="center" alignContent="center" spacing={spacing}>
+            <Grid item>
+              <Typography variant="h1" className={classes.header} align="center">COVITRACK</Typography>
+              <Divider variant="middle" classes={{root: classes.divider}}/>
+
+              <Typography variant="h4" className={classes.header} align="center">
+              You are logged in
+              </Typography>
+              <Divider variant="middle" classes={{root: classes.divider}}/>
+            </Grid>
+          </Grid>
+            <Button
+              style={{ border: 0, fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)' }}
+              size="lg"
+              onClick={logout}
+            >
+              Log Out
+            </Button>
+        </Grid>
+      </Grid>
       ) : (
         <Grid container spacing={6} style={{ paddingTop: "20px", height: "100vh"}} className={classes.root} alignContent="center">
           <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
