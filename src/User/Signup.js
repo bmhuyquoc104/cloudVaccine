@@ -105,7 +105,7 @@ const SignUp = () => {
                 style={{fontWeight: 'bold', letterSpacing:"2px", color: "white", marginTop: "10vh", marginBottom: "-15vh"}}
                 align="center"
             >
-                Sign In And Enjoy Our Services <span style={{color: '#B22222'}}>!</span>
+                Please Sign Up And Explore Our Services <span style={{color: '#B22222'}}>!</span>
             </Typography>
             
 
@@ -117,7 +117,7 @@ const SignUp = () => {
                 className={classes.root}
                 justifyContent="center"
             >
-              <Grid item xs={5}>
+              <Grid item xs={4}>
                 <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                     <Card
                         className={classes.paper}
@@ -126,15 +126,15 @@ const SignUp = () => {
                         <CardContent style={{padding: 0}}>
                             <CardMedia 
                             className={classes.media}
-                            image={image}
-                            style={{ width: "40vw", height: "70vh"}}
+                            image={"https://i.imgur.com/jJgIwfp.jpg"}
+                            style={{ width: "24vw", height: "70vh"}}
                             alt="..."
                             />
                         </CardContent>
                     </Card>
                     </Fade>
                 </Grid>
-                <Grid item xs={5}>
+                <Grid item xs={4}>
                   <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                     <Card
                         className={classes.paper}
@@ -207,13 +207,7 @@ const SignUp = () => {
                               Signup
                             </Button>
                           </Box>
-                          <Form.Group className="mb-3" controlId="formBasicCheckbox">
-                            <Form.Check type="checkbox"
-                              label="I accept the Terms of Use and Privacy Policy"
-                              required
-                              feedback="You must agree before submitting."
-                            />
-                          </Form.Group>
+                      
 
                               <Typography style={{color:"#FE6B8B", fontWeight: '600',letterSpacing:"1px",fontSize:"14px"}}>
                                   Already have an account?<br/>

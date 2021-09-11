@@ -1,20 +1,6 @@
 import React from "react";
 // import Amplify from "aws-amplify";
 import SignUp from "../User/Signup";
-import { Link as RouterLink } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
-
-import {
-  Box,
-  Container,
-  Grid,
-  Link,
-  Typography,
-  Card,
-  CardContent,
-  CardHeader,
-  CardActionArea
-} from '@material-ui/core';
 
 import { makeStyles } from '@material-ui/core/styles';
 

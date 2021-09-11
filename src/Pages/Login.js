@@ -78,7 +78,7 @@ const UserLogin = () => {
                 className={classes.root}
                 justifyContent="center"
             >
-                <Grid item xs={5}>
+                <Grid item xs={4}>
                 <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                     <Card
                         className={classes.paper}
