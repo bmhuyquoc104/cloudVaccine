@@ -305,7 +305,7 @@ export default function ForgotPassword() {
                     type="password"
                     placeholder="Confirm new password"
                     required
-                    onChange={event => event => setConfirmPassword(event.target.value)}
+                    onChange={event => setConfirmPassword(event.target.value)}
                     value={confirmPassword}
                   />
                   <Form.Control.Feedback type="invalid">
