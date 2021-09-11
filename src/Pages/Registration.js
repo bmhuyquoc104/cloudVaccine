@@ -12,7 +12,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import { v4 as uuid } from 'uuid';
-
+import GetAppIcon from '@material-ui/icons/GetApp';
 // Icons
 import SendIcon from '@material-ui/icons/Send';
 
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bot:
   {
+    color: 'white',
     background: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)',
     border: 0,
     borderRadius: 3,
@@ -73,7 +74,7 @@ var bucket = new AWS.S3({
   secretAccessKey: 'RijJPrAkst+a132dzazw+u9ssMWZsbttvvcVOE32',
   endpoint: new AWS.Endpoint('s3.amazonaws.com'),
   params: {
-      Bucket: 's3covidsummary'
+    Bucket: 's3covidsummary'
   }
 })
 
@@ -129,23 +130,23 @@ export default function Registration() {
       e.stopPropagation();
     } else {
       initialState['id'] = uuid();
-     
+
       var fileChooser = document.getElementById('file-chooser')
 
       var file = fileChooser.files[0]
       var p = {
-          Key: file.name,
-          ContentType: file.type,
-          Body: file,
-          ACL: 'public-read'
+        Key: file.name,
+        ContentType: file.type,
+        Body: file,
+        ACL: 'public-read'
       }
-      bucket.putObject(p, function(err, data) {
+      bucket.putObject(p, function (err, data) {
         if (err) {
           console.log("Error uploading data to S3: ", err);
         } else {
           console.log("Successfully upload to S3");
         }
-           
+
       })
 
       const params = {
@@ -216,6 +217,11 @@ export default function Registration() {
           >
             <CardHeader
               className={classes.bot}
+              style={{ textAlign: "center" }}
+              title=
+              {
+                <Typography variant="h5"><b>Our Polices and Procedures</b></Typography>
+              }
             />
             <CardActionArea>
               <CardContent>
@@ -245,6 +251,13 @@ export default function Registration() {
                   Getting vaccinated yourself may also protect people around you, particularly people at increased risk for severe
                   illness from COVID-19.
                 </Typography>
+
+                <Divider variant="middle" classes={{ root: classes.divider }} />
+                <Typography color="secondary" variant="h6" style={{ marginTop: "10px", paddingLeft: "10px" }}><b>Health Declaration</b></Typography>
+                <Typography variant="body1" className={classes.info}>
+                  To received our vaccine. You must download and fill out the health declaration form below before applying for vaccine.
+                  <br /><br />
+                </Typography>
               </CardContent>
             </CardActionArea>
             <CardActions className={classes.bot}>
@@ -252,8 +265,17 @@ export default function Registration() {
                 size="medium"
                 endIcon={<SendIcon />}
                 className={classes.icon}
+                style={{ marginLeft: "3vw" }}
               >
                 Learn More
+              </Button>
+
+              <Button
+                size="medium"
+                endIcon={<GetAppIcon />}
+                className={classes.icon}
+              >
+                Download Health Declaration
               </Button>
             </CardActions>
           </Card>
@@ -266,6 +288,7 @@ export default function Registration() {
             >
               Apply For Vaccine
             </Button2>
+
             <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
               <Modal.Header
                 closeButton
@@ -401,7 +424,7 @@ export default function Registration() {
                       type="file"
                       accept="image/*,.pdf"
                       required
-                      // onChange={(e) => initialState['address'] = e.target.value}
+                    // onChange={(e) => initialState['address'] = e.target.value}
                     />
                     <Form.Control.Feedback type="invalid">
                       Please upload your health declaration file in PDF or PNG.
