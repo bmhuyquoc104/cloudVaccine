@@ -7,10 +7,7 @@ import Divider from '@material-ui/core/Divider';
 import {
   Box,
   Button,
-  Container,
   Grid,
-  Link,
-  TextField,
   Typography
 } from '@material-ui/core';
 

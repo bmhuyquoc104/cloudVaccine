@@ -7,17 +7,13 @@ import image from '../Images/cases.jpg';
 
 import {
     Box,
-    Button,
     Container,
     Grid,
     Link,
-    TextField,
     Typography,
     Card,
-    CardActions,
     CardContent,
     CardHeader,
-    CardActionArea,
     CardMedia
 } from '@material-ui/core';
 

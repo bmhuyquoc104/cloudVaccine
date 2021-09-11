@@ -9,33 +9,7 @@ import {
   Button,
 } from '@material-ui/core';
 
-import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
-  control: {
-    padding: theme.spacing(2),
-  },
-  button: {
-      margin: theme.spacing(1),
-  },
-  bot:
-  {
-      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-      border: 0,
-      borderRadius: 3,
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-  },
-  icon:
-  {
-      color: "-webkit-linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)",
-  },
-  info:
-  {
-    marginTop: "10px",
-    paddingLeft: "20px",
-    paddingRight: "20px",
-  }
-}));
 
 
 export default function Login() {
@@ -44,7 +18,6 @@ export default function Login() {
 
   const { authenticate } = useContext(AccountContext);
 
-  const classes = useStyles();
 
   const onSubmit = event => {
     event.preventDefault();
@@ -58,7 +31,6 @@ export default function Login() {
       })
   };
 
-  const show = React.useState(true);
 
   return (
     <div>

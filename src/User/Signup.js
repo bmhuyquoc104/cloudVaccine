@@ -1,21 +1,13 @@
 import React, { useState } from "react";
 // import { Auth } from "aws-amplify";
 
-import SendIcon from '@material-ui/icons/Send';
 
 import {
   Box,
   Button,
-  Container,
-  Grid,
-  Link,
   TextField,
-  Typography,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  CardActionArea
+  Typography
+
 } from '@material-ui/core';
 
 

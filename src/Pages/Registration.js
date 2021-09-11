@@ -98,6 +98,7 @@ export default function Registration() {
       .catch((err) => console.error(err))
   }, []
   )
+  console.log(registrations);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -167,7 +168,6 @@ export default function Registration() {
     setValidated(true);
   }
 
-  const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
 
   return (

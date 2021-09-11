@@ -8,8 +8,7 @@ import {
     Container,
     Typography,
     Box,
-    Avatar,
-    Button
+    Avatar
 } from "@material-ui/core";
 
 import {

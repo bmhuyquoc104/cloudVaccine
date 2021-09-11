@@ -8,7 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 // For cards
-import { Grid, Card, CardMedia, CardActionArea, CardContent, Typography } from '@material-ui/core'
+import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/core'
 
 // For button
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   paper:
   {
     width: "24vw",
-    height: "70vh"
+    height: "75vh"
   },
   control:
   {
@@ -213,7 +213,6 @@ export default function Vaccine() {
     }
     setValidated(true);
   }
-
   var click = false;
   var allHeartContainers = document.getElementsByClassName("MuiButton-label");
 

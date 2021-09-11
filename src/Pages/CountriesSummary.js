@@ -95,55 +95,8 @@ export default function CountriesSummary() {
 
   var countriesSummary = [...singaporeSummary, ...cambodiaSummary, ...malaysiaSummary, ...vietNamSummary, ...thaiLandSummary];
 
-  // console.log(singaporeSummary);
-  // console.log(malaysiaSummary);
-  // console.log(vietNamSummary);
-  // console.log(LaosSummary);
-  // console.log(thaiLandSummary);
-
-
-  const columns = [
-
-    { field: 'id', headerName: 'tableId', width: 300 },
-    { field: 'ID', headerName: 'id', width: 300 },
-    {
-      field: 'Country',
-      headerName: 'Country',
-      width: 150,
-      editable: true,
-    },
-    {
-      field: 'Confirmed',
-      headerName: 'Confirmed cases',
-      width: 220,
-      type: 'number',
-    },
-    {
-      field: 'Deaths',
-      headerName: 'Deaths',
-      type: 'number',
-      width: 160,
-    },
-    {
-      field: 'Recovered',
-      headerName: 'Recovered cases',
-      width: 220,
-      editable: true,
-      type: 'number',
-    },
-    {
-      field: 'Active',
-      headerName: 'Active cases',
-      width: 160,
-      type: 'number',
-    },
-    {
-      field: 'Date',
-      headerName: 'Date',
-      width: 220,
-      type: 'number',
-    },
-  ];
+ 
+  
 
   var vietNamCollection = [];
   var singaporeCollection = [];
@@ -228,13 +181,7 @@ export default function CountriesSummary() {
     return dataset;
   }
 
-  function getonlyCountry(countryCollection) {
-    var dataset = [];
-    for (const data of countryCollection) {
-      dataset.push(data.Country)
-    }
-    return dataset;
-  }
+
 
   var label = [];
   for (const vn of vietNamCollection) {
@@ -242,16 +189,6 @@ export default function CountriesSummary() {
   }
   label.sort();
 
-  function getPieChartData(countryToday) {
-    var dataSetPieChart = [];
-    for (const data of countryToday) {
-      dataSetPieChart.push(data.Recovered);
-      dataSetPieChart.push(data.Deaths);
-      dataSetPieChart.push(data.Confirmed);
-      dataSetPieChart.push(data.Active);
-    }
-    return dataSetPieChart;
-  }
 
   const [spacing, setSpacing] = React.useState(6);
   const classes = useStyles();
