@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Auth } from "aws-amplify";
+// import { Auth } from "aws-amplify";
 
 
 import {
@@ -18,38 +18,38 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [waitingForCode, setWaitingForCode] = useState(false);
   const [code, setCode] = useState("");
-  const signUp = (e) => {
-    e.preventDefault();
-    Auth.signUp({ username: email, password, attributes: { email } })
-      .then((data) => {
-        console.log(data);
-        setWaitingForCode(true);
-        setPassword("");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  const confirmSignUp = (e) => {
-    e.preventDefault();
-    Auth.confirmSignUp(email, code)
-      .then((data) => {
-        console.log(data);
-        setWaitingForCode(false);
-        setEmail("");
-        setCode("");
-      })
-      .catch((err) => console.log(err));
-  };
-  const resendCode = () => {
-    Auth.resendSignUp(email)
-      .then(() => {
-        console.log("code resent successfully");
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  // const signUp = (e) => {
+  //   e.preventDefault();
+  //   Auth.signUp({ username: email, password, attributes: { email } })
+  //     .then((data) => {
+  //       console.log(data);
+  //       setWaitingForCode(true);
+  //       setPassword("");
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+  // const confirmSignUp = (e) => {
+  //   e.preventDefault();
+  //   Auth.confirmSignUp(email, code)
+  //     .then((data) => {
+  //       console.log(data);
+  //       setWaitingForCode(false);
+  //       setEmail("");
+  //       setCode("");
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+  // const resendCode = () => {
+  //   Auth.resendSignUp(email)
+  //     .then(() => {
+  //       console.log("code resent successfully");
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
   return (
     <div className="form">
       <Typography variant="body1" style={{color:"#FF8C00", fontWeight: 'bold', letterSpacing:"2px"}}>
@@ -114,7 +114,6 @@ const SignUp = () => {
             size="large"
             type="submit"
             variant="contained"
-            onClick={signUp}
           >
             Sign up
           </Button>
@@ -139,11 +138,11 @@ const SignUp = () => {
             placeholder="code"
           />
           {/* <button type="submit" onClick={confirmSignUp}> */}
-          <button type="submit" onClick={confirmSignUp}>
+          <button type="submit">
             Confirm Sign Up
           </button>
           {/* <button type="button" onClick={resendCode}> */}
-          <button type="button" onClick={resendCode}>
+          <button type="button">
             Resend code
           </button>
         </form>

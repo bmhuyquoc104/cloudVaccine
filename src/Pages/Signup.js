@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import Amplify from "aws-amplify";
+import React from "react";
+// import Amplify from "aws-amplify";
 import SignUp from "../User/Signup";
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -46,15 +46,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const App = () => {
-  useEffect(() => {
-    Amplify.configure({
-      Auth: {
-        region: process.env.REACT_APP_REGION,
-        userPoolId: process.env.REACT_APP_USER_POOL_ID,
-        userPoolWebClientId: process.env.REACT_APP_USER_POOL_WEB_CLIENT_ID,
-      },
-    });
-  });
+  // useEffect(() => {
+  //   Amplify.configure({
+  //     Auth: {
+  //       region: process.env.REACT_APP_REGION,
+  //       userPoolId: process.env.REACT_APP_USER_POOL_ID,
+  //       userPoolWebClientId: process.env.REACT_APP_USER_POOL_WEB_CLIENT_ID,
+  //     },
+  //   });
+  // });
   const classes = useStyles();
 
 
