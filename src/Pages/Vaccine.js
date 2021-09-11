@@ -50,12 +50,14 @@ const useStyles = makeStyles((theme) => ({
   text:
   {
     color: '#ee9ca7',
-    fontSize: "1rem"
+    fontSize: "1rem",
+    marginBottom:"15px"
   },
   headText:
   {
     color: "white",
-    fontSize: "1.25rem"
+    fontSize: "1.25rem",
+    marginBottom:"15px"
   },
 }));
 
@@ -418,6 +420,7 @@ export default function Vaccine() {
                           </Button>
                           <Button
                             size="large"
+                            className={classes.text}
                             style={{ color: "white", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)', border: 0  }}
                             onClick={handleShow}
                           >
