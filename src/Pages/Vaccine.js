@@ -132,8 +132,8 @@ export default function Vaccine() {
   const handleShow = () => setShow(true);
 
   const initialState = {
-    country: '', description: '', effecientcy: '', img: '',
-    like: '', name: '', id: ''
+    dateOfConsultation: '', email: '', fullname: '', inquiry: '',
+    message: '', phone: '', id: ''
   }
   const [validated, setValidated] = useState(false);
 
@@ -146,8 +146,7 @@ export default function Vaccine() {
       e.preventDefault();
     } else {
       initialState['id'] = uuid();
-      initialState['like'] = 0;
-      putData('vaccine-covid', initialState)
+      putData('consult', initialState)
 
       var params = {
         Name: initialState['name']
@@ -180,16 +179,16 @@ export default function Vaccine() {
               /* required */
               Html: {
                 Charset: "UTF-8",
-                Data: "New Vaccine has been updated",
+                Data: "We have successfully received your consult. We will contact you soon",
               },
               Text: {
                 Charset: "UTF-8",
-                Data: "New Vaccine has been updated",
+                Data: "We have successfully received your consult. We will contact you soon",
               },
             },
             Subject: {
               Charset: "UTF-8",
-              Data: "New vaccine update",
+              Data: "We have successfully received your consult. We will contact you soon",
             },
           },
           Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
@@ -251,7 +250,7 @@ export default function Vaccine() {
           <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
             <Modal.Header
               closeButton
-              style={{ backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+              style={{ backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)'}}
             >
               <Modal.Title style={{ fontWeight: 'bold', color: 'white', justifyContent: 'center' }}>New Consult</Modal.Title>
             </Modal.Header>
@@ -263,10 +262,10 @@ export default function Vaccine() {
                     type="text"
                     required
                     placeholder="Enter Full Name"
-                    onChange={(e) => initialState['fullName'] = e.target.value}
+                    onChange={(e) => initialState['fullname'] = e.target.value}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please provide a valid fullName.
+                    Please provide a valid full Name.
                   </Form.Control.Feedback>
                 </Form.Group>
 
@@ -309,9 +308,17 @@ export default function Vaccine() {
                     onChange={(e) => initialState['inquiry'] = e.target.value}
                   >
                     <option></option>
-                    <option value="M">Vaccine Price</option>
-                    <option value="F">Vaccine Safety</option>
-                    <option value="O">Which type of vaccine should I choose</option>
+                    <option value="What vaccine brand is the best?">What vaccine brand is the best?</option>
+                    <option value="What is the side effect after getting shot. Do all vaccine type have the same side effect?">What is the side effect after getting shot. Do all vaccine type have the same side effect?</option>
+                    <option value="How is vaccine work. Do we get 100% immuned?">How is vaccine work. Do we get 100% immuned?</option>
+                    <option value="What do I need to do before and after getting a shot?">What do I need to do before and after getting a shot?</option>
+                    <option value="What happen if I don't get injectiton?">What happen if I don't get injectiton?</option>
+                    <option value="Is the vaccine covide like the conspiracy theory on Internet (goverment implement tracking chip as liquid and call it as vaccine)?">Is the vaccine covide like the conspiracy theory on Internet (goverment implement tracking chip as liquid and call it as vaccine)?</option>
+                    <option value="Are there any case that die after getting shot?">Are there any case that die after getting shot?</option>
+                    <option value="If i'm inffected by covid, can I still get a vaccine shot safely?">If i'm inffected by covid, can I still get a vaccine shot safely?</option>
+                    <option value="Is vaccine verocel safe to be injected, and how effected is it?">Is vaccine verocel safe to be injected, and how effected is it?</option>
+                    <option value="When will Vietnam vaccine be allowed to use?">When will Vietnam vaccine be allowed to use?</option>
+                    <option value="Other?">Other?</option>
                   </Form.Select>
                   <Form.Control.Feedback type="invalid">
                     Please choose a sample Inquiry for consult.
@@ -329,7 +336,7 @@ export default function Vaccine() {
                     onChange={(e) => initialState['message'] = e.target.value}
                   />
                   <Form.Control.Feedback type="invalid">
-                    Please provide a valid description.
+                    Please provide a valid message.
                   </Form.Control.Feedback>
                 </Form.Group>
                 
@@ -339,7 +346,7 @@ export default function Vaccine() {
                     type="date"
                     placeholder="Enter Date Of Consultation"
                     required
-                    onChange={(e) => initialState['dateOfConsult'] = e.target.value}
+                    onChange={(e) => initialState['dateOfConsultation'] = e.target.value}
                   />
                   <Form.Control.Feedback type="invalid">
                     Please provide a valid date of consultation.
@@ -409,7 +416,7 @@ export default function Vaccine() {
                         </Button>
                         <Button
                           size="large"
-                          style={{ color: "white", fontWeight: 'bold', marginLeft: "30px", backgroundImage: 'linear-gradient(45deg, #20BF55 30%, #01BAEF 90%)' }}
+                          style={{ color: "white", fontWeight: 'bold', marginLeft: "30px", backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)' }}
                           onClick={handleShow}
                         >
                           Book A Consult

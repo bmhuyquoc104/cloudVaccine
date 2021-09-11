@@ -35,11 +35,14 @@ const useStyles = makeStyles((theme) => ({
     },
     bot:
     {
-        background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+        color: 'white',
+        background:  'linear-gradient(45deg, #aa4465 30%,#861657 90%)',
         border: 0,
         borderRadius: 3,
         boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-        color: theme.palette.background.default,
+    },
+    pager: {
+        background:"#fde7f9",
     },
     icon:
     {
@@ -82,7 +85,7 @@ const UserLogin = () => {
                 <Grid item xs={6}>
                     <Card
                         className={classes.paper}
-                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", height: "65vh"}}
+                        style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", height: "65vh",background:"#fde7f9"}}
                     >
                         <CardHeader
                             className={classes.bot}
@@ -106,13 +109,13 @@ const UserLogin = () => {
                                     >
                                         <Container maxWidth="sm">
                                             <Login />
-                                            <Typography style={{color:"#FE6B8B", fontWeight: '500',letterSpacing:"1px",fontSize:"13px"}}>
+                                            <Typography style={{color:"#FE6B8B", fontWeight: '600',letterSpacing:"1px",fontSize:"13px"}}>
                                                 Don't Have An Account Yet?
                                                 <Link style={{color:"#FFA500", fontWeight: 'bold', letterSpacing:"3px",fontSize:"14px",marginLeft: "7px"}} component={RouterLink} to="/signup">
                                                     Sign up here!
                                                 </Link>
                                             </Typography>
-                                            <Typography style={{color:"#FE6B8B", fontWeight: '500', letterSpacing:"1px",fontSize:"13px",fontFamily:"Roboto"}}>
+                                            <Typography style={{color:"#FE6B8B", fontWeight: '600', letterSpacing:"1px",fontSize:"13px"}}>
                                                 Forgot Your Password?
                                                 <Link style={{color:"	#FFA500", fontWeight: '700',fontSize:"14px",letterSpacing:"3px",marginLeft: "7px"}} component={RouterLink} to="/forgotpassword">
                                                     Recover password

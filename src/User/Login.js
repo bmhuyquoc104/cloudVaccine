@@ -140,7 +140,7 @@ export default function Login() {
             //className={classes.bot}
             fullWidth
             color="secondary"
-            style={{maxWidth:"30%", letterSpacing:"4px",fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #a88beb 20%, #f8ceec 70%)', border: 0}}
+            style={{maxWidth:"30%", letterSpacing:"4px",fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)', border: 0}}
             // style={{ fontFamily: 'cursive',fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}
             align="center"
             type="submit"
