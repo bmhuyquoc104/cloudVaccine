@@ -2,6 +2,12 @@
 import * as AWS from 'aws-sdk'
 import Divider from '@material-ui/core/Divider';
 
+import {
+  Link
+} from "react-router-dom";
+
+
+
 import React from 'react';
 import axios from "axios"
 import { useState, useEffect } from "react"
@@ -275,7 +281,7 @@ export default function Registration() {
                 endIcon={<GetAppIcon />}
                 className={classes.icon}
               >
-                Download Health Declaration
+                <Link to="/files/EEET2481 - ADC and DAC.pdf" target="_blank" download>Download Health Declaration</Link>
               </Button>
             </CardActions>
           </Card>
