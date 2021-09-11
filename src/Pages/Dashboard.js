@@ -3,9 +3,7 @@ import { useState, useEffect } from "react"
 import React from "react"
 import { DataGrid } from '@material-ui/data-grid';
 
-import DashGrid from "../Components/Graphs/Grid"
-import SaigonPie from "../Components/Graphs/SaigonPie"
-import HanoiPie from "../Components/Graphs/HanoiPie"
+
 import { Doughnut } from 'react-chartjs-2';
 import { Pie } from 'react-chartjs-2';
 

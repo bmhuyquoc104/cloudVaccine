@@ -2,12 +2,8 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import React from "react"
 
-import CountriesLine from "../Components/Graphs/Line"
-import CountriesBar from "../Components/Graphs/Bar"
-import CountriesHBar from "../Components/Graphs/HBar"
 import { Bar } from 'react-chartjs-2';
 import { Line } from 'react-chartjs-2';
-
 
 // For cards
 import { Grid, Card, CardActions, Typography, CardHeader } from '@material-ui/core'
