@@ -251,7 +251,7 @@ export default function ForgotPassword() {
               Enter the fields below to reset your password
               </Typography>
               <Divider variant="middle" classes={{root: classes.divider}}/>
-              <Form onSubmit={sendCode}>
+              <Form onSubmit={resetPassword}>
                 {/* Code */}
                 <Form.Group
                 className="mb-3"

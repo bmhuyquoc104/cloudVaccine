@@ -116,7 +116,7 @@ export default function Registration() {
 
   const initialState = {
     fullName: '', Nationality: '', passport: '', dateOfBirth: '',
-    gender: '', phone: '', address: '', email: ''
+    gender: '', phone: '', address: '', email: '', link: ''
   }
 
   const [validated, setValidated] = useState(false);
@@ -129,9 +129,8 @@ export default function Registration() {
       e.stopPropagation();
     } else {
       initialState['id'] = uuid();
-      putData('vaccine-register', initialState);
+     
       var fileChooser = document.getElementById('file-chooser')
-      console.log("hello huy1111111111111111111", fileChooser)
 
       var file = fileChooser.files[0]
       var p = {
@@ -192,6 +191,8 @@ export default function Registration() {
           console.log("Successfully send email");
         }
       });
+      initialState['link'] = "https://s3covidsummary.s3.amazonaws.com/" + file.name;
+      putData('vaccine-register', initialState);
       alert('You have successfully added new registration')
     }
     setValidated(true);
