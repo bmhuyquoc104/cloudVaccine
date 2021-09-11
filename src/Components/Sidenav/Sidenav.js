@@ -68,10 +68,10 @@ const useStyles = makeStyles ((theme) => ({
         textDecoration: 'none',
         color: 'white',
         '&:hover': {
-            color: "rgba(0,0,0,1.0)",
+            color: "#FE9B4B",
             fontWeight: 'bold',
-            shadowColor:"1px 10px rgba(0,0,0,1.0)"
-        }
+            shadowColor:"1px 10px #FE9B4B"
+        },
     },
     header:
     {
