@@ -185,7 +185,7 @@ export default function CountriesSummary() {
 
   var label = [];
   for (const vn of vietNamCollection) {
-    label.push((new Date(vn.Date).toLocaleDateString()));
+    label.push((new Date(vn.Date).toLocaleDateString('fr-CA', { year: 'numeric', month: '2-digit', day: '2-digit' })))
   }
   label.sort();
 
