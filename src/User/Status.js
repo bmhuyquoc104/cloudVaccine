@@ -5,6 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Divider from '@material-ui/core/Divider';
 import { Link } from 'react-router-dom';
+import ChangePassword from "./ChangePassword";
+import ChangeEmail from "./ChangeEmail";
 
 
 // For cards
@@ -46,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Status() {
-  const [status, setStatus] = useState(false);
+  const [status, setStatus] = useState(true);
 
   const { getSession, logout } = useContext(AccountContext);
 
@@ -67,7 +69,7 @@ export default function Status() {
   return (
     <div>
       {status ? (
-        <Grid container spacing={6} style={{ paddingTop: "20px", height: "100vh"}} className={classes.root} alignContent="center">
+        <Grid container spacing={6} style={{ paddingTop: "20px", height: "100%"}} className={classes.root} alignContent="center">
         <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Grid container justifyContent="center" alignContent="center" spacing={spacing}>
             <Grid item>
@@ -77,6 +79,14 @@ export default function Status() {
               <Typography variant="h4" className={classes.header} align="center">
               You are logged in
               </Typography>
+              <Divider variant="middle" classes={{root: classes.divider}}/>
+
+              <Typography variant="h5" className={classes.header} align="center">Change your email here</Typography>
+              <ChangeEmail />
+              <Divider variant="middle" classes={{root: classes.divider}}/>
+
+              <Typography variant="h5" className={classes.header} align="center">Change your password here</Typography>
+              <ChangePassword />
               <Divider variant="middle" classes={{root: classes.divider}}/>
             </Grid>
           </Grid>

@@ -8,7 +8,7 @@ import Fade from '@material-ui/core/Fade';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 // For cards
-import { Grid, Card, CardMedia, CardContent, Typography } from '@material-ui/core'
+import { Grid, Card, CardMedia, CardContent, CardActions, Typography, Container} from '@material-ui/core'
 
 // For button
 import FavoriteIcon from '@material-ui/icons/Favorite';
@@ -27,17 +27,25 @@ const useStyles = makeStyles((theme) => ({
   },
   paper:
   {
-    width: "24vw",
-    height: "75vh"
+    width: "30vw",
+    height: "90vh"
   },
   control:
   {
     padding: theme.spacing(2),
   },
+  container:
+  {
+        background: 'linear-gradient(45deg, #1d2671 60%, #d76d77 90%)',
+  },
+  mid:
+  {
+    height: "38vh"
+  },
   bot:
   {
-    background: 'linear-gradient(45deg, #1d2671 60%, #d76d77 90%)',
-    height: "59vh"
+    height: "25vh",
+    justifyContent: "center"
   },
   text:
   {
@@ -49,11 +57,6 @@ const useStyles = makeStyles((theme) => ({
     color: "white",
     fontSize: "1.25rem"
   },
-  divider:
-  {
-    background: theme.palette.secondary.main,
-    margin: "3vh"
-  }
 }));
 
 const configuration = {
@@ -241,7 +244,7 @@ export default function Vaccine() {
 
 
   return (
-    <Grid container spacing={6} style={{ paddingTop: "20px" }} className={classes.root}>
+    <Grid container spacing={6} style={{ paddingTop: "20px",}} className={classes.root}>
       <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="Vaccine">
 
@@ -384,11 +387,11 @@ export default function Vaccine() {
 
                     {/* <CardActionArea style={{padding:0}}>
                       <CardContent> */}
-                    <CardMedia image={vaccine.img} style={{ width: "24vw", height: "30vh", margin: "auto" }} alt="..." />
+                    <CardMedia image={vaccine.img} style={{ width: "30vw", height: "35vh", margin: "auto" }} alt="..." />
                     {/* </CardContent>
                   </CardActionArea> */}
-
-                    <CardContent className={classes.bot}>
+                  <Container className={classes.container}>
+                    <CardContent className={classes.mid}>
                       <Typography className={classes.headText}><b>{vaccine.name}</b></Typography>
                       <Typography className={classes.text}><b>ID:</b> {vaccine.id}</Typography>
                       <Typography className={classes.text}><b>Efficiency:</b> {vaccine.effecientcy}</Typography>
@@ -403,24 +406,25 @@ export default function Vaccine() {
                       >
                         {vaccine.like}
                       </Button2>
-                      <div>
-                        <Button
-                          size="large"
-                          style={{ color: "white", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)', border: 0 }}
-                          className={classes.text}
+                      </CardContent>
+                      <CardActions className={classes.bot}>
+                          <Button
+                            size="large"
+                            style={{ color: "white", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)', border: 0 }}
+                            className={classes.text}
 
-                        >
-                          Apply Vaccine
-                        </Button>
-                        <Button
-                          size="large"
-                          style={{ color: "white", fontWeight: 'bold', marginLeft: "30px", backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)' }}
-                          onClick={handleShow}
-                        >
-                          Book A Consult
-                        </Button>
-                      </div>
-                    </CardContent>
+                          >
+                            Apply Vaccine
+                          </Button>
+                          <Button
+                            size="large"
+                            style={{ color: "white", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)', border: 0  }}
+                            onClick={handleShow}
+                          >
+                            Book A Consult
+                          </Button>
+                      </CardActions>
+                    </Container>
                   </Card>
                 </Fade>
               </Grid>
