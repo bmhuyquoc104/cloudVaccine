@@ -407,7 +407,7 @@ export default function Vaccine() {
                         {vaccine.like}
                       </Button2>
                       </CardContent>
-                      <CardActions className={classes.bot}>
+                      <CardActions  className={classes.bot}>
                           <Button
                             size="large"
                             style={{ color: "white", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)', border: 0 }}

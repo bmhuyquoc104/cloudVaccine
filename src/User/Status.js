@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Status() {
-  const [status, setStatus] = useState(true);
+  const [status, setStatus] = useState(false);
 
   const { getSession, logout } = useContext(AccountContext);
 
