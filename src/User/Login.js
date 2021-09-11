@@ -118,6 +118,7 @@ export default function Login() {
             type="submit"
             size = "medium"
             variant="contained"
+            onClick={onSubmit}
           >
             Log In
           </Button>
