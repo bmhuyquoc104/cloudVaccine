@@ -80,7 +80,6 @@ const putData = (tableName, data) => {
       console.log('Error', err)
     } else {
       console.log('Success', data)
-      alert("You have successfully added new vaccine.")
     }
   })
 }

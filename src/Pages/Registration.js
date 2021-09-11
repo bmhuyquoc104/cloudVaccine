@@ -56,11 +56,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const { SendEmailCommand } = require("@aws-sdk/client-ses");
-const { sesClient } = require("./lib/sesClient.js");
-
-
-
 
 const configuration = {
   region: 'us-east-1',

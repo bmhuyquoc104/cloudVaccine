@@ -267,7 +267,7 @@ export default function Review() {
                         <Modal show={show} onHide={handleClose} style={{ border: 0, boderRadius: 5, color: '#FE6B8B', fontWeight: 'bold' }}>
                             <Modal.Header
                                 closeButton
-                                style={{ backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)' }}
+                                style={{ backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)' }}
                             >
                                 <Modal.Title style={{ fontWeight: 'bold', color: 'white' }}>Review Application</Modal.Title>
                             </Modal.Header>
