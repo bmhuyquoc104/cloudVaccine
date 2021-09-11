@@ -4,6 +4,7 @@ import Login from "../User/Login";
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import image from '../Images/cases.jpg';
+import Fade from '@material-ui/core/Fade';
 
 import {
     Box,
@@ -57,6 +58,7 @@ const subtitle = (
 const UserLogin = () => {
 
     const classes = useStyles();
+    const checked = React.useState(true);
     return (
         <>
             <Typography
@@ -77,21 +79,13 @@ const UserLogin = () => {
                 justifyContent="center"
             >
                 <Grid item xs={5}>
+                <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                     <Card
                         className={classes.paper}
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", height: "70vh",background:"#fde7f9"}}
                     >
                         <CardHeader
                             className={classes.bot}
-                            // title={
-                            //     <Typography
-                            //     variant="h4"
-                            //     style={{fontWeight: 'bold',     letterSpacing:"2px"}}
-                            //     align="center"
-                            //     >
-                            //         Sign in
-                            //     </Typography>
-                            // }
                             subtitle={subtitle}
                             color="secondary"
                             style={{fontWeight: 'bold', marginTop: "0px", paddingLeft: "30px", backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)', border: 0}}
@@ -119,9 +113,11 @@ const UserLogin = () => {
                                     </Box>
                                 </Account>
                             </CardContent>
-                    </Card>
+                        </Card>
+                    </Fade>
                 </Grid>
                 <Grid item xs={5}>
+                <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                     <Card
                         className={classes.paper}
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px",  height: "70vh"}}
@@ -135,7 +131,7 @@ const UserLogin = () => {
                             />
                         </CardContent>
                     </Card>
-                    <br></br>
+                    </Fade>
                 </Grid>
             </Grid>
 

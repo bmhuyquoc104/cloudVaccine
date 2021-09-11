@@ -17,7 +17,7 @@ import {
   } from 'react-feather';
 
 import {makeStyles} from "@material-ui/core/styles";
-import { Link as RouterLink} from 'react-router-dom';
+import { Link as RouterLink, Redirect} from 'react-router-dom';
 
 // import Amplify, { API, graphqlOperation } from 'aws-amplify';
 // import awsconfig from '../../aws-exports';
@@ -200,6 +200,9 @@ function Sidenav() {
                 </Drawer>
                 
                 <Switch>
+                <Route exact path="/">
+                    <Redirect to="/home" />
+                    </Route>
                     <Route path="/account">
                         <Container>
                             <Account />

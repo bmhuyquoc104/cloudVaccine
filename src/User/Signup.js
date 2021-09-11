@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import image from '../Images/cases.jpg';
 import { Link as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import Fade from '@material-ui/core/Fade';
 
 // import { Auth } from "aws-amplify";
 
@@ -95,6 +96,8 @@ const SignUp = () => {
   //       console.log(e);
   //     });
   // };
+
+  const checked = React.useState(true);
   return (
     <div className="form">
             <Typography
@@ -115,6 +118,7 @@ const SignUp = () => {
                 justifyContent="center"
             >
               <Grid item xs={5}>
+                <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                     <Card
                         className={classes.paper}
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px",  height: "70vh"}}
@@ -128,9 +132,10 @@ const SignUp = () => {
                             />
                         </CardContent>
                     </Card>
-                    <br></br>
+                    </Fade>
                 </Grid>
                 <Grid item xs={5}>
+                  <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
                     <Card
                         className={classes.paper}
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", height: "70vh",background:"#fde7f9"}}
@@ -218,6 +223,7 @@ const SignUp = () => {
                               </Typography>                                           
                         </CardContent>
                     </Card>
+                  </Fade>
                 </Grid>
                 
             </Grid>
