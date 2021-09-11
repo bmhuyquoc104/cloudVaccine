@@ -3,6 +3,8 @@ import axios from "axios"
 import { useState, useEffect } from "react"
 import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
+import { Link } from 'react-router-dom';
+
 
 // Modal
 import Form from 'react-bootstrap/Form';
@@ -410,6 +412,7 @@ export default function Vaccine() {
                       </Button2>
                       </CardContent>
                       <CardActions  className={classes.bot}>
+                          <Link to="/register">
                           <Button
                             size="large"
                             style={{ color: "white", fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #aa4465 30%,#861657 90%)', border: 0 }}
@@ -418,6 +421,7 @@ export default function Vaccine() {
                           >
                             Apply Vaccine
                           </Button>
+                          </Link>
                           <Button
                             size="large"
                             className={classes.text}

@@ -76,7 +76,7 @@ const UserLogin = () => {
                 className={classes.root}
                 justifyContent="center"
             >
-                <Grid item xs={4}>
+                <Grid item xs={5}>
                     <Card
                         className={classes.paper}
                         style={{ border: "none", boxShadow: "0 3px 5px 2px rgba(255, 105, 135, .3)", borderRadius: "15px", height: "70vh",background:"#fde7f9"}}
@@ -101,17 +101,17 @@ const UserLogin = () => {
                                     <Box
                                         style={{ backgroundColor: 'background.default', display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'center' }}
                                     >
-                                        <Container maxWidth="sm">
+                                        <Container>
                                             <Login />
                                             <Typography style={{color:"#FE6B8B", fontWeight: '600',letterSpacing:"1px",fontSize:"14px"}}>
-                                                Don't Have An Account Yet?
-                                                <Link style={{color:"#FFA500", fontWeight: '700', letterSpacing:"3px",fontSize:"15px",marginLeft: "7px"}} component={RouterLink} to="/signup">
+                                                Don't Have An Account Yet?<br/>
+                                                <Link style={{color:"#FFA500", fontWeight: '700', letterSpacing:"2px",fontSize:"15px"}} component={RouterLink} to="/signup">
                                                     Sign up here!
                                                 </Link>
                                             </Typography>
                                             <Typography style={{color:"#FE6B8B", fontWeight: '600', letterSpacing:"1px",fontSize:"14px"}}>
-                                                Forgot Your Password?
-                                                <Link style={{color:"	#FFA500",fontSize:"15px", fontWeight: '700',fontSize:"14px",letterSpacing:"3px",marginLeft: "7px"}} component={RouterLink} to="/forgotpassword">
+                                                Forgot Your Password?<br/>
+                                                <Link style={{color:"	#FFA500",fontSize:"15px", fontWeight: '700', fontSize:"14px",letterSpacing:"2px"}} component={RouterLink} to="/forgotpassword">
                                                     Recover password.
                                                 </Link>
                                             </Typography>
