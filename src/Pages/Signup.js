@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 // import Amplify from "aws-amplify";
 import SignUp from "../User/Signup";
 import { Link as RouterLink } from 'react-router-dom';

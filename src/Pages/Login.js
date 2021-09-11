@@ -1,7 +1,6 @@
 import React from "react";
 import { Account } from "../User/Accounts";
 import Login from "../User/Login";
-import ForgotPassword from "../User/ForgotPassword";
 import { Link as RouterLink } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import image from '../Images/cases.jpg';
@@ -24,7 +23,6 @@ import {
 
 import { makeStyles } from '@material-ui/core/styles';
 
-import SendIcon from '@material-ui/icons/Send';
 
 const useStyles = makeStyles((theme) => ({
     control: {

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from "axios"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Button from 'react-bootstrap/Button';
 import Divider from '@material-ui/core/Divider';
