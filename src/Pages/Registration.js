@@ -281,7 +281,7 @@ export default function Registration() {
                 endIcon={<GetAppIcon />}
                 className={classes.icon}
               >
-                <Link to="/files/EEET2481 - ADC and DAC.pdf" target="_blank" download>Download Health Declaration</Link>
+                <Link size="medium" style={{textDecoration: 'none', color: 'inherit'}} className={classes.icon} to="/files/EEET2481 - ADC and DAC.pdf" target="_blank" download>Download Health Declaration</Link>
               </Button>
             </CardActions>
           </Card>
