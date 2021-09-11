@@ -78,7 +78,6 @@ var bucket = new AWS.S3({
 })
 
 
-var fileChooser = document.getElementById('file-chooser')
 
 const docClient = new AWS.DynamoDB.DocumentClient()
 const putData = (tableName, data) => {
@@ -123,7 +122,6 @@ export default function Registration() {
   const [validated, setValidated] = useState(false);
 
 
-
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.currentTarget;
@@ -132,19 +130,21 @@ export default function Registration() {
     } else {
       initialState['id'] = uuid();
       putData('vaccine-register', initialState);
+      var fileChooser = document.getElementById('file-chooser')
+      console.log("hello huy1111111111111111111", fileChooser)
 
-      var file1 = fileChooser.files[0]
+      var file = fileChooser.files[0]
       var p = {
-          Key: file1.name,
-          ContentType: file1.type,
-          Body: file1,
+          Key: file.name,
+          ContentType: file.type,
+          Body: file,
           ACL: 'public-read'
       }
       bucket.putObject(p, function(err, data) {
         if (err) {
-          alert("Error uploading data to S3: ", err);
+          console.log("Error uploading data to S3: ", err);
         } else {
-          alert("Successfully upload to S3");
+          console.log("Successfully upload to S3");
         }
            
       })
@@ -187,9 +187,9 @@ export default function Registration() {
 
       ses.sendEmail(params, function (err, res) {
         if (err) {
-          alert("Error uploading data: ", err);
+          console.log("Error uploading data: ", err);
         } else {
-          alert("Successfully send email");
+          console.log("Successfully send email");
         }
       });
       alert('You have successfully added new registration')
@@ -394,9 +394,19 @@ export default function Registration() {
                     </Form.Control.Feedback>
                   </Form.Group>
 
-                  <input type="file" id="file-chooser" accept="image/*,.pdf"/>
-                  <button id="upload-button">Upload to S3</button>
-                  <div id="results"></div>
+                  <Form.Group className="mb-3" >
+                    <Form.Label>Health Declaration File</Form.Label>
+                    <Form.Control id="file-chooser"
+                      type="file"
+                      accept="image/*,.pdf"
+                      required
+                      // onChange={(e) => initialState['address'] = e.target.value}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      Please upload your health declaration file in PDF or PNG.
+                    </Form.Control.Feedback>
+                  </Form.Group>
+                  {/* <input type="file" id="file-chooser" accept="image/*,.pdf"/> */}
 
                   <Form.Group className="mb-3" controlId="formBasicCheckbox">
                     <Form.Check type="checkbox"
