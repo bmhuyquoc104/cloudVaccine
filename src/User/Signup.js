@@ -7,6 +7,7 @@ import { Auth } from "aws-amplify";
 import Divider from '@material-ui/core/Divider';
 
 
+
 import {
   Box,
   Button,
@@ -236,6 +237,7 @@ const SignUp = () => {
       )}
 
       {waitingForCode && (
+
         <Grid container spacing={6} style={{ paddingTop: "20px", height: "100vh" }} className={classes.root} alignContent="center">
           <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <Grid container justifyContent="center" alignContent="center" spacing={spacing}>
@@ -303,6 +305,7 @@ const SignUp = () => {
             </Grid>
           </Grid>
         </Grid>
+
 
 
       )}

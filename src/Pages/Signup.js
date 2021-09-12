@@ -3,6 +3,7 @@ import React, {useEffect} from "react";
 import Amplify from "aws-amplify";
 import SignUp from "../User/Signup";
 
+
 const App = () => {
   useEffect(() => {
     Amplify.configure({
@@ -13,6 +14,7 @@ const App = () => {
     },
     });
     });
+
 
   return (
     <div>
