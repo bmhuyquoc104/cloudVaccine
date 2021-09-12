@@ -4,7 +4,7 @@ import { Link as RouterLink } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Fade from '@material-ui/core/Fade';
 
-// import { Auth } from "aws-amplify";
+import { Auth } from "aws-amplify";
 
 
 import {
@@ -64,38 +64,38 @@ const SignUp = () => {
   const [waitingForCode, setWaitingForCode] = useState(false);
   const [code, setCode] = useState("");
   const classes = useStyles();
-  // const signUp = (e) => {
-  //   e.preventDefault();
-  //   Auth.signUp({ username: email, password, attributes: { email } })
-  //     .then((data) => {
-  //       console.log(data);
-  //       setWaitingForCode(true);
-  //       setPassword("");
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-  // const confirmSignUp = (e) => {
-  //   e.preventDefault();
-  //   Auth.confirmSignUp(email, code)
-  //     .then((data) => {
-  //       console.log(data);
-  //       setWaitingForCode(false);
-  //       setEmail("");
-  //       setCode("");
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-  // const resendCode = () => {
-  //   Auth.resendSignUp(email)
-  //     .then(() => {
-  //       console.log("code resent successfully");
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
-  // };
+  const signUp = (e) => {
+    e.preventDefault();
+    Auth.signUp({ username: email, password, attributes: { email } })
+      .then((data) => {
+        console.log(data);
+        setWaitingForCode(true);
+        setPassword("");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+  const confirmSignUp = (e) => {
+    e.preventDefault();
+    Auth.confirmSignUp(email, code)
+      .then((data) => {
+        console.log(data);
+        setWaitingForCode(false);
+        setEmail("");
+        setCode("");
+      })
+      .catch((err) => console.log(err));
+  };
+  const resendCode = () => {
+    Auth.resendSignUp(email)
+      .then(() => {
+        console.log("code resent successfully");
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   const checked = React.useState(true);
   return (
@@ -233,11 +233,11 @@ const SignUp = () => {
             placeholder="code"
           />
           {/* <button type="submit" onClick={confirmSignUp}> */}
-          <button type="submit">
+          <button type="submit" onClick={confirmSignUp}>
             Confirm Sign Up
           </button>
           {/* <button type="button" onClick={resendCode}> */}
-          <button type="button">
+          <button type="button" onClick={resendCode}>
             Resend code
           </button>
         </form>
