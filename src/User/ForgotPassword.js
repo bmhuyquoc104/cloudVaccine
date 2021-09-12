@@ -70,16 +70,17 @@ export default function ForgotPassword() {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      console.error("Passwords are not the same");
+      alert("Your password and confirmPassword is not matched");
       return;
     }
 
     getUser().confirmPassword(code, password, {
       onSuccess: data => {
         console.log("onSuccess:", data);
+        alert("You have successfully reset your password")
       },
       onFailure: err => {
-        console.error("onFailure:", err);
+        alert("Your code is invalid, please enter again or request new code:", err);
       }
     });
   };
