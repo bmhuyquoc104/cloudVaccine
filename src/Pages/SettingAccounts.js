@@ -7,7 +7,6 @@ export default function SettingAccount() {
   return (
     <Account>
       <Status />
-      <Setting />
     </Account>
   );
 };
