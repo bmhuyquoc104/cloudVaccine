@@ -24,10 +24,10 @@ export default function Login() {
 
     authenticate(email, password)
       .then(data => {
-        console.log('Logged in!', data);
+        alert('You have successfully logged in!', data);
       })
       .catch(err => {
-        console.error('Failed to login!', err);
+        alert('Failed to login!', err);
       })
   };
 
