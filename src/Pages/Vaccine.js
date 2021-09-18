@@ -153,7 +153,7 @@ export default function Vaccine() {
     } else {
       initialState['id'] = uuid();
       putData('consult', initialState)
-
+      alert("You have successfully submitted your consult")
       var params = {
         Name: initialState['name']
       }
