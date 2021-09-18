@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   {
     color: 'white',
     fontWeight: 'bold',
-  }, 
+  },
   text:
   {
     color: 'white',
@@ -170,6 +170,10 @@ const SignUp = () => {
                   <Form noValidate>
                     <Form.Group className="mb-3" controlId="formBasicEmail" style={{ color: '#FE6B8B', fontWeight: 'bold' }}>
                       <Form.Label>Email</Form.Label>
+                      <div>
+                        <small style={{ color: "#FFA500", fontWeight: '500', fontSize: "13px", fontStyle: "italic" }}>Please provide your valid email</small>
+                      </div>
+                      <br />
                       <Form.Control
                         name="email"
                         type="email"
@@ -188,6 +192,11 @@ const SignUp = () => {
 
                     <Form.Group className="mb-3" controlId="formBasicFullName" style={{ color: '#FE6B8B', fontWeight: 'bold' }}>
                       <Form.Label>Password</Form.Label>
+                      <div>
+                        <small style={{ color: "#FFA500", fontWeight: '500', fontSize: "13px", fontStyle: "italic" }}>Your password must include at least one character,
+                          one number, one special symbol "/\_@#$%" and one UpperCase leter.</small>
+                      </div>
+                      <br />
                       <Form.Control
                         name="password"
                         type="password"
@@ -215,9 +224,9 @@ const SignUp = () => {
                       type="submit"
                       size="medium"
                       variant="contained"
-                      onClick = {signUp}
+                      onClick={signUp}
                     >
-                      Signup
+                      Register
                     </Button>
                   </Box>
 
@@ -275,10 +284,10 @@ const SignUp = () => {
                     </Form.Text>
                   </Form.Group>
 
-                  
+
                   <Box sx={{ py: 2 }} align="center">
                     <Button
-                      color="secondary" 
+                      color="secondary"
                       style={{ fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)', border: 0 }}
                       size="medium"
                       endIcon={<VerifiedUserIcon />}
@@ -286,11 +295,11 @@ const SignUp = () => {
                       variant="contained"
                       onClick={confirmSignUp}
                     >
-                      Confirm Sign Up
+                      <Link size="medium" style={{ textDecoration: 'none', color: 'inherit' }} className={classes.icon} to="/login" >Confirm Sign Up</Link>
                     </Button>
                     <Button
-                      color="secondary" 
-                      style={{ fontWeight: 'bold', marginTop: "0px", marginLeft:"1vw", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)', border: 0 }}
+                      color="secondary"
+                      style={{ fontWeight: 'bold', marginTop: "0px", marginLeft: "1vw", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #4c4177 30%, #473146  90%)', border: 0 }}
                       size="medium"
                       endIcon={<SendIcon />}
                       type="submit"
