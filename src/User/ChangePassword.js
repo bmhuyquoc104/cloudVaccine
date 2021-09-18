@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "./Accounts";
+import { Link } from 'react-router-dom';
 
 // Modals
 import Form from 'react-bootstrap/Form';
@@ -83,7 +84,7 @@ export default function ChangePassword() {
           variant="contained"
           onClick={onSubmit}
         >
-          Change Password
+          <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change Password</Link>
         </Button>
       </Box>
     </div>

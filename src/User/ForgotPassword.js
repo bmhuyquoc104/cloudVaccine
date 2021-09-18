@@ -3,6 +3,7 @@ import { CognitoUser } from "amazon-cognito-identity-js";
 import Pool from "../UserPool";
 import Form from 'react-bootstrap/Form';
 import Divider from '@material-ui/core/Divider';
+import { Link } from 'react-router-dom';
 
 import {
   Box,
@@ -325,7 +326,7 @@ export default function ForgotPassword() {
                     type="submit"
                     variant="contained"
                   >
-                    Change password
+                    <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change password</Link>
                   </Button>
                 </Box>
             </Form>

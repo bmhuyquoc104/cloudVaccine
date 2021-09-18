@@ -6,8 +6,6 @@ import VerifiedUserIcon from '@material-ui/icons/VerifiedUser';
 import { Auth } from "aws-amplify";
 import Divider from '@material-ui/core/Divider';
 
-
-
 import {
   Box,
   Button,
@@ -96,7 +94,7 @@ const SignUp = () => {
         setCode("");
         alert("You have successfully signed up")
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err));
   };
   const resendCode = () => {
     Auth.resendSignUp(email)
