@@ -78,12 +78,12 @@ const SignUp = () => {
     e.preventDefault();
     Auth.signUp({ username: email, password, attributes: { email } })
       .then((data) => {
-        console.log(data);
+        alert("This account is valid. Please confirm to finish this process");
         setWaitingForCode(true);
         setPassword("");
       })
       .catch((err) => {
-        console.log(err);
+        alert("Your username or password is not valid");
       });
   };
   const confirmSignUp = (e) => {
