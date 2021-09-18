@@ -323,7 +323,6 @@ export default function Review() {
                                             <option></option>
                                             <option value="Astra">Astra</option>
                                             <option value="SPUTNIK V">SPUTNIK V</option>
-                                            <option value="Sinopharm">Sinopharm</option>
                                             <option value="Pfizer">Pfizer</option>
                                             <option value="Moderna">Moderna</option>
                                             <option value="Nano Covax">Nano Covax</option>
