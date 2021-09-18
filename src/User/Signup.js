@@ -24,6 +24,7 @@ import {
 
 import SendIcon from '@material-ui/icons/Send';
 import Form from 'react-bootstrap/Form';
+import { ErrorOutlined } from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   control: {
@@ -81,7 +82,7 @@ const SignUp = () => {
         setPassword("");
       })
       .catch((err) => {
-        alert("Your username or password is not valid");
+        alert("Email or password is invalid.");
       });
   };
   const confirmSignUp = (e) => {
@@ -92,10 +93,10 @@ const SignUp = () => {
         setWaitingForCode(false);
         setEmail("");
         setCode("");
-        alert("You have successfully signed up");
+        alert("You have successfully signed up.");
         window.location.replace("/login");
       })
-      .catch((err) => alert(err));
+      .catch((err) => alert("Verifcation code is invalid"));
   };
   const resendCode = () => {
     Auth.resendSignUp(email)
