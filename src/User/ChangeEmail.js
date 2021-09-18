@@ -3,6 +3,7 @@ import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import { AccountContext } from "./Accounts";
 import Pool from "../UserPool";
+import { Link } from 'react-router-dom';
 
 // Modals
 import Form from 'react-bootstrap/Form';
@@ -143,7 +144,7 @@ export default function ChangeEmail() {
                 variant="contained"
                 onClick={sendCode}
               >
-                Change Email
+                <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change Email</Link>
               </Button>
             </Box>
         </Form>

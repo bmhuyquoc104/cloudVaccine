@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { AccountContext } from './Accounts';
+import { Link } from 'react-router-dom';
 
 // Modals
 import Form from 'react-bootstrap/Form';
@@ -120,7 +121,7 @@ export default function Login() {
             variant="contained"
             onClick={onSubmit}
           >
-            Log In
+            <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Login</Link>
           </Button>
         </Box>
         
