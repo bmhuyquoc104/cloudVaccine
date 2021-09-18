@@ -95,7 +95,7 @@ export default function Status() {
               size="lg"
               onClick={logout}
             >
-              Log Out
+              <Link to="/home" style={{textDecoration:"none",color:"inherit"}}>Log Out</Link>
             </Button>
         </Grid>
       </Grid>
