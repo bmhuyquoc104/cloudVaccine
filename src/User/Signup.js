@@ -96,7 +96,7 @@ const SignUp = () => {
         setCode("");
         alert("You have successfully signed up")
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert("Verification code is invalid."));
   };
   const resendCode = () => {
     Auth.resendSignUp(email)
