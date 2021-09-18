@@ -94,6 +94,7 @@ const SignUp = () => {
         setWaitingForCode(false);
         setEmail("");
         setCode("");
+        window.location.replace("/login")
         alert("You have successfully signed up")
       })
       .catch((err) => alert("Verification code is invalid."));
@@ -295,7 +296,7 @@ const SignUp = () => {
                       variant="contained"
                       onClick={confirmSignUp}
                     >
-                      <Link size="medium" style={{ textDecoration: 'none', color: 'inherit' }} className={classes.icon} to="/login" >Confirm Sign Up</Link>
+                      Confirm Sign Up
                     </Button>
                     <Button
                       color="secondary"
