@@ -273,7 +273,8 @@ export default function Registration() {
                 className={classes.icon}
                 style={{ marginLeft: "3vw" }}
               >
-                Learn More
+                  <a size="medium" style={{ textDecoration: 'none', color: 'inherit' }} className={classes.icon} href = "https://www.who.int/emergencies/diseases/novel-coronavirus-2019/covid-19-vaccines" target = "blank">Learn More
+                  </a>
               </Button>
 
               <Button
@@ -281,7 +282,7 @@ export default function Registration() {
                 endIcon={<GetAppIcon />}
                 className={classes.icon}
               >
-                <Link size="medium" style={{textDecoration: 'none', color: 'inherit'}} className={classes.icon} to="/files/healthDeclaration.pdf" target="_blank" download>Download Health Declaration</Link>
+                <Link size="medium" style={{ textDecoration: 'none', color: 'inherit' }} className={classes.icon} to="/files/healthDeclaration.pdf" target="_blank" download>Download Health Declaration</Link>
               </Button>
             </CardActions>
           </Card>
