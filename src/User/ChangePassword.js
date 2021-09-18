@@ -52,7 +52,7 @@ export default function ChangePassword() {
           <Form.Label>New Password</Form.Label>
           <div>
             <small style={{ color: "#FFA500", fontWeight: '500', fontSize: "13px", fontStyle: "italic"}}>Your password must include at least one character,
-              one number, one special Character such as {"!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"} and one UpperCase leter.</small>
+              one number, one special Character such as {"!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"} and one UpperCase letter.</small>
           </div>
           <br />
           <Form.Control
