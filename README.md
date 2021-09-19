@@ -1,6 +1,6 @@
 # Vaccination Program
 RMIT University Vietnam \
-Course: *	COSC2638  Cloud Computing* \
+Course: 	*COSC2638  Cloud Computing* \
 Semester: *2021B* \
 Assessment name: *Final Project* \
 Team name: *The Chamber of Secrets* \
@@ -35,5 +35,5 @@ npm install
 ```
 
 # Acknowledgement
-* Mr Quang's lecturer slides.
-* Package javafx.scene.media : https://docs.oracle.com/javafx/2/api/javafx/scene/media/package-summary.html
+* Dr Nguyen Ngoc Thanh - our lecturer
+* AWS Documentation: https://docs.aws.amazon.com/
