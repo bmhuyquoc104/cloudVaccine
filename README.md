@@ -15,7 +15,7 @@ In this project, our group has decided to build an application for registration 
 
 # COMPONENTS:
 * **DynamoDB**: we use DynamoDB as storage where we can store many different types of data in different tables. These table will be used in some page, like review page, vaccine page, register page, all country summary and dashboard.
-* **	Lambda function**: this tool will be used as an API request executer. Whenever, users make a request from a feature in the application that had been coded to use a particular API gateway, a particular Lambda that had been set to work with one API gateway will access an exact table in DynamoDB and perform the request as it was programed in.
+* **Lambda function**: this tool will be used as an API request executer. Whenever, users make a request from a feature in the application that had been coded to use a particular API gateway, a particular Lambda that had been set to work with one API gateway will access an exact table in DynamoDB and perform the request as it was programed in.
 
 * **API gateway**: this is also the tool that needed to become a part of the process of making any request from client. API gateway will call the request within the system toward Lambda function. One API will be connected with one button to perform request as correct as clients ask for.
 * **Amplify Sign Up**: this tool will cooperate with Cognito to help users create accounts on the application. It will be used in sign up pages.
