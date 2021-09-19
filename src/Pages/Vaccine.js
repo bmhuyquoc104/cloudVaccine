@@ -213,9 +213,6 @@ export default function Vaccine() {
         });
 
       }
-
-
-
       console.log(initialState);
     }
     setValidated(true);

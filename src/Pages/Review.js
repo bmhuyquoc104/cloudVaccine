@@ -156,9 +156,7 @@ export default function Review() {
                             /* more items */
                         ],
                         ToAddresses: [
-                            //   emailArray[i], //RECEIVER_ADDRESS
-                            /* more To-email addresses */
-                            "bmhuyquoc104@gmail.com",
+                            emailArray[i],
                         ],
                     },
                     Message: {
