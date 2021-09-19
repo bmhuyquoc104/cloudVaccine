@@ -71,65 +71,26 @@ export default function ForgotPassword() {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Your password and confirmPassword is not matched");
+      console.error("Passwords are not the same");
       return;
     }
 
     getUser().confirmPassword(code, password, {
       onSuccess: data => {
         console.log("onSuccess:", data);
-        alert("You have successfully reset your password")
       },
       onFailure: err => {
-        alert("Your code is invalid, please enter again or request new code:", err);
+        console.error("onFailure:", err);
       }
     });
   };
+
   const [spacing, setSpacing] = React.useState(2);
   const classes = useStyles();
 
   return (
     <div>
       {stage === 1 && (
-        // <form onSubmit={sendCode}>
-
-          // Old input form
-          // <input
-          //   value={email}
-          //   onChange={event => setEmail(event.target.value)}
-          //   placeholder="Your current email"
-          // />
-          // <TextField
-          //   fullWidth
-          //   label="Enter your registered email"
-          //   margin="normal"
-          //   name="email"
-          //   onChange={event => setEmail(event.target.value)}
-          //   type="email"
-          //   value={email}
-          //   variant="outlined"
-          //   style={{ fontFamily: 'cursive', fontWeight: 'bold' }}
-          // />
-          //Old button
-          //* <button type="submit">Send verification code</button>
-
-
-        //   <Box sx={{ py: 2 }}>
-        //     <Button
-        //       //className={classes.bot}
-        //       color="secondary" style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}
-        //       // style={{ fontFamily: 'cursive', fontWeight: 'bold', backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0 }}
-        //       size="medium"
-        //       endIcon={<SendIcon />}
-        //       type="submit"
-        //       variant="contained"
-        //     >
-        //       Send verification code
-        //     </Button>
-        //   </Box>
-        // </form>
-
-        
         <Grid container spacing={6} style={{ paddingTop: "20px", height: "100vh"}} className={classes.root} alignContent="center">
           <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             <Grid container justifyContent="center" alignContent="center" spacing={spacing}>
@@ -156,8 +117,8 @@ export default function ForgotPassword() {
                       type="email"
                       placeholder="username@gmail.com"
                       required
-                      onChange={event => setEmail(event.target.value)}
                       value={email}
+                      onChange={event => setEmail(event.target.value)}
                       pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
                     />
                     <Form.Control.Feedback type="invalid">
@@ -187,58 +148,6 @@ export default function ForgotPassword() {
       )}
 
       {stage === 2 && (
-        // <form onSubmit={resetPassword}>
-
-        //   <TextField
-        //     fullWidth
-        //     label="Code"
-        //     margin="normal"
-        //     name="code"
-        //     onChange={event => setCode(event.target.value)}
-        //     type="code"
-        //     value={code}
-        //     placeholder="Verification code"
-        //     variant="outlined"
-        //   />
-
-        //   <TextField
-        //     fullWidth
-        //     label="Password"
-        //     margin="normal"
-        //     name="password"
-        //     onChange={event => setPassword(event.target.value)}
-        //     type="password"
-        //     value={password}
-        //     placeholder="New password"
-        //     variant="outlined"
-        //   />
-
-        //   <TextField
-        //     fullWidth
-        //     label="Confirm Password"
-        //     margin="normal"
-        //     name="confirmpassword"
-        //     onChange={event => event => setConfirmPassword(event.target.value)}
-        //     type="confirmpassword"
-        //     value={confirmPassword}
-        //     placeholder="Confirm password"
-        //     variant="outlined"
-        //   />
-
-        //   <Box sx={{ py: 4 }}>
-        //   <Button
-        //     color="secondary"
-        //     style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0  }}
-        //     fullWidth
-        //     size="large"
-        //     type="submit"
-        //     variant="contained"
-        //   >
-        //     Change password
-        //   </Button>
-        // </Box>
-        // </form>
-
         <Grid container spacing={6} style={{ paddingTop: "20px", height: "100vh"}} className={classes.root} alignContent="center">
         <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Grid container justifyContent="center" alignContent="center" spacing={spacing}>
@@ -266,8 +175,8 @@ export default function ForgotPassword() {
                     type="text"
                     placeholder="Verification code"
                     required
+                    value={code} 
                     onChange={event => setCode(event.target.value)}
-                    value={code}
                   />
                   <Form.Control.Feedback type="invalid">
                     Code not valid.
@@ -288,8 +197,8 @@ export default function ForgotPassword() {
                     type="password"
                     placeholder="New password"
                     required
-                    onChange={event => setPassword(event.target.value)}
                     value={password}
+                    onChange={event => setPassword(event.target.value)}
                   />
                   <Form.Text className="text-muted">
                   </Form.Text>
@@ -307,8 +216,8 @@ export default function ForgotPassword() {
                     type="password"
                     placeholder="Confirm new password"
                     required
-                    onChange={event => setConfirmPassword(event.target.value)}
                     value={confirmPassword}
+                    onChange={event => setConfirmPassword(event.target.value)}
                   />
                   <Form.Control.Feedback type="invalid">
                     Passwords don't match.
@@ -326,10 +235,10 @@ export default function ForgotPassword() {
                     type="submit"
                     variant="contained"
                   >
-                    <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change Password</Link>
+                    Change Password
                   </Button>
                 </Box>
-            </Form>
+              </Form>
             </Grid>
             </Grid>
         </Grid>

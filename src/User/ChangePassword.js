@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { AccountContext } from "./Accounts";
-import { Link } from 'react-router-dom';
 
 // Modals
 import Form from 'react-bootstrap/Form';
@@ -26,7 +25,7 @@ export default function ChangePassword() {
         });
       })
         .catch(err => {
-          alert("Your current password is incorrect", err)
+          alert("Your current password is invalid", err)
         });
     });
   };
@@ -39,7 +38,7 @@ export default function ChangePassword() {
           <Form.Control
             name="password"
             type="password"
-            placeholder="password"
+            placeholder="current password"
             required
             onChange={event => setPassword(event.target.value)}
             value={password}
@@ -59,7 +58,7 @@ export default function ChangePassword() {
           <Form.Control
             name="newpassword"
             type="password"
-            placeholder="password"
+            placeholder="new password"
             required
             onChange={event => setNewPassword(event.target.value)}
             value={newPassword}
@@ -84,7 +83,7 @@ export default function ChangePassword() {
           variant="contained"
           onClick={onSubmit}
         >
-          <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change Password</Link>
+          Change Password
         </Button>
       </Box>
     </div>

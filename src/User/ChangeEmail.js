@@ -3,7 +3,7 @@ import { CognitoUserAttribute } from "amazon-cognito-identity-js";
 import { CognitoUser } from "amazon-cognito-identity-js";
 import { AccountContext } from "./Accounts";
 import Pool from "../UserPool";
-import { Link } from 'react-router-dom';
+
 
 // Modals
 import Form from 'react-bootstrap/Form';
@@ -40,6 +40,7 @@ export default function ChangeEmail() {
       },
       inputVerificationCode: data => {
         console.log("Input code:", data);
+        alert("You have successfully change email")
       }
     });
   };
@@ -52,7 +53,7 @@ export default function ChangeEmail() {
           new CognitoUserAttribute({ Name: "email", Value: newEmail })
         ];
         user.updateAttributes(attributes, (results, err) => {
-          alert("You have successfully change email", results);
+          if (err) console.error(err);
         });
         setStage(2);
       })
@@ -88,7 +89,7 @@ export default function ChangeEmail() {
               <Form.Control
                 name="password"
                 type="password"
-                placeholder="password"
+                placeholder="current password"
                 required
                 onChange={event => setPassword(event.target.value)}
                 value={password}
@@ -144,7 +145,8 @@ export default function ChangeEmail() {
                 variant="contained"
                 onClick={sendCode}
               >
-                <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change Email</Link>
+                {/* <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change Email</Link> */}
+                Change Email
               </Button>
             </Box>
         </Form>
