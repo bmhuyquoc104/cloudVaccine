@@ -55,10 +55,10 @@ export default function ForgotPassword() {
 
     getUser().forgotPassword({
       onSuccess: data => {
-        console.log("onSuccess:", data);
+        alert("onSuccess:", data);
       },
       onFailure: err => {
-        console.error("onFailure:", err);
+        alert("onFailure:", err);
       },
       inputVerificationCode: data => {
         console.log("Input code:", data);
@@ -77,10 +77,10 @@ export default function ForgotPassword() {
 
     getUser().confirmPassword(code, password, {
       onSuccess: data => {
-        console.log("onSuccess:", data);
+        alert("You have successfully change your password:", data);
       },
       onFailure: err => {
-        console.error("onFailure:", err);
+        alert("Your confirm password is not matched:", err);
       }
     });
   };
