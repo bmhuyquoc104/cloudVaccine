@@ -84,7 +84,7 @@ export default function ChangePassword() {
           variant="contained"
           onClick={onSubmit}
         >
-          <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change Password</Link>
+         Change Password
         </Button>
       </Box>
     </div>

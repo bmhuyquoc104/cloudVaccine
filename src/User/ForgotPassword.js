@@ -71,17 +71,16 @@ export default function ForgotPassword() {
     event.preventDefault();
 
     if (password !== confirmPassword) {
-      alert("Your password and confirmPassword is not matched");
+      console.error("Passwords are not the same");
       return;
     }
 
     getUser().confirmPassword(code, password, {
       onSuccess: data => {
-        console.log("onSuccess:", data);
-        alert("You have successfully reset your password")
+        alert("onSuccess:", data);
       },
       onFailure: err => {
-        alert("Your code is invalid, please enter again or request new code:", err);
+        alert("onFailure:", err);
       }
     });
   };
@@ -187,58 +186,6 @@ export default function ForgotPassword() {
       )}
 
       {stage === 2 && (
-        // <form onSubmit={resetPassword}>
-
-        //   <TextField
-        //     fullWidth
-        //     label="Code"
-        //     margin="normal"
-        //     name="code"
-        //     onChange={event => setCode(event.target.value)}
-        //     type="code"
-        //     value={code}
-        //     placeholder="Verification code"
-        //     variant="outlined"
-        //   />
-
-        //   <TextField
-        //     fullWidth
-        //     label="Password"
-        //     margin="normal"
-        //     name="password"
-        //     onChange={event => setPassword(event.target.value)}
-        //     type="password"
-        //     value={password}
-        //     placeholder="New password"
-        //     variant="outlined"
-        //   />
-
-        //   <TextField
-        //     fullWidth
-        //     label="Confirm Password"
-        //     margin="normal"
-        //     name="confirmpassword"
-        //     onChange={event => event => setConfirmPassword(event.target.value)}
-        //     type="confirmpassword"
-        //     value={confirmPassword}
-        //     placeholder="Confirm password"
-        //     variant="outlined"
-        //   />
-
-        //   <Box sx={{ py: 4 }}>
-        //   <Button
-        //     color="secondary"
-        //     style={{ fontFamily: 'cursive', fontWeight: 'bold', marginTop: "0px", paddingLeft: "15px", backgroundImage: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)', border: 0  }}
-        //     fullWidth
-        //     size="large"
-        //     type="submit"
-        //     variant="contained"
-        //   >
-        //     Change password
-        //   </Button>
-        // </Box>
-        // </form>
-
         <Grid container spacing={6} style={{ paddingTop: "20px", height: "100vh"}} className={classes.root} alignContent="center">
         <Grid item xs={12} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
           <Grid container justifyContent="center" alignContent="center" spacing={spacing}>
@@ -326,7 +273,7 @@ export default function ForgotPassword() {
                     type="submit"
                     variant="contained"
                   >
-                    <Link to="/home" style={{ textDecoration: 'none', color: 'inherit' }}>Change Password</Link>
+                    Change Password
                   </Button>
                 </Box>
             </Form>
