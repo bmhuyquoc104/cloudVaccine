@@ -282,7 +282,7 @@ export default function Registration() {
                 endIcon={<GetAppIcon />}
                 className={classes.icon}
               >
-                <Link size="medium" style={{ textDecoration: 'none', color: 'inherit' }} className={classes.icon} to="/files/healthDeclaration.pdf" target="_blank" download>Download Health Declaration</Link>
+                 <a size="medium" style={{ textDecoration: 'none', color: 'inherit' }} className={classes.icon} href = "https://documentcloud.adobe.com/link/review?uri=urn:aaid:scds:US:8b5c0bfc-62d8-4822-97f1-ab7d037e3e37" target = "_blank" download>Link To Download Health Declearation</a>
               </Button>
             </CardActions>
           </Card>
