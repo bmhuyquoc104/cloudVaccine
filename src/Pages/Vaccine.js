@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme) => ({
   paper:
   {
     width: "30vw",
-    height: "90vh"
+    height: "100vh"
+    // Media 35vh => content = 100 - 35 = 65
   },
   control:
   {
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   mid:
   {
-    height: "38vh"
+    height: "40vh"
   },
   bot:
   {

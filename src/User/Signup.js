@@ -147,7 +147,7 @@ const SignUp = () => {
               </Card>
             </Fade>
           </Grid>
-          <Grid item xs={4}>
+          <Grid item xs={6}>
             <Fade in={checked} {...(checked ? { timeout: 1000 } : {})}>
               <Card
                 className={classes.paper}
