@@ -184,7 +184,7 @@ export default function Registration() {
             Data: "Welcome new vaccinator",
           },
         },
-        Source: "nguyendanghuynhchau15720@gmail.com", // SENDER_ADDRESS
+        Source: "vaccinationprogramcloudproject@gmail.com", // SENDER_ADDRESS
         ReplyToAddresses: [
           /* more items */
         ],
