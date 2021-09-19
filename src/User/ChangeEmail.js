@@ -40,7 +40,7 @@ export default function ChangeEmail() {
       },
       inputVerificationCode: data => {
         console.log("Input code:", data);
-        alert("You have successfully change email")
+        alert("You have successfully change your email")
       }
     });
   };
