@@ -80,7 +80,7 @@ var bucket = new AWS.S3({
   secretAccessKey: 'RijJPrAkst+a132dzazw+u9ssMWZsbttvvcVOE32',
   endpoint: new AWS.Endpoint('s3.amazonaws.com'),
   params: {
-    Bucket: 's3covidsummary'
+    Bucket: 'covidsummary'
   }
 })
 
@@ -198,7 +198,7 @@ export default function Registration() {
           console.log("Successfully send email");
         }
       });
-      initialState['link'] = "https://s3covidsummary.s3.amazonaws.com/" + file.name;
+      initialState['link'] = "https://covidsummary.s3.us-east-1.amazonaws.com/" + file.name;
       putData('vaccine-register', initialState);
       alert('You have successfully added new registration')
     }
